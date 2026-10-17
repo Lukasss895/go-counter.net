@@ -20,30 +20,36 @@
 		a { color: #3f79aa; text-decoration: none; }
 		a:hover { color: #ffffff; text-decoration: underline; }
 
-		/* Overené Wildfire pozadie */
+		/* Wildfire hlavička: obrázok sa zobrazí celý, nič sa neodreže */
 		.header-banner {
 			width: 100%;
-			height: 380px;
-			background-image: url('wildfire.png');
-			background-repeat: no-repeat;
-			background-position: center bottom;
-			background-size: 1920px auto;
-			position: relative;
+			background: #0c0f12;
+			line-height: 0;
+			overflow: hidden;
+		}
+
+		.header-banner img {
+			display: block;
+			width: 100%;
+			max-width: 1920px;
+			height: auto;
+			margin: 0 auto;
 		}
 
 		#container {
-			width: 960px;
+			width: 100%;
+			max-width: 960px;
 			margin: 0 auto;
 			position: relative;
 		}
 
-		/* Navigačná lišta presne pod logom */
+		/* Navigačná lišta priamo pod obrázkom */
 		#navigation_container {
 			background: linear-gradient(to bottom, #1d2125 0%, #14171a 100%);
 			border: 1px solid #282d33;
 			height: 42px;
-			width: 960px;
-			margin-top: -42px;
+			width: 100%;
+			margin-top: 0;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
@@ -130,6 +136,7 @@
 
 		#main_blog {
 			flex: 1;
+			min-width: 0;
 		}
 
 		.inner_post {
@@ -168,6 +175,7 @@
 		/* Pravý stĺpec (Sidebar) */
 		#sidebar {
 			width: 290px;
+			flex-shrink: 0;
 		}
 
 		.sidebar_item {
@@ -261,7 +269,7 @@
 
 <body>
 	<!-- Hlavička -->
-	<div class="header-banner"></div>
+	<div class="header-banner"><img src="wildfire.png" alt=""></div>
 
 	<div id="container">
 		
