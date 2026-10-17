@@ -6,11 +6,9 @@
 	<title>GO:COUNTER updates - 2016 CS:GO notes</title>
 	
 	<style>
-		/* Základné rozloženie a Operation Wildfire pozadie */
 		* { box-sizing: border-box; }
 		body {
-			background-image: url('wildfire.png'); repeat-x top center;
-			background-attachment: fixed;
+			background-color: #192128;
 			color: #8c8f94;
 			font-family: Arial, Helvetica, sans-serif;
 			font-size: 13px;
@@ -18,14 +16,15 @@
 			padding: 0;
 		}
 
-		/* Vstvrvenie Wildfire pozadia pre dokonalý 2016 štýl */
-		.wildfire-bg {
-			background-image: url('http://www.counter-strike.net/operationwildfire/images/bg.jpg');
-			background-repeat: repeat;
-			background-attachment: fixed;
-			min-height: 100vh;
+		/* Wildfire banner/pozadie len hore, ktoré sa pri scrollovaní posunie preč */
+		.wildfire-top-bg {
+			background: url('http://www.counter-strike.net/operationwildfire/images/bg.jpg') repeat top center;
 			width: 100%;
-			padding-bottom: 50px;
+			min-height: 450px; /* Výška hornej bannerovej časti */
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
 		}
 
 		a { color: #c09d43; text-decoration: none; }
@@ -222,148 +221,149 @@
 </head>
 
 <body>
-	<div class="wildfire-bg">
-		<div id="container">
-			
-			<!-- Navigácia -->
-			<div id="navigation_container">
-				<ul id="navigation">
-					<li><a href="#">GO:COUNTER</a></li>
-					<li><a href="#servers">SERVERS</a></li>
-					<li><a href="#">INVENTORY</a></li>
-					<li><a href="#">LEADERBOARD</a></li>
-					<li><a href="#">DEMOS</a></li>
-					<li>
-						<a style="color: #ce8404;" href="#">OTHER ▼</a>
-						<div class="dropdownItems">
-							<a href="#">DONATE</a>
-							<hr>
-							<a style="color: #ce8404;" href="#">UPDATES</a>
-							<hr>
-							<a href="#">CROSSHAIR</a>
-							<hr>
-							<a href="#">DEMO ARCHIVE</a>
-						</div>
-					</li>
-				</ul>
-			</div>
+	<!-- Wildfire banner len v hornej časti, ktorý odscrollovaním zmizne -->
+	<div class="wildfire-top-bg"></div>
 
-			<!-- Obsah -->
-			<div id="content_container">
+	<div id="container">
+		
+		<!-- Navigácia -->
+		<div id="navigation_container">
+			<ul id="navigation">
+				<li><a href="#">GO:COUNTER</a></li>
+				<li><a href="#servers">SERVERS</a></li>
+				<li><a href="#">INVENTORY</a></li>
+				<li><a href="#">LEADERBOARD</a></li>
+				<li><a href="#">DEMOS</a></li>
+				<li>
+					<a style="color: #ce8404;" href="#">OTHER ▼</a>
+					<div class="dropdownItems">
+						<a href="#">DONATE</a>
+						<hr>
+						<a style="color: #ce8404;" href="#">UPDATES</a>
+						<hr>
+						<a href="#">CROSSHAIR</a>
+						<hr>
+						<a href="#">DEMO ARCHIVE</a>
+					</div>
+				</li>
+			</ul>
+		</div>
 
-				<!-- Hlavné príspevky -->
-				<div id="main_blog">
-					<div id="post_container">
+		<!-- Obsah -->
+		<div id="content_container">
+
+			<!-- Hlavné príspevky -->
+			<div id="main_blog">
+				<div id="post_container">
+					
+					<div class="inner_post">
+						<h2><a href="#">v1.5.2 - SMOKANE™</a></h2>
+						<p class="post_date">04 Oct 2026</p>
+						Download Link will be released later<br><br>
+						Update Size: 1.58MB<br><br>
+						Patch Notes:<br>
+						– Improved anti-cheat<br>
+						– Fixed server lag or even crashing on match end
+					</div>
+					<div class="horizontal_rule"></div>
+
+					<div class="inner_post">
+						<h2><a href="#">v1.5.1</a></h2>
+						<p class="post_date">03 Oct 2026</p>
+						Hello again!<br><br>
+						Yes, updates are coming in left in right but apparently you people like it so here are the patch notes!<br><br>
+						Update Size: 1.57MB<br><br>
+						<a href="https://dl.fragmount.net/v151.zip">Download Link</a><br><br>
+						<h3 style="color: #ce8404;">Note: As long you don’t have the updated build, you will not be able to play on our servers</h3>
+						<br>
+						<h3>Operation Wildfire</h3>
+						– Mission drops now show up properly. Items you earn from completing a mission now appear in the end-of-match drop list and are marked as a mission drop.<br>
+						– Mission drops now come from every collection. Instead of mostly Dragon Lores and Medusas, a mission drop now picks a random collection and rolls an item from it, using the real CS:GO odds.<br>
+						– You voted, we listened: the rarer tiers are 2x as likely as Valve’s original odds. A Covert from the Cobblestone collection (yes, the Dragon Lore) is now a 0.0512% chance instead of 0.0256% for example.<br>
+						– Every first completion of a mission now rewards a drop.<br><br>
 						
-						<div class="inner_post">
-							<h2><a href="#">v1.5.2 - SMOKANE™</a></h2>
-							<p class="post_date">04 Oct 2026</p>
-							Download Link will be released later<br><br>
-							Update Size: 1.58MB<br><br>
-							Patch Notes:<br>
-							– Improved anti-cheat<br>
-							– Fixed server lag or even crashing on match end
-						</div>
-						<div class="horizontal_rule"></div>
-
-						<div class="inner_post">
-							<h2><a href="#">v1.5.1</a></h2>
-							<p class="post_date">03 Oct 2026</p>
-							Hello again!<br><br>
-							Yes, updates are coming in left in right but apparently you people like it so here are the patch notes!<br><br>
-							Update Size: 1.57MB<br><br>
-							<a href="https://dl.fragmount.net/v151.zip">Download Link</a><br><br>
-							<h3 style="color: #ce8404;">Note: As long you don’t have the updated build, you will not be able to play on our servers</h3>
-							<br>
-							<h3>Operation Wildfire</h3>
-							– Mission drops now show up properly. Items you earn from completing a mission now appear in the end-of-match drop list and are marked as a mission drop.<br>
-							– Mission drops now come from every collection. Instead of mostly Dragon Lores and Medusas, a mission drop now picks a random collection and rolls an item from it, using the real CS:GO odds.<br>
-							– You voted, we listened: the rarer tiers are 2x as likely as Valve’s original odds. A Covert from the Cobblestone collection (yes, the Dragon Lore) is now a 0.0512% chance instead of 0.0256% for example.<br>
-							– Every first completion of a mission now rewards a drop.<br><br>
-							
-							<h3>Souvenirs</h3>
-							– Fixed souvenir items not having any stickers.<br>
-							– Events from before autographs existed get an extra event sticker in place of the autograph. All stickers always come from the souvenir’s own event.<br><br>
-							
-							<h3>Music Kits</h3>
-							– Music kits can now drop at the end of a match again. Roughly 1 in every 3–4 matches.<br>
-							– Every music kit that drops is StatTrak and counts your MVPs from now on.<br>
-							– All music kits already in your inventory have been upgraded to StatTrak.<br><br>
-							
-							<h3>Store</h3>
-							– Case prices are now between 2.99 and 4.99 fMt$, and the shop still rotates every hour (Have fun you gamblers).<br><br>
-							
-							<h3>Fixes</h3>
-							– Fixed some stickers and items not being recognized by the game coordinator (for example the MLG Columbus 2016 stickers).<br>
-							– Fixed items showing the wrong origin (for example dropped items showing up as purchased).
-						</div>
-						<div class="horizontal_rule"></div>
-
-						<div class="inner_post">
-							<h2><a href="#">v1.4 - Inventory, fragFall, New Commands and more!</a></h2>
-							<p class="post_date">25 Sep 2026</p>
-							– Reworked the GO:COUNTER client from scratch.<br>
-							– Added full Inventory functionality.<br>
-							– Removed the Watch & Awards Tab from the Mainmenu.
-						</div>
-						<div class="horizontal_rule"></div>
-
+						<h3>Souvenirs</h3>
+						– Fixed souvenir items not having any stickers.<br>
+						– Events from before autographs existed get an extra event sticker in place of the autograph. All stickers always come from the souvenir’s own event.<br><br>
+						
+						<h3>Music Kits</h3>
+						– Music kits can now drop at the end of a match again. Roughly 1 in every 3–4 matches.<br>
+						– Every music kit that drops is StatTrak and counts your MVPs from now on.<br>
+						– All music kits already in your inventory have been upgraded to StatTrak.<br><br>
+						
+						<h3>Store</h3>
+						– Case prices are now between 2.99 and 4.99 fMt$, and the shop still rotates every hour (Have fun you gamblers).<br><br>
+						
+						<h3>Fixes</h3>
+						– Fixed some stickers and items not being recognized by the game coordinator (for example the MLG Columbus 2016 stickers).<br>
+						– Fixed items showing the wrong origin (for example dropped items showing up as purchased).
 					</div>
-				</div>
+					<div class="horizontal_rule"></div>
 
-				<!-- Pravý Panel (Sidebar) -->
-				<div id="sidebar">
-
-					<!-- Tlačidlo GET GO:COUNTER -->
-					<div id="buy">
-						<a href="https://VAS-LINK-NA-STIAHNUTIE.com/csgo.zip" id="getcsgo"><span>GET GO:COUNTER</span></a>
+					<div class="inner_post">
+						<h2><a href="#">v1.4 - Inventory, fragFall, New Commands and more!</a></h2>
+						<p class="post_date">25 Sep 2026</p>
+						– Reworked the GO:COUNTER client from scratch.<br>
+						– Added full Inventory functionality.<br>
+						– Removed the Watch & Awards Tab from the Mainmenu.
 					</div>
-
-					<!-- Unikátni Hráči -->
-					<div class="sidebar_container">
-						<div style="font-size: 26px; color: #ffffff; font-weight: bold; letter-spacing: 2px;">1,910</div>
-						<div style="color: #666; font-size: 11px; text-transform: uppercase;">Unique players on GO:COUNTER</div>
-					</div>
-
-					<!-- Blok Servery -->
-					<div class="sidebar_container" id="servers">
-						<h5 style="border-bottom: 1px solid #23272b; padding-bottom: 6px; margin-bottom: 10px;">SERVERS</h5>
-						<p style="margin: 5px 0;"><strong>[EU] Dust2 Only 128T</strong><br>
-						<span class="server-ip">connect 127.0.0.1:27015</span></p>
-						<hr style="border: 0; border-top: 1px solid #23272b; margin: 8px 0;">
-						<p style="margin: 5px 0;"><strong>[EU] Competitive Matchmaking</strong><br>
-						<span class="server-ip">connect 127.0.0.1:27016</span></p>
-					</div>
-
-					<!-- História Aktualizácií -->
-					<div class="sidebar_container" id="update_history">
-						<h5 style="border-bottom: 1px solid #23272b; padding-bottom: 6px; margin-bottom: 10px;">UPDATE HISTORY</h5>
-						<a href="#">Operation Wildfire</a>
-						<a href="#">Nuke is back</a>
-						<a href="#">Operation Bloodhound</a>
-						<a href="#">Operation Vanguard</a>
-						<a href="#">Reintroducing Train</a>
-						<a href="#">Dreamhack Winter CS:GO Championship 2014</a>
-						<a href="#">ESL One CS:GO Championship - Cologne 2014</a>
-						<a href="#">Operation Breakout Update</a>
-						<a href="#">EMS One CS:GO Championship - Katowice 2014</a>
-						<a href="#">Operation Phoenix Update</a>
-						<a href="#">Stickers Workshop Update</a>
-						<a href="#">Introducing the cz75-auto</a>
-						<a href="#">The winter offensive holiday update</a>
-					</div>
+					<div class="horizontal_rule"></div>
 
 				</div>
-
 			</div>
 
-			<!-- Pätka -->
-			<div id="footer">
-				<p>© 2016 Valve Corporation, all rights reserved. Valve, Source, Steam, and Counter-Strike are trademarks of Valve Corporation.<br>
-				GO:COUNTER is restored 2016 CS:GO and is in no way, shape or form affiliated with Valve.</p>
+			<!-- Pravý Panel (Sidebar) -->
+			<div id="sidebar">
+
+				<!-- Tlačidlo GET GO:COUNTER -->
+				<div id="buy">
+					<a href="https://VAS-LINK-NA-STIAHNUTIE.com/csgo.zip" id="getcsgo"><span>GET GO:COUNTER</span></a>
+				</div>
+
+				<!-- Unikátni Hráči -->
+				<div class="sidebar_container">
+					<div style="font-size: 26px; color: #ffffff; font-weight: bold; letter-spacing: 2px;">1,910</div>
+					<div style="color: #666; font-size: 11px; text-transform: uppercase;">Unique players on GO:COUNTER</div>
+				</div>
+
+				<!-- Blok Servery -->
+				<div class="sidebar_container" id="servers">
+					<h5 style="border-bottom: 1px solid #23272b; padding-bottom: 6px; margin-bottom: 10px;">SERVERS</h5>
+					<p style="margin: 5px 0;"><strong>[EU] Dust2 Only 128T</strong><br>
+					<span class="server-ip">connect 127.0.0.1:27015</span></p>
+					<hr style="border: 0; border-top: 1px solid #23272b; margin: 8px 0;">
+					<p style="margin: 5px 0;"><strong>[EU] Competitive Matchmaking</strong><br>
+					<span class="server-ip">connect 127.0.0.1:27016</span></p>
+				</div>
+
+				<!-- História Aktualizácií -->
+				<div class="sidebar_container" id="update_history">
+					<h5 style="border-bottom: 1px solid #23272b; padding-bottom: 6px; margin-bottom: 10px;">UPDATE HISTORY</h5>
+					<a href="#">Operation Wildfire</a>
+					<a href="#">Nuke is back</a>
+					<a href="#">Operation Bloodhound</a>
+					<a href="#">Operation Vanguard</a>
+					<a href="#">Reintroducing Train</a>
+					<a href="#">Dreamhack Winter CS:GO Championship 2014</a>
+					<a href="#">ESL One CS:GO Championship - Cologne 2014</a>
+					<a href="#">Operation Breakout Update</a>
+					<a href="#">EMS One CS:GO Championship - Katowice 2014</a>
+					<a href="#">Operation Phoenix Update</a>
+					<a href="#">Stickers Workshop Update</a>
+					<a href="#">Introducing the cz75-auto</a>
+					<a href="#">The winter offensive holiday update</a>
+				</div>
+
 			</div>
 
 		</div>
+
+		<!-- Pätka -->
+		<div id="footer">
+			<p>© 2016 Valve Corporation, all rights reserved. Valve, Source, Steam, and Counter-Strike are trademarks of Valve Corporation.<br>
+			GO:COUNTER is restored 2016 CS:GO and is in no way, shape or form affiliated with Valve.</p>
+		</div>
+
 	</div>
 </body>
 </html>
