@@ -20,14 +20,14 @@
 		a { color: #3f79aa; text-decoration: none; }
 		a:hover { color: #ffffff; text-decoration: underline; }
 
-		/* Posun obrázka o 3 cm nahor, aby logo sadlo presne nad lištu */
+		/* Kompaktná hlavička s normálnou veľkosťou obrázka */
 		.header-banner {
 			width: 100%;
-			height: 520px;
+			height: 380px; /* Štandardná výška Valve banneru */
 			background-image: url('wildfire.png');
 			background-repeat: no-repeat;
-			background-position: center 45%; /* Posun motívu a loga o 3 cm nahor */
-			background-size: cover;
+			background-position: center bottom; /* Zarovná spodok obrázka a logo nad lištu */
+			background-size: 1920px auto; /* Zabraňuje prehnanému zväčšovaniu obrázka */
 			position: relative;
 		}
 
@@ -37,7 +37,7 @@
 			position: relative;
 		}
 
-		/* Navigačná lišta presne pod vytiahnutým logom Wildfire */
+		/* Navigačná lišta presne pod logom */
 		#navigation_container {
 			background: linear-gradient(to bottom, #1d2125 0%, #14171a 100%);
 			border: 1px solid #282d33;
@@ -248,7 +248,7 @@
 </head>
 
 <body>
-	<!-- Hlavička s posunutým obrázkom o 3 cm nahor -->
+	<!-- Hlavička s kompaktnou veľkosťou pozadia -->
 	<div class="header-banner"></div>
 
 	<div id="container">
@@ -454,61 +454,3 @@
 						Have fun messing around with the new commands and the one's that got changed and good luck to all participants in the fragFall tournament!<br><br>
 						-NeXi2k
 					</div>
-
-				</div>
-			</div>
-
-			<!-- Pravý Panel (Sidebar) -->
-			<div id="sidebar">
-
-				<div class="sidebar-links">
-					<a href="https://VAS-LINK-NA-STIAHNUTIE.com/csgo.zip" target="_blank">GET GO:COUNTER &rsaquo;</a>
-				</div>
-
-				<!-- Unikátni Hráči -->
-				<div class="sidebar_item">
-					<div class="monthly-stat">1,910</div>
-					<div class="monthly-stat-sub">Unique players on GO:COUNTER</div>
-				</div>
-
-				<!-- Blok Servery -->
-				<div class="sidebar_item" id="servers">
-					<h5>SERVERS</h5>
-					<p style="margin: 5px 0;"><strong>[EU] Dust2 Only 128T</strong><br>
-					<span class="server-ip">connect 127.0.0.1:27015</span></p>
-					<hr style="border: 0; border-top: 1px solid #212529; margin: 8px 0;">
-					<p style="margin: 5px 0;"><strong>[EU] Competitive Matchmaking</strong><br>
-					<span class="server-ip">connect 127.0.0.1:27016</span></p>
-				</div>
-
-				<!-- História Aktualizácií -->
-				<div class="sidebar_item" id="update_history">
-					<h5>UPDATE HISTORY</h5>
-					<a href="#">Operation Wildfire</a>
-					<a href="#">Nuke is back</a>
-					<a href="#">Operation Bloodhound</a>
-					<a href="#">Operation Vanguard</a>
-					<a href="#">Reintroducing Train</a>
-					<a href="#">Dreamhack Winter CS:GO Championship 2014</a>
-					<a href="#">ESL One CS:GO Championship - Cologne 2014</a>
-					<a href="#">Operation Breakout Update</a>
-					<a href="#">EMS One CS:GO Championship - Katowice 2014</a>
-					<a href="#">Operation Phoenix Update</a>
-					<a href="#">Stickers Workshop Update</a>
-					<a href="#">Introducing the cz75-auto</a>
-					<a href="#">The winter offensive holiday update</a>
-				</div>
-
-			</div>
-
-		</div>
-
-		<!-- Pätka -->
-		<div id="footer">
-			<p>© 2016 Valve Corporation, all rights reserved. Valve, Source, Steam, and Counter-Strike are trademarks of Valve Corporation.<br>
-			GO:COUNTER is restored 2016 CS:GO and is in no way, shape or form affiliated with Valve.</p>
-		</div>
-
-	</div>
-</body>
-</html>
