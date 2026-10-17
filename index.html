@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <title>CS:GO Updates & Downloads</title>
+    <style>
+        /* Základné štýly z CS:GO / Valve 2016 rozhrania */
+        body {
+            background-color: #0e1215;
+            color: #a3a3a3;
+            font-family: "Segoe UI", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+        }
+
+        a {
+            color: #d1a840;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 960px;
+            margin: 0 auto;
+            background-color: #14181c;
+            border: 1px solid #23282d;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Navigačný panel */
+        header {
+            background: linear-gradient(to bottom, #1d2228, #14181c);
+            border-bottom: 2px solid #2d343c;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-links a {
+            color: #cccccc;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-right: 20px;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #e2ad37;
+        }
+
+        /* Main Content Layout */
+        .content {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .main-col {
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 280px;
+        }
+
+        /* Post Block */
+        .post {
+            background-color: #181d22;
+            border: 1px solid #262c33;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 3px;
+        }
+
+        .post-title {
+            color: #e2ad37;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0 0 5px 0;
+        }
+
+        .post-date {
+            color: #66707c;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .post-body {
+            line-height: 1.6;
+            color: #c2c2c2;
+        }
+
+        .post-body ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        .post-body li {
+            margin-bottom: 6px;
+        }
+
+        /* Tlačidlo Get CS:GO */
+        .get-csgo-btn {
+            display: block;
+            background: linear-gradient(to bottom, #729b28, #476615);
+            border: 1px solid #8cc627;
+            color: #ffffff !important;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            padding: 15px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+            margin-bottom: 20px;
+            text-decoration: none !important;
+        }
+
+        .get-csgo-btn:hover {
+            background: linear-gradient(to bottom, #83b32e, #537719);
+            border-color: #a2e232;
+        }
+
+        /* Sidebar Box */
+        .sidebar-box {
+            background-color: #181d22;
+            border: 1px solid #262c33;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 1px solid #2d343c;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+
+        /* Pätka */
+        footer {
+            background-color: #0b0d0f;
+            border-top: 1px solid #1f2429;
+            padding: 20px;
+            text-align: center;
+            font-size: 11px;
+            color: #555555;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Navigácia -->
+    <header>
+        <div class="nav-links">
+            <a href="#updates" class="active">Updates</a>
+            <a href="#servers">Servers</a>
+        </div>
+    </header>
+
+    <!-- Hlavný obsah -->
+    <div class="content">
+        <!-- Ľavý stĺpec: Aktualizácie / Príspevky -->
+        <div class="main-col">
+            <div class="post">
+                <div class="post-title">v1.5.2 - SMOKANE™</div>
+                <div class="post-date">04. Október 2026 - Patch Notes</div>
+                <div class="post-body">
+                    <p>Aktualizácia pre náš CS:GO 2016 klient a server:</p>
+                    <ul>
+                        <li>Vylepšená ochrana proti podvádzaniu (Anti-Cheat).</li>
+                        <li>Opravený lag a padanie servera pri ukončení zápasu.</li>
+                        <li>Optimalizácia načítavania inventára.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="post">
+                <div class="post-title">Operation Wildfire Build 1353102</div>
+                <div class="post-date">22. Apríl 2016</div>
+                <div class="post-body">
+                    <p>Vitajte na starom builde Operation Wildfire!</p>
+                    <ul>
+                        <li>Pridané misie a dropy z Operácie Wildfire.</li>
+                        <li>Obnovená mapa Nuke a klasické herné mechaniky z roku 2016.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pravý stĺpec: Tlačidlo na stiahnutie a zoznam serverov -->
+        <div class="sidebar">
+            <!-- TLAČIDLO PRE STIAHNUTIE (Sem vložte váš vlastný odkaz) -->
+            <a href="https://VAS-ODKAZ-NA-STIAHNUTIE.com/csgo_installer.exe" class="get-csgo-btn" download>
+                GET CS:GO
+            </a>
+
+            <!-- Zoznam serverov -->
+            <div class="sidebar-box" id="servers">
+                <div class="sidebar-title">SERVERS</div>
+                <p style="margin: 5px 0;"><strong>Dust2 Only 128 Tick</strong><br>
+                <span style="color: #729b28;">connect 127.0.0.1:27015</span></p>
+                <hr style="border: 0; border-top: 1px solid #262c33; margin: 10px 0;">
+                <p style="margin: 5px 0;"><strong>Competitive Matchmaking</strong><br>
+                <span style="color: #729b28;">connect 127.0.0.1:27016</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pätka -->
+    <footer>
+        <p>© 2016 Valve Corporation, all rights reserved. Valve, the Valve logo, Source, Steam, Counter-Strike, and the Counter-Strike logo are trademarks of Valve Corporation.<br>
+        This project restores 2016 CS:GO and is not affiliated with Valve.</p>
+    </footer>
+</div>
+
+</body>
+</html>
