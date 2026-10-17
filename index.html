@@ -20,7 +20,7 @@
 		a { color: #3f79aa; text-decoration: none; }
 		a:hover { color: #ffffff; text-decoration: underline; }
 
-		/* Funkčné Wildfire pozadie */
+		/* Overené Wildfire pozadie */
 		.header-banner {
 			width: 100%;
 			height: 380px;
@@ -224,22 +224,28 @@
 			font-weight: bold;
 		}
 
-		/* Bannery v pravom stĺpci */
-		.update-img-banner {
+		/* Prémiové Valve-style update karty v pravej lište */
+		.valve-update-card {
 			display: block;
+			background: linear-gradient(to bottom, #1c2126 0%, #14171a 100%);
+			border: 1px solid #2c323b;
+			border-left: 3px solid #d1a840;
+			padding: 10px 12px;
 			margin-bottom: 8px;
-			border: 1px solid #282d33;
-			transition: border-color 0.2s ease;
+			color: #ffffff !important;
+			font-weight: bold;
+			font-size: 12px;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+			transition: all 0.2s ease;
 		}
 
-		.update-img-banner img {
-			width: 100%;
-			height: auto;
-			display: block;
-		}
-
-		.update-img-banner:hover {
+		.valve-update-card:hover {
 			border-color: #d1a840;
+			background: linear-gradient(to bottom, #252b32, #181c20);
+			color: #d1a840 !important;
+			text-decoration: none !important;
+			transform: translateX(3px);
 		}
 
 		/* Pätka */
@@ -254,7 +260,7 @@
 </head>
 
 <body>
-	<!-- Hlavička s funkčným pozadím -->
+	<!-- Hlavička -->
 	<div class="header-banner"></div>
 
 	<div id="container">
@@ -488,24 +494,24 @@
 					<span class="server-ip">connect 127.0.0.1:27016</span></p>
 				</div>
 
-				<!-- História Aktualizácií s Archívnymi Obrázkami -->
+				<!-- História Aktualizácií (Valve-style karty) -->
 				<div class="sidebar_item">
 					<h5>UPDATE HISTORY</h5>
 					
-					<a class="update-img-banner" href="https://www.counter-strike.net/operationwildfire" target="_blank">
-						<img src="https://web.archive.org/web/20160331200844im_/http://counter-strike.net/images/sidebar_wildfire.jpg" alt="Operation Wildfire">
+					<a class="valve-update-card" href="https://www.counter-strike.net/operationwildfire" target="_blank">
+						Operation Wildfire
 					</a>
-					<a class="update-img-banner" href="https://www.counter-strike.net/reintroducingnuke" target="_blank">
-						<img src="https://web.archive.org/web/20160331200844im_/http://counter-strike.net/images/sidebar_nuke.jpg" alt="Nuke is back">
+					<a class="valve-update-card" href="https://www.counter-strike.net/reintroducingnuke" target="_blank">
+						Nuke is Back
 					</a>
-					<a class="update-img-banner" href="https://www.counter-strike.net/operationbloodhound" target="_blank">
-						<img src="https://web.archive.org/web/20160331200844im_/http://counter-strike.net/images/sidebar_bloodhound.jpg" alt="Operation Bloodhound">
+					<a class="valve-update-card" href="https://www.counter-strike.net/operationbloodhound" target="_blank">
+						Operation Bloodhound
 					</a>
-					<a class="update-img-banner" href="https://www.counter-strike.net/operationvanguard" target="_blank">
-						<img src="https://web.archive.org/web/20160331200844im_/http://counter-strike.net/images/sidebar_vanguard.jpg" alt="Operation Vanguard">
+					<a class="valve-update-card" href="https://www.counter-strike.net/operationvanguard" target="_blank">
+						Operation Vanguard
 					</a>
-					<a class="update-img-banner" href="https://www.counter-strike.net/reintroducingtrain" target="_blank">
-						<img src="https://web.archive.org/web/20160331200844im_/http://counter-strike.net/images/sidebar_train.jpg" alt="Reintroducing Train">
+					<a class="valve-update-card" href="https://www.counter-strike.net/reintroducingtrain" target="_blank">
+						Reintroducing Train
 					</a>
 				</div>
 
