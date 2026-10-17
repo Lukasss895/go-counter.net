@@ -8,7 +8,7 @@
 	<style>
 		* { box-sizing: border-box; }
 		body {
-			background-color: #192128;
+			background-color: #0b0d0e;
 			color: #8c8f94;
 			font-family: Arial, Helvetica, sans-serif;
 			font-size: 13px;
@@ -16,36 +16,42 @@
 			padding: 0;
 		}
 
-		/* Wildfire banner/pozadie len hore, ktoré sa pri scrollovaní posunie preč */
+		/* Wildfire banner v pozadí s názvom wildfire.png, ktorý pri scrollovaní odíde nahor */
 		.wildfire-top-bg {
 			background-image: url('wildfire.png');
+			background-repeat: repeat-x;
+			background-position: top center;
 			width: 100%;
-			min-height: 450px; /* Výška hornej bannerovej časti */
+			height: 500px;
 			position: absolute;
 			top: 0;
 			left: 0;
 			z-index: -1;
+			opacity: 0.85;
 		}
 
-		a { color: #c09d43; text-decoration: none; }
+		a { color: #d1a840; text-decoration: none; transition: color 0.2s; }
 		a:hover { color: #ffffff; text-decoration: underline; }
 
+		/* Celý kontajner posunutý o 5 cm (cca 180px) nižšie pre CS:GO lobby vzhľad */
 		#container {
 			width: 960px;
 			margin: 0 auto;
-			padding-top: 50px;
+			padding-top: 180px;
 			position: relative;
 		}
 
-		/* Navigácia */
+		/* CS:GO Hlavná navigácia s jemným tieňom */
 		#navigation_container {
-			background: #171a1c;
-			border-bottom: 1px solid #23272b;
-			height: 42px;
+			background: linear-gradient(to bottom, #1d2228 0%, #14181c 100%);
+			border: 1px solid #2d343c;
+			border-bottom: 2px solid #e38b1d;
+			height: 45px;
 			position: absolute;
-			top: 50px;
+			top: 180px;
 			width: 960px;
 			z-index: 100;
+			box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 		}
 
 		#navigation {
@@ -60,7 +66,7 @@
 		#navigation li {
 			position: relative;
 			display: inline-block;
-			margin-right: 20px;
+			margin-right: 25px;
 		}
 
 		#navigation li a {
@@ -68,10 +74,11 @@
 			font-size: 14px;
 			font-weight: bold;
 			text-transform: uppercase;
+			letter-spacing: 0.5px;
 		}
 
 		#navigation li a:hover {
-			color: #ce8404;
+			color: #e38b1d;
 		}
 
 		/* Dropdown ponuka */
@@ -80,11 +87,12 @@
 			position: absolute;
 			top: 100%;
 			left: 0;
-			background: #171a1c;
-			border: 1px solid #23272b;
+			background: #14181c;
+			border: 1px solid #2d343c;
 			padding: 10px;
 			min-width: 140px;
 			z-index: 200;
+			box-shadow: 0 5px 15px rgba(0,0,0,0.8);
 		}
 
 		#navigation li:hover .dropdownItems {
@@ -93,25 +101,26 @@
 
 		.dropdownItems a {
 			display: block;
-			padding: 5px 0;
+			padding: 6px 0;
 			font-size: 12px !important;
 		}
 
 		.dropdownItems hr {
 			border: 0;
-			border-top: 1px solid #23272b;
+			border-top: 1px solid #2d343c;
 			margin: 4px 0;
 		}
 
-		/* Obsahová časť */
+		/* Obsahová časť lobby panela */
 		#content_container {
-			background-color: #121416;
-			border: 1px solid #1d2124;
+			background-color: #14181c;
+			border: 1px solid #23282d;
 			display: flex;
-			padding: 20px;
-			gap: 20px;
-			margin-top: 42px;
-			box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+			padding: 25px;
+			gap: 25px;
+			margin-top: 45px;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+			border-radius: 2px;
 		}
 
 		#main_blog {
@@ -120,113 +129,126 @@
 
 		/* Príspevky */
 		.inner_post {
+			background: #181d22;
+			border: 1px solid #262c33;
+			padding: 20px;
 			margin-bottom: 25px;
+			border-radius: 2px;
 		}
 
 		.inner_post h2 {
 			margin: 0 0 5px 0;
 			font-size: 20px;
+			font-family: "Arial Black", Gadget, sans-serif;
 		}
 
 		.inner_post h2 a {
-			color: #d1a840;
+			color: #e2ad37;
 			text-decoration: none;
 		}
 
 		.post_date {
-			color: #555e68;
+			color: #66707c;
 			font-size: 11px;
 			font-weight: bold;
-			margin-bottom: 12px;
+			text-transform: uppercase;
+			margin-bottom: 15px;
 		}
 
 		.horizontal_rule {
-			height: 1px;
-			background: #1f2429;
-			margin: 20px 0;
+			display: none; /* Nahradené moderným štýlom boxov */
 		}
 
 		/* Pravý stĺpec (Sidebar) */
 		#sidebar {
-			width: 300px;
+			width: 280px;
 		}
 
 		/* Zelené tlačidlo GET GO:COUNTER */
 		#buy {
-			background: #181b1d;
-			border: 1px solid #23282c;
-			padding: 8px;
-			margin-bottom: 15px;
+			background: #181d22;
+			border: 1px solid #262c33;
+			padding: 10px;
+			margin-bottom: 20px;
 			text-align: center;
 		}
 
 		#getcsgo {
 			display: block;
-			background: linear-gradient(to bottom, #5d811e 0%, #3e5713 100%);
-			border: 1px solid #79aa27;
+			background: linear-gradient(to bottom, #729b28 0%, #476615 100%);
+			border: 1px solid #8cc627;
 			color: #ffffff !important;
 			font-size: 18px;
 			font-weight: bold;
-			padding: 12px 0;
+			padding: 14px 0;
 			text-transform: uppercase;
+			letter-spacing: 1px;
 			text-decoration: none !important;
-			border-radius: 2px;
-			box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+			border-radius: 3px;
+			text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+			box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
 		}
 
 		#getcsgo:hover {
-			background: linear-gradient(to bottom, #6a9322 0%, #476416 100%);
+			background: linear-gradient(to bottom, #83b32e 0%, #537719 100%);
+			border-color: #a2e232;
 		}
 
 		/* Sidebar Boxy */
 		.sidebar_container {
-			background: #16191b;
-			border: 1px solid #212529;
-			padding: 12px;
-			margin-bottom: 15px;
+			background: #181d22;
+			border: 1px solid #262c33;
+			padding: 15px;
+			margin-bottom: 20px;
+			border-radius: 2px;
 		}
 
 		.sidebar_container h5 {
-			margin: 0;
+			margin: 0 0 10px 0;
 			color: #ffffff;
+			font-size: 12px;
+			text-transform: uppercase;
+			border-bottom: 1px solid #2d343c;
+			padding-bottom: 6px;
 		}
 
 		.server-ip {
-			color: #79aa27;
+			color: #729b28;
 			font-family: monospace;
 			font-weight: bold;
 		}
 
 		#update_history a {
 			display: block;
-			padding: 4px 0;
-			border-bottom: 1px solid #1a1e21;
-			font-size: 12px;
-			color: #8c8f94;
+			padding: 5px 0;
+			border-bottom: 1px solid #262c33;
+			font-size: 11px;
+			color: #a3a3a3;
 		}
 
 		#update_history a:hover {
 			color: #ffffff;
+			padding-left: 3px;
 		}
 
 		/* Pätka */
 		#footer {
 			text-align: center;
-			padding: 20px 0;
-			color: #8c8f94;
+			padding: 25px 0;
+			color: #555555;
 			font-size: 11px;
-			line-height: 1.5;
+			line-height: 1.6;
 		}
 	</style>
 </head>
 
 <body>
-	<!-- Wildfire banner len v hornej časti, ktorý odscrollovaním zmizne -->
+	<!-- Horné pozadie s obrázkom wildfire.png, ktoré pri scrollovaní zmizne nahor -->
 	<div class="wildfire-top-bg"></div>
 
 	<div id="container">
 		
-		<!-- Navigácia -->
+		<!-- Navigácia posunutá nižšie -->
 		<div id="navigation_container">
 			<ul id="navigation">
 				<li><a href="#">GO:COUNTER</a></li>
@@ -235,11 +257,11 @@
 				<li><a href="#">LEADERBOARD</a></li>
 				<li><a href="#">DEMOS</a></li>
 				<li>
-					<a style="color: #ce8404;" href="#">OTHER ▼</a>
+					<a style="color: #e38b1d;" href="#">OTHER ▼</a>
 					<div class="dropdownItems">
 						<a href="#">DONATE</a>
 						<hr>
-						<a style="color: #ce8404;" href="#">UPDATES</a>
+						<a style="color: #e38b1d;" href="#">UPDATES</a>
 						<hr>
 						<a href="#">CROSSHAIR</a>
 						<hr>
@@ -265,7 +287,6 @@
 						– Improved anti-cheat<br>
 						– Fixed server lag or even crashing on match end
 					</div>
-					<div class="horizontal_rule"></div>
 
 					<div class="inner_post">
 						<h2><a href="#">v1.5.1</a></h2>
@@ -274,7 +295,7 @@
 						Yes, updates are coming in left in right but apparently you people like it so here are the patch notes!<br><br>
 						Update Size: 1.57MB<br><br>
 						<a href="https://dl.fragmount.net/v151.zip">Download Link</a><br><br>
-						<h3 style="color: #ce8404;">Note: As long you don’t have the updated build, you will not be able to play on our servers</h3>
+						<h3 style="color: #e38b1d;">Note: As long you don’t have the updated build, you will not be able to play on our servers</h3>
 						<br>
 						<h3>Operation Wildfire</h3>
 						– Mission drops now show up properly. Items you earn from completing a mission now appear in the end-of-match drop list and are marked as a mission drop.<br>
@@ -298,7 +319,6 @@
 						– Fixed some stickers and items not being recognized by the game coordinator (for example the MLG Columbus 2016 stickers).<br>
 						– Fixed items showing the wrong origin (for example dropped items showing up as purchased).
 					</div>
-					<div class="horizontal_rule"></div>
 
 					<div class="inner_post">
 						<h2><a href="#">v1.4 - Inventory, fragFall, New Commands and more!</a></h2>
@@ -307,7 +327,6 @@
 						– Added full Inventory functionality.<br>
 						– Removed the Watch & Awards Tab from the Mainmenu.
 					</div>
-					<div class="horizontal_rule"></div>
 
 				</div>
 			</div>
@@ -319,51 +338,3 @@
 				<div id="buy">
 					<a href="https://VAS-LINK-NA-STIAHNUTIE.com/csgo.zip" id="getcsgo"><span>GET GO:COUNTER</span></a>
 				</div>
-
-				<!-- Unikátni Hráči -->
-				<div class="sidebar_container">
-					<div style="font-size: 26px; color: #ffffff; font-weight: bold; letter-spacing: 2px;">1,910</div>
-					<div style="color: #666; font-size: 11px; text-transform: uppercase;">Unique players on GO:COUNTER</div>
-				</div>
-
-				<!-- Blok Servery -->
-				<div class="sidebar_container" id="servers">
-					<h5 style="border-bottom: 1px solid #23272b; padding-bottom: 6px; margin-bottom: 10px;">SERVERS</h5>
-					<p style="margin: 5px 0;"><strong>[EU] Dust2 Only 128T</strong><br>
-					<span class="server-ip">connect 127.0.0.1:27015</span></p>
-					<hr style="border: 0; border-top: 1px solid #23272b; margin: 8px 0;">
-					<p style="margin: 5px 0;"><strong>[EU] Competitive Matchmaking</strong><br>
-					<span class="server-ip">connect 127.0.0.1:27016</span></p>
-				</div>
-
-				<!-- História Aktualizácií -->
-				<div class="sidebar_container" id="update_history">
-					<h5 style="border-bottom: 1px solid #23272b; padding-bottom: 6px; margin-bottom: 10px;">UPDATE HISTORY</h5>
-					<a href="#">Operation Wildfire</a>
-					<a href="#">Nuke is back</a>
-					<a href="#">Operation Bloodhound</a>
-					<a href="#">Operation Vanguard</a>
-					<a href="#">Reintroducing Train</a>
-					<a href="#">Dreamhack Winter CS:GO Championship 2014</a>
-					<a href="#">ESL One CS:GO Championship - Cologne 2014</a>
-					<a href="#">Operation Breakout Update</a>
-					<a href="#">EMS One CS:GO Championship - Katowice 2014</a>
-					<a href="#">Operation Phoenix Update</a>
-					<a href="#">Stickers Workshop Update</a>
-					<a href="#">Introducing the cz75-auto</a>
-					<a href="#">The winter offensive holiday update</a>
-				</div>
-
-			</div>
-
-		</div>
-
-		<!-- Pätka -->
-		<div id="footer">
-			<p>© 2016 Valve Corporation, all rights reserved. Valve, Source, Steam, and Counter-Strike are trademarks of Valve Corporation.<br>
-			GO:COUNTER is restored 2016 CS:GO and is in no way, shape or form affiliated with Valve.</p>
-		</div>
-
-	</div>
-</body>
-</html>
