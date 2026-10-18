@@ -27,10 +27,10 @@
 
 		#container {
 			width: 100%;
-			max-width: 760px;
+			max-width: 820px; /* Roztiahnuté na šírku pre vyplnenie strán */
 			margin: 0 auto;
 			position: relative;
-			padding: 40px 5px 5px 5px; /* Posunuté o ďalšie ~2 cm nižšie zhora */
+			padding: 35px 0px 5px 0px; /* Vertikálne odsadenie zhora */
 		}
 
 		/* Wildfire hlavička */
@@ -137,14 +137,15 @@
 			border: 1px solid #1c2024;
 			border-top: none;
 			display: flex;
-			padding: 18px;
-			gap: 18px;
+			padding: 15px 10px; /* Roztiahnutie do strán */
+			gap: 20px;
 			box-shadow: 0 10px 25px rgba(0,0,0,0.8);
 		}
 
 		#main_blog {
 			flex: 1;
 			min-width: 0;
+			padding-left: 5px; /* Posun textu viac doľava */
 		}
 
 		.inner_post {
@@ -183,8 +184,9 @@
 
 		/* Pravý stĺpec (Sidebar) */
 		#sidebar {
-			width: 230px;
+			width: 240px; /* Mierne rozšírenie doprava */
 			flex-shrink: 0;
+			padding-right: 5px; /* Posun panelu viac doprava */
 		}
 
 		.sidebar_item {
@@ -268,7 +270,7 @@
 		/* Pätka */
 		#footer {
 			text-align: center;
-			padding: 20px 5px;
+			padding: 20px 5px 50px 5px;
 			color: #41464c;
 			font-size: 11px;
 			line-height: 1.4;
