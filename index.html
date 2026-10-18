@@ -73,13 +73,11 @@
 			padding: 0;
 			display: flex;
 			align-items: center;
-			gap: 15px;
+			gap: 18px;
 		}
 
 		#navigation li {
 			position: relative;
-			display: flex;
-			align-items: center;
 		}
 
 		#navigation li a {
@@ -93,21 +91,6 @@
 
 		#navigation li a:hover, #navigation li a.active {
 			color: #d1a840;
-		}
-
-		/* Vstupne pole pre URL hneď vedľa Play Matchmaking */
-		.matchmaking-url-input {
-			background: #090b0c;
-			border: 1px solid #282d33;
-			color: #79aa27;
-			padding: 4px 6px;
-			font-size: 10px;
-			width: 130px;
-			font-family: monospace;
-		}
-		.matchmaking-url-input:focus {
-			outline: none;
-			border-color: #79aa27;
 		}
 
 		/* Dropdown ponuka */
@@ -306,11 +289,8 @@
 		<div id="navigation_container">
 			<ul id="navigation">
 				<li><a href="#">GO:COUNTER</a></li>
-				<li><a href="#servers" style="color: #79aa27;">PLAY MATCHMAKING</a></li>
-				<li>
-					<!-- Kolónka pre napísanie web adresy hneď vedľa Play Matchmaking -->
-					<input type="text" class="matchmaking-url-input" placeholder="https://lukasss895.github.io/gocounter-matchmaking.net/">
-				</li>
+				<!-- Tu je Play Matchmaking spravený ako odkaz s webovou adresou -->
+				<li><a href="https://lukasss895.github.io/gocounter-matchmaking.net/" target="_blank" style="color: #79aa27;">PLAY MATCHMAKING</a></li>
 				<li><a href="#">SERVERS</a></li>
 				<li><a href="#">DEMOS</a></li>
 				<li>
