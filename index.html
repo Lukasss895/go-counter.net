@@ -3,24 +3,29 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>GO:COUNTER updates - 2016 CS:GO notes</title>
+	<title>GO:COUNTER - 2016 CS:GO notes</title>
 	
 	<style>
-		/* Presná kópia štýlu Valve CS:GO Blogu z roku 2016 */
-		* { box-sizing: border-box; }
-		body {
+		/* Presná kópia štýlu Valve CS:GO Blogu prispôsobená pre Scaleform UI */
+		* { 
+			box-sizing: border-box; 
+		}
+
+		html, body {
 			background-color: #0c0f12;
 			color: #8c8f94;
 			font-family: Arial, Helvetica, sans-serif;
-			font-size: 13px;
+			font-size: 12px;
 			margin: 0;
 			padding: 0;
+			width: 100%;
+			overflow-x: hidden;
 		}
 
 		a { color: #3f79aa; text-decoration: none; }
 		a:hover { color: #ffffff; text-decoration: underline; }
 
-		/* Wildfire hlavička: obrázok sa zobrazí celý, nič sa neodreže */
+		/* Wildfire hlavička */
 		.header-banner {
 			width: 100%;
 			background: #0c0f12;
@@ -31,32 +36,34 @@
 		.header-banner img {
 			display: block;
 			width: 100%;
-			max-width: 1920px;
 			height: auto;
 			margin: 0 auto;
 		}
 
 		#container {
 			width: 100%;
-			max-width: 960px;
+			max-width: 620px; /* Perfektné prispôsobenie pre CS:GO blog okno */
 			margin: 0 auto;
 			position: relative;
+			padding: 0 5px;
 		}
 
 		/* Navigačná lišta priamo pod obrázkom */
 		#navigation_container {
 			background: linear-gradient(to bottom, #1d2125 0%, #14171a 100%);
 			border: 1px solid #282d33;
-			height: 42px;
+			min-height: 36px;
 			width: 100%;
 			margin-top: 0;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding: 0 15px;
+			padding: 0 10px;
 			box-shadow: 0 4px 10px rgba(0,0,0,0.8);
 			position: relative;
 			z-index: 100;
+			flex-wrap: wrap;
+			gap: 5px;
 		}
 
 		#navigation {
@@ -65,7 +72,7 @@
 			padding: 0;
 			display: flex;
 			align-items: center;
-			gap: 22px;
+			gap: 12px;
 		}
 
 		#navigation li {
@@ -74,10 +81,11 @@
 
 		#navigation li a {
 			color: #ffffff;
-			font-size: 13px;
+			font-size: 11px;
 			font-weight: bold;
 			text-transform: uppercase;
 			letter-spacing: 0.5px;
+			white-space: nowrap;
 		}
 
 		#navigation li a:hover, #navigation li a.active {
@@ -92,8 +100,8 @@
 			left: 0;
 			background: #14171a;
 			border: 1px solid #282d33;
-			padding: 8px 12px;
-			min-width: 140px;
+			padding: 6px 10px;
+			min-width: 130px;
 			z-index: 200;
 		}
 
@@ -103,8 +111,8 @@
 
 		.dropdownItems a {
 			display: block;
-			padding: 5px 0;
-			font-size: 12px !important;
+			padding: 4px 0;
+			font-size: 11px !important;
 		}
 
 		.dropdownItems hr {
@@ -118,9 +126,9 @@
 			background: #090b0c;
 			border: 1px solid #282d33;
 			color: #ccc;
-			padding: 4px 8px;
-			font-size: 11px;
-			width: 140px;
+			padding: 3px 6px;
+			font-size: 10px;
+			width: 100px;
 		}
 
 		/* Obsahový panel */
@@ -129,23 +137,25 @@
 			border: 1px solid #1c2024;
 			border-top: none;
 			display: flex;
-			padding: 25px;
-			gap: 25px;
+			padding: 12px;
+			gap: 12px;
 			box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+			flex-wrap: wrap;
 		}
 
 		#main_blog {
 			flex: 1;
-			min-width: 0;
+			min-width: 260px;
 		}
 
 		.inner_post {
-			margin-bottom: 30px;
+			margin-bottom: 20px;
+			word-wrap: break-word;
 		}
 
 		.inner_post h2 {
 			margin: 0 0 6px 0;
-			font-size: 22px;
+			font-size: 17px;
 			font-weight: normal;
 		}
 
@@ -160,46 +170,53 @@
 
 		.post_date {
 			color: #616870;
-			font-size: 11px;
+			font-size: 10px;
 			font-weight: bold;
 			text-transform: uppercase;
-			margin-bottom: 15px;
+			margin-bottom: 10px;
 		}
 
 		.horizontal_rule {
 			height: 1px;
 			background: #1c2024;
-			margin: 25px 0;
+			margin: 15px 0;
 		}
 
 		/* Pravý stĺpec (Sidebar) */
 		#sidebar {
-			width: 290px;
+			width: 200px;
 			flex-shrink: 0;
+		}
+
+		@media (max-width: 550px) {
+			#sidebar {
+				width: 100%;
+			}
 		}
 
 		.sidebar_item {
 			background: #15181b;
 			border: 1px solid #212529;
-			padding: 15px;
-			margin-bottom: 20px;
+			padding: 10px;
+			margin-bottom: 12px;
 		}
 
 		.sidebar_item h5 {
-			margin: 0 0 10px 0;
+			margin: 0 0 8px 0;
 			color: #ffffff;
-			font-size: 12px;
+			font-size: 11px;
 			text-transform: uppercase;
 			border-bottom: 1px solid #212529;
-			padding-bottom: 6px;
+			padding-bottom: 4px;
 		}
 
 		.sidebar-links {
-			font-size: 11px;
+			font-size: 10px;
 			font-weight: bold;
-			margin-bottom: 15px;
+			margin-bottom: 10px;
 			display: flex;
-			justify-content: space-between;
+			flex-direction: column;
+			gap: 4px;
 		}
 
 		.sidebar-links a {
@@ -212,7 +229,7 @@
 		}
 
 		.monthly-stat {
-			font-size: 32px;
+			font-size: 24px;
 			font-weight: bold;
 			color: #ffffff;
 			letter-spacing: 1px;
@@ -220,32 +237,32 @@
 		}
 
 		.monthly-stat-sub {
-			font-size: 10px;
+			font-size: 9px;
 			color: #616870;
 			text-transform: uppercase;
-			margin-top: 5px;
+			margin-top: 4px;
 		}
 
 		.server-ip {
 			color: #79aa27;
 			font-family: monospace;
 			font-weight: bold;
+			font-size: 10px;
 		}
 
-		/* Prémiové Valve-style update karty v pravej lište */
+		/* Valve-style update karty v pravej lište */
 		.valve-update-card {
 			display: block;
 			background: linear-gradient(to bottom, #1c2126 0%, #14171a 100%);
 			border: 1px solid #2c323b;
 			border-left: 3px solid #d1a840;
-			padding: 10px 12px;
-			margin-bottom: 8px;
+			padding: 6px 8px;
+			margin-bottom: 6px;
 			color: #ffffff !important;
 			font-weight: bold;
-			font-size: 12px;
+			font-size: 10px;
 			text-transform: uppercase;
 			letter-spacing: 0.5px;
-			transition: all 0.2s ease;
 		}
 
 		.valve-update-card:hover {
@@ -253,25 +270,24 @@
 			background: linear-gradient(to bottom, #252b32, #181c20);
 			color: #d1a840 !important;
 			text-decoration: none !important;
-			transform: translateX(3px);
 		}
 
 		/* Pätka */
 		#footer {
 			text-align: center;
-			padding: 25px 0;
+			padding: 15px 5px;
 			color: #41464c;
-			font-size: 11px;
-			line-height: 1.5;
+			font-size: 10px;
+			line-height: 1.4;
 		}
 	</style>
 </head>
 
 <body>
-	<!-- Hlavička -->
-	<div class="header-banner"><img src="wildfire.png" alt=""></div>
-
 	<div id="container">
+
+		<!-- Hlavička -->
+		<div class="header-banner"><img src="wildfire.png" alt=""></div>
 		
 		<!-- Navigačná lišta -->
 		<div id="navigation_container">
@@ -321,31 +337,31 @@
 						Yes, updates are coming in left in right but apparently you people like it so here are the patch notes!<br><br>
 						Update Size: 1.57MB<br><br>
 						<a href="#">Download Link</a><br><br>
-						<h3 style="color: #ce8404;">Note: As long you don’t have the updated build, you will not be able to play on our servers</h3>
+						<h3 style="color: #ce8404; font-size: 13px; margin: 0;">Note: As long you don’t have the updated build, you will not be able to play on our servers</h3>
 						<br>
-						<h3>Operation Wildfire</h3>
+						<h3 style="font-size: 13px; margin: 5px 0;">Operation Wildfire</h3>
 						– Mission drops now show up properly. Items you earn from completing a mission now appear in the end-of-match drop list and are marked as a mission drop.<br>
 						– Mission drops now come from every collection. Instead of mostly Dragon Lores and Medusas, a mission drop now picks a random collection and rolls an item from it, using the real CS:GO odds.<br>
 						– You voted, we listened: the rarer tiers are 2x as likely as Valve’s original odds. A Covert from the Cobblestone collection (yes, the Dragon Lore) is now a 0.0512% chance instead of 0.0256% for example.<br>
 						– Every first completion of a mission now rewards a drop.<br><br>
 						
-						<h3>Souvenirs</h3>
+						<h3 style="font-size: 13px; margin: 5px 0;">Souvenirs</h3>
 						– Fixed souvenir items not having any stickers.<br>
 						– Events from before autographs existed get an extra event sticker in place of the autograph. All stickers always come from the souvenir’s own event.<br><br>
 						
-						<h3>Music Kits</h3>
+						<h3 style="font-size: 13px; margin: 5px 0;">Music Kits</h3>
 						– Music kits can now drop at the end of a match again. Roughly 1 in every 3–4 matches.<br>
 						– Every music kit that drops is StatTrak and counts your MVPs from now on.<br>
 						– All music kits already in your inventory have been upgraded to StatTrak.<br><br>
 						
-						<h3>Store</h3>
+						<h3 style="font-size: 13px; margin: 5px 0;">Store</h3>
 						– Case prices are now between 2.99 and 4.99 fMt$, and the shop still rotates every hour (Have fun you gamblers).<br><br>
 						
-						<h3>Fixes</h3>
+						<h3 style="font-size: 13px; margin: 5px 0;">Fixes</h3>
 						– Fixed some stickers and items not being recognized by the game coordinator (for example the MLG Columbus 2016 stickers).<br>
 						– Fixed items showing the wrong origin (for example dropped items showing up as purchased).<br><br>
 						
-						<h3>Known Issues</h3>
+						<h3 style="font-size: 13px; margin: 5px 0;">Known Issues</h3>
 						– Season collection not showing up ingame<br>
 						– Typo STILL in the Noscope message (I am lazy okay?..)
 					</div>
@@ -357,40 +373,40 @@
 						Hello everyone!<br><br>
 						The GO:COUNTER Store is finally live, inventories got a proper overhaul, and we squashed a bunch of bugs along the way.<br><br>
 						Update Size: 1.55 MB<br><br>
-						<h3 style="color: #ce8404;"> Note: As long you don’t have the updated build, you will not be able to play on our servers </h3><br>
+						<h3 style="color: #ce8404; font-size: 13px; margin: 0;"> Note: As long you don’t have the updated build, you will not be able to play on our servers </h3><br>
 						
 						Patch Notes:<br><br>
-						<h3> GO:COUNTER Store </h3>
+						<h3 style="font-size: 13px; margin: 5px 0;"> GO:COUNTER Store </h3>
 						– The Store is now live: buy cases with your balance (fMt$)<br>
 						– The shop rotates every hour with 6 cases<br>
 						– You can buy up to 20 cases at once<br>
 						– Removed Case refill from the market website<br><br>
 						
-						<h3> Matchmaking </h3>
+						<h3 style="font-size: 13px; margin: 5px 0;"> Matchmaking </h3>
 						– The main menu now shows real stats (players online, servers, ongoing matches and search time)<br>
 						– A player joining or leaving your party now stops the search and tells you who it was<br>
 						– Only the party leader can cancel the search<br><br>
 						
-						<h3> Inventory </h3>
+						<h3 style="font-size: 13px; margin: 5px 0;"> Inventory </h3>
 						– Inventory GC system has been completely remade from scratch and is not plugin dependant anymore<br>
 						– Match drops work again, and **all** drops are shown now<br>
 						– Unboxes, trade-ups and trades are now announced in chat properly<br>
 						– Website trades and market purchases now show up in-game instantly<br>
 						– Offline games with bots now show your skins and loadout changes<br><br>
 						
-						<h3> Trade-Ups </h3>
+						<h3 style="font-size: 13px; margin: 5px 0;"> Trade-Ups </h3>
 						– Results now only come from your input collections, with the original odds and floats<br><br>
 						
-						<h3> Settings </h3>
+						<h3 style="font-size: 13px; margin: 5px 0;"> Settings </h3>
 						– Added new options to the Game Settings and Video Settings menus<br><br>
 						
-						<h3> Bugs </h3>
+						<h3 style="font-size: 13px; margin: 5px 0;"> Bugs </h3>
 						– Fixed the server hanging when many players joined at once<br>
 						– Fixed a crash when joining a server<br>
 						– Fixed some issues with Wildfire Progression<br>
 						– Fixed a issue where you could trade up a knife from pink items<br><br>
 						
-						<h3> Known Bugs </h3>
+						<h3 style="font-size: 13px; margin: 5px 0;"> Known Bugs </h3>
 						– Noscope Chat message prints on the victim a extra x behind their name due to a typo<br>
 						– Buying something from the store can cause your game to crash sometimes
 					</div>
@@ -430,10 +446,10 @@
 						Hello everyone!<br><br>
 						We have been cooking some big things in the background and are now releasing the first bigger update for a better GO:COUNTER in the future!<br><br>
 						Update Size: 7.3GB<br><br>
-						<h4>Note: You need to redownload the whole game from our Discord as the old one will not be supported anymore</h4><br>
+						<h4 style="font-size: 12px; margin: 0;">Note: You need to redownload the whole game from our Discord as the old one will not be supported anymore</h4><br>
 						
 						Important news:<br>
-						<h3>fragFall 2026 have officially started!<br>
+						<h3 style="font-size: 13px; margin: 5px 0;">fragFall 2026 have officially started!<br>
 						Check out the Discord for more infos coming up!</h3><br>
 						
 						Patch Notes:<br>
@@ -525,8 +541,8 @@
 
 		<!-- Pätka -->
 		<div id="footer">
-			<p>© 2016 Valve Corporation, all rights reserved. Valve, Source, Steam, and Counter-Strike are trademarks of Valve Corporation.<br>
-			GO:COUNTER is restored 2016 CS:GO and is in no way, shape or form affiliated with Valve.<br>
+			<p>© 2016 Valve Corporation, all rights reserved.<br>
+			GO:COUNTER is restored 2016 CS:GO and is in no way affiliated with Valve.<br>
 			Visit the <a href="https://counter-strike.net" target="_blank" style="color: #616870; text-decoration: underline;">Official Counter-Strike Website</a>.</p>
 		</div>
 
