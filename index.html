@@ -6,9 +6,9 @@
 	<title>GO:COUNTER - 2016 CS:GO notes</title>
 	
 	<style>
-		/* Presná kópia štýlu Valve CS:GO Blogu prispôsobená pre Scaleform UI */
-		* { 
-			box-sizing: border-box; 
+		/* Základný reset a box-sizing pre všetky prvky */
+		*, *::before, *::after {
+			box-sizing: border-box;
 		}
 
 		html, body {
@@ -25,21 +25,22 @@
 		a { color: #3f79aa; text-decoration: none; }
 		a:hover { color: #ffffff; text-decoration: underline; }
 
+		/* Hlavný obal – prispôsobený pre 4:3 aj širokouhlé displeje */
 		#container {
 			width: 100%;
 			max-width: 820px;
 			margin: 0 auto;
 			position: relative;
-			padding: 0px 0px 5px 0px; 
+			padding: 0 10px 5px 10px;
 		}
 
-		/* Wildfire hlavička - PRIDANÝ PRIAMY POSUN NADOL */
+		/* Wildfire hlavička */
 		.header-banner {
 			width: 100%;
 			background: #0c0f12;
 			line-height: 0;
 			overflow: hidden;
-			margin-top: 17px; /* Fyzicky posunie obrázok o ~1 cm nižšie */
+			margin-top: 17px;
 			margin-bottom: 6px;
 			border-radius: 2px 2px 0 0;
 		}
@@ -51,7 +52,7 @@
 			margin: 0 auto;
 		}
 
-		/* Navigačná lišta priamo pod obrázkom */
+		/* Navigačná lišta */
 		#navigation_container {
 			background: linear-gradient(to bottom, #1d2125 0%, #14171a 100%);
 			border: 1px solid #282d33;
@@ -61,10 +62,12 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding: 0 12px;
+			padding: 0 10px;
 			box-shadow: 0 4px 10px rgba(0,0,0,0.8);
 			position: relative;
 			z-index: 100;
+			flex-wrap: wrap;
+			gap: 8px;
 		}
 
 		#navigation {
@@ -73,7 +76,7 @@
 			padding: 0;
 			display: flex;
 			align-items: center;
-			gap: 18px;
+			gap: 14px;
 		}
 
 		#navigation li {
@@ -129,7 +132,7 @@
 			color: #ccc;
 			padding: 4px 8px;
 			font-size: 11px;
-			width: 120px;
+			width: 110px;
 		}
 
 		/* Obsahový panel */
@@ -138,25 +141,25 @@
 			border: 1px solid #1c2024;
 			border-top: none;
 			display: flex;
-			padding: 15px 10px;
-			gap: 20px;
+			padding: 15px 12px;
+			gap: 15px;
 			box-shadow: 0 10px 25px rgba(0,0,0,0.8);
 		}
 
 		#main_blog {
 			flex: 1;
-			min-width: 0;
-			padding-left: 5px;
+			min-width: 0; /* Zabráni pretečeniu textu pri dlhých odkazoch */
 		}
 
 		.inner_post {
 			margin-bottom: 22px;
 			word-wrap: break-word;
+			overflow-wrap: break-word;
 		}
 
 		.inner_post h2 {
 			margin: 0 0 6px 0;
-			font-size: 19px;
+			font-size: 18px;
 			font-weight: normal;
 		}
 
@@ -185,15 +188,14 @@
 
 		/* Pravý stĺpec (Sidebar) */
 		#sidebar {
-			width: 240px;
+			width: 220px; /* Mierne zmenšený zo 240px pre lepšie 4:3 zobrazenie */
 			flex-shrink: 0;
-			padding-right: 5px;
 		}
 
 		.sidebar_item {
 			background: #15181b;
 			border: 1px solid #212529;
-			padding: 12px;
+			padding: 10px;
 			margin-bottom: 15px;
 		}
 
@@ -244,9 +246,10 @@
 			font-family: monospace;
 			font-weight: bold;
 			font-size: 11px;
+			word-break: break-all;
 		}
 
-		/* Valve-style update karty v pravej lište */
+		/* Update karty */
 		.valve-update-card {
 			display: block;
 			background: linear-gradient(to bottom, #1c2126 0%, #14171a 100%);
@@ -268,13 +271,35 @@
 			text-decoration: none !important;
 		}
 
-		/* Pätka */
 		#footer {
 			text-align: center;
 			padding: 20px 5px 50px 5px;
 			color: #41464c;
 			font-size: 11px;
 			line-height: 1.4;
+		}
+
+		/* SPECIAL MEDIA QUERY PRE 4:3 MONITORY A MENŠIE OBRAZOVKY (pod 780px) */
+		@media screen and (max-width: 780px) {
+			#container {
+				padding: 0 5px 5px 5px;
+			}
+
+			#content_container {
+				flex-direction: column; /* Na veľmi úzkych 4:3 oknách dá sidebar pod príspevky */
+			}
+
+			#sidebar {
+				width: 100%;
+			}
+
+			#navigation {
+				gap: 10px;
+			}
+
+			#navigation li a {
+				font-size: 11px;
+			}
 		}
 	</style>
 </head>
@@ -289,7 +314,6 @@
 		<div id="navigation_container">
 			<ul id="navigation">
 				<li><a href="#">GO:COUNTER</a></li>
-				<!-- Tu je Play Matchmaking spravený ako odkaz s webovou adresou -->
 				<li><a href="https://lukasss895.github.io/gocounter-matchmaking.net/" style="color: #79aa27;">PLAY MATCHMAKING</a></li>
 				<li><a href="#">SERVERS</a></li>
 				<li><a href="#">DEMOS</a></li>
@@ -512,7 +536,7 @@
 					<span class="server-ip">connect 127.0.0.1:27016</span></p>
 				</div>
 
-				<!-- História Aktualizácií (Valve-style karty) -->
+				<!-- História Aktualizácií -->
 				<div class="sidebar_item">
 					<h5>UPDATE HISTORY</h5>
 					
