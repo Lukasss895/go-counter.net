@@ -25,10 +25,10 @@
 		a { color: #3f79aa; text-decoration: none; }
 		a:hover { color: #ffffff; text-decoration: underline; }
 
-		/* Hlavný obal – prispôsobený pre 4:3 aj širokouhlé displeje */
+		/* Hlavný obal – zmenšený o cca 2 cm (z 820px na 740px) */
 		#container {
 			width: 100%;
-			max-width: 820px;
+			max-width: 740px;
 			margin: 0 auto;
 			position: relative;
 			padding: 0 10px 5px 10px;
@@ -76,7 +76,7 @@
 			padding: 0;
 			display: flex;
 			align-items: center;
-			gap: 14px;
+			gap: 12px;
 		}
 
 		#navigation li {
@@ -85,7 +85,7 @@
 
 		#navigation li a {
 			color: #ffffff;
-			font-size: 12px;
+			font-size: 11px;
 			font-weight: bold;
 			text-transform: uppercase;
 			letter-spacing: 0.5px;
@@ -132,7 +132,7 @@
 			color: #ccc;
 			padding: 4px 8px;
 			font-size: 11px;
-			width: 110px;
+			width: 100px;
 		}
 
 		/* Obsahový panel */
@@ -148,7 +148,7 @@
 
 		#main_blog {
 			flex: 1;
-			min-width: 0; /* Zabráni pretečeniu textu pri dlhých odkazoch */
+			min-width: 0;
 		}
 
 		.inner_post {
@@ -188,7 +188,7 @@
 
 		/* Pravý stĺpec (Sidebar) */
 		#sidebar {
-			width: 220px; /* Mierne zmenšený zo 240px pre lepšie 4:3 zobrazenie */
+			width: 200px;
 			flex-shrink: 0;
 		}
 
@@ -279,14 +279,14 @@
 			line-height: 1.4;
 		}
 
-		/* SPECIAL MEDIA QUERY PRE 4:3 MONITORY A MENŠIE OBRAZOVKY (pod 780px) */
+		/* Media query pre 4:3 a menšie obrazovky */
 		@media screen and (max-width: 780px) {
 			#container {
 				padding: 0 5px 5px 5px;
 			}
 
 			#content_container {
-				flex-direction: column; /* Na veľmi úzkych 4:3 oknách dá sidebar pod príspevky */
+				flex-direction: column;
 			}
 
 			#sidebar {
@@ -294,11 +294,11 @@
 			}
 
 			#navigation {
-				gap: 10px;
+				gap: 8px;
 			}
 
 			#navigation li a {
-				font-size: 11px;
+				font-size: 10px;
 			}
 		}
 	</style>
