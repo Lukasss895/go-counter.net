@@ -24,16 +24,16 @@
 		a { color: #3f79aa; text-decoration: none; }
 		a:hover { color: #ffffff; text-decoration: underline; }
 
-		/* Optimalizovaná šírka na 710px pre vyplnenie Scaleform okna v 4:3 */
+		/* Zväčšená šírka na 900px (rozšírenie o ~5 cm) */
 		#container {
 			width: 100%;
-			max-width: 710px;
+			max-width: 900px;
 			margin: 0 auto;
 			position: relative;
-			padding: 0 6px 5px 6px;
+			padding: 0 8px 5px 8px;
 		}
 
-		/* Wildfire hlavička posunutá pod lištu "Novinky" */
+		/* Wildfire hlavička */
 		.header-banner {
 			width: 100%;
 			background: #0c0f12;
@@ -61,7 +61,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding: 0 10px;
+			padding: 0 12px;
 			box-shadow: 0 4px 10px rgba(0,0,0,0.8);
 			position: relative;
 			z-index: 100;
@@ -73,7 +73,7 @@
 			padding: 0;
 			display: flex;
 			align-items: center;
-			gap: 12px;
+			gap: 16px;
 		}
 
 		#navigation li {
@@ -82,7 +82,7 @@
 
 		#navigation li a {
 			color: #ffffff;
-			font-size: 11px;
+			font-size: 12px;
 			font-weight: bold;
 			text-transform: uppercase;
 			letter-spacing: 0.5px;
@@ -129,7 +129,7 @@
 			color: #ccc;
 			padding: 4px 8px;
 			font-size: 11px;
-			width: 100px;
+			width: 110px;
 		}
 
 		/* Obsahový panel */
@@ -138,8 +138,8 @@
 			border: 1px solid #1c2024;
 			border-top: none;
 			display: flex;
-			padding: 14px 10px;
-			gap: 14px;
+			padding: 16px 12px;
+			gap: 18px;
 			box-shadow: 0 10px 25px rgba(0,0,0,0.8);
 		}
 
@@ -185,7 +185,7 @@
 
 		/* Pravý stĺpec (Sidebar) */
 		#sidebar {
-			width: 190px;
+			width: 220px;
 			flex-shrink: 0;
 		}
 
@@ -224,7 +224,7 @@
 		}
 
 		.monthly-stat {
-			font-size: 26px;
+			font-size: 28px;
 			font-weight: bold;
 			color: #ffffff;
 			letter-spacing: 1px;
@@ -281,7 +281,6 @@
 			<ul id="navigation">
 				<li><a href="#">GO:COUNTER</a></li>
 				<li><a href="https://lukasss895.github.io/gocounter-matchmaking.net/" style="color: #79aa27;">PLAY MATCHMAKING</a></li>
-				<!-- SERVERS TLAČIDLO PREPOJENÉ NA INÚ PODSTRÁNKU / ODKAZ -->
 				<li><a href="tvoja-stranka-so-servermi.html" style="color: #d1a840;">SERVERS</a></li>
 				<li><a href="#">DEMOS</a></li>
 				<li>
