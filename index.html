@@ -24,7 +24,7 @@
 		a { color: #3f79aa; text-decoration: none; }
 		a:hover { color: #ffffff; text-decoration: underline; }
 
-		/* Optimalizovaná šírka na 710px pre vyplnenie Scaleform okna */
+		/* Optimalizovaná šírka na 710px pre vyplnenie Scaleform okna v 4:3 */
 		#container {
 			width: 100%;
 			max-width: 710px;
@@ -33,13 +33,13 @@
 			padding: 0 6px 5px 6px;
 		}
 
-		/* Wildfire hlavička - posunutá nižšie, aby bolo vidno celého panáčika */
+		/* Wildfire hlavička posunutá pod lištu "Novinky" */
 		.header-banner {
 			width: 100%;
 			background: #0c0f12;
 			line-height: 0;
 			overflow: hidden;
-			margin-top: 32px; /* Posunuté nižšie */
+			margin-top: 32px;
 			margin-bottom: 6px;
 			border-radius: 2px 2px 0 0;
 		}
@@ -238,14 +238,6 @@
 			margin-top: 4px;
 		}
 
-		.server-ip {
-			color: #79aa27;
-			font-family: monospace;
-			font-weight: bold;
-			font-size: 11px;
-			word-break: break-all;
-		}
-
 		/* Update karty */
 		.valve-update-card {
 			display: block;
@@ -281,7 +273,7 @@
 <body>
 	<div id="container">
 
-		<!-- Hlavička - posunutá nižšie pod lištu "Novinky" -->
+		<!-- Hlavička -->
 		<div class="header-banner"><img src="wildfire.png" alt=""></div>
 		
 		<!-- Navigačná lišta -->
@@ -289,7 +281,8 @@
 			<ul id="navigation">
 				<li><a href="#">GO:COUNTER</a></li>
 				<li><a href="https://lukasss895.github.io/gocounter-matchmaking.net/" style="color: #79aa27;">PLAY MATCHMAKING</a></li>
-				<li><a href="#">SERVERS</a></li>
+				<!-- SERVERS TLAČIDLO PREPOJENÉ NA INÚ PODSTRÁNKU / ODKAZ -->
+				<li><a href="tvoja-stranka-so-servermi.html" style="color: #d1a840;">SERVERS</a></li>
 				<li><a href="#">DEMOS</a></li>
 				<li>
 					<a style="color: #d1a840;" href="#">OTHER ▼</a>
@@ -406,82 +399,6 @@
 						– Noscope Chat message prints on the victim a extra x behind their name due to a typo<br>
 						– Buying something from the store can cause your game to crash sometimes
 					</div>
-					<div class="horizontal_rule"></div>
-
-					<div class="inner_post">
-						<h2><a href="#">v1.4.1</a></h2>
-						<p class="post_date">26 SEP 2026 - <span style="color: #d1a840;">GO:COUNTER</span></p>
-						Hello everyone!<br><br>
-						Thanks a lot for all the bug reports since yesterday’s big update!<br>
-						We went through them and are now releasing a hotfix that fixes a lot of them, plus a few new things on top.<br><br>
-						Update Size: 1.2MB (yes, that small!)<br><br>
-						Note: You need the new client v1.4.1 from our Discord. Older clients will show an “out of date” notice now in the main menu and can’t join matchmaking anymore.<br><br>
-						Patch Notes:<br>
-						– Added the Service Medal functionality in the main menu<br>
-						– Added an update check that tells you when your client is out of date<br>
-						– Added a “Remove sticker?” confirmation before a fully worn sticker gets removed<br>
-						– Changed the Steam Profile button on the scoreboard to open the player’s profile<br>
-						– Changed the Community Market button in the inventory to open the market<br>
-						– Fixed not being able to equip the default M4A1-S, USP-S, CZ75-Auto and R8 Revolver without owning a skin<br>
-						– Fixed switching back to the M4A4, P2000 or Desert Eagle not replacing the equipped weapon<br>
-						– Fixed the inventory not updating until you reopened it (stickers, name tags and more)<br>
-						– Fixed Name Tags disappearing from the inventory after using them<br>
-						– Fixed older skins (including Consumer and Industrial grade) not being usable in trade-ups<br>
-						– Fixed the trade-up reveal animation not playing<br>
-						– Fixed sticker scraping not working and ending in an error<br>
-						– Fixed weapons not showing up as a new item after applying or removing a sticker<br>
-						– Fixed stickers not appearing ingame due to a plugin bug<br><br>
-						Keep the bug reports coming and good luck to everyone playing in fragFall!<br><br>
-						-NeXi2k
-					</div>
-					<div class="horizontal_rule"></div>
-
-					<div class="inner_post">
-						<h2><a href="#">v1.4 - Inventory, fragFall, New Commands and more!</a></h2>
-						<p class="post_date">25 SEP 2026 - <span style="color: #d1a840;">GO:COUNTER</span></p>
-						Hello everyone!<br><br>
-						We have been cooking some big things in the background and are now releasing the first bigger update for a better GO:COUNTER in the future!<br><br>
-						Update Size: 7.3GB<br><br>
-						<h4 style="font-size: 12px; margin: 0;">Note: You need to redownload the whole game from our Discord as the old one will not be supported anymore</h4><br>
-						
-						Important news:<br>
-						<h3 style="font-size: 13px; margin: 5px 0;">fragFall 2026 have officially started!<br>
-						Check out the Discord for more infos coming up!</h3><br>
-						
-						Patch Notes:<br>
-						– Reworked the client from scratch<br>
-						– Updated the client to use the new independent CS:GO Steam App instead of the CS2 one<br>
-						– Added full Inventory functionality<br>
-						– Added Permanent Nametag &amp; Stattrak Swap Tool Items into the inventory<br>
-						– Added by default that all players have Prime now<br>
-						– Added new commands you can use and changed some to have more customizable capability<br><br>
-						
-						List of commands that got added/changed:<br>
-						<b>- viewmodel_fov</b><br>
-						<b>- viewmodel_offset_x</b><br>
-						<b>- viewmodel_offset_y</b><br>
-						<b>- viewmodel_offset_z</b><br>
-						<b>- cl_viewmodel_shift_left_amt</b><br>
-						<b>- cl_viewmodel_shift_right_amt</b><br>
-						<b>- cl_bob_lower_amt</b><br>
-						<b>- cl_bobcycle</b><br>
-						<b>- cl_wpn_sway_scale</b><br>
-						<b>- cl_interp</b><br>
-						<b>- cl_csm_enabled</b><br>
-						<b>- cl_ragdoll_physics_enable</b><br>
-						<b>- cl_draw_only_deathnotices</b><br>
-						<b>- cl_drawhud</b><br>
-						<b>- mat_picmip</b><br>
-						<b>- r_aspectratio</b><br><br>
-						
-						– Removed the Watch &amp; Awards Tab from the Mainmenu<br>
-						– Fixed End of Game drops only showing 1 drop instead of all drops<br>
-						– Fixed broken pro player sticker messages on boot of the game<br>
-						– Fixed GC debug logs being shown in the console<br><br>
-						
-						Have fun messing around with the new commands and the one's that got changed and good luck to all participants in the fragFall tournament!<br><br>
-						-NeXi2k
-					</div>
 
 				</div>
 			</div>
@@ -500,19 +417,9 @@
 					<div class="monthly-stat-sub">Unique players on GO:COUNTER</div>
 				</div>
 
-				<!-- Blok Servery -->
-				<div class="sidebar_item" id="servers">
-					##### SERVERS
-					<p style="margin: 5px 0;"><strong>[EU] Dust2 Only 128T</strong><br>
-					<span class="server-ip">connect 127.0.0.1:27015</span></p>
-					<hr style="border: 0; border-top: 1px solid #212529; margin: 8px 0;">
-					<p style="margin: 5px 0;"><strong>[EU] Competitive Matchmaking</strong><br>
-					<span class="server-ip">connect 127.0.0.1:27016</span></p>
-				</div>
-
 				<!-- História Aktualizácií -->
 				<div class="sidebar_item">
-					##### UPDATE HISTORY
+					<h5>UPDATE HISTORY</h5>
 					
 					<a class="valve-update-card" href="https://www.counter-strike.net/operationwildfire" target="_blank">
 						Operation Wildfire
