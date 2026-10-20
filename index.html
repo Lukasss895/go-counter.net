@@ -6,7 +6,6 @@
 	<title>GO:COUNTER - 2016 CS:GO notes</title>
 	
 	<style>
-		/* Základný reset a box-sizing pre všetky prvky */
 		*, *::before, *::after {
 			box-sizing: border-box;
 		}
@@ -15,7 +14,7 @@
 			background-color: #0c0f12;
 			color: #8c8f94;
 			font-family: Arial, Helvetica, sans-serif;
-			font-size: 13px;
+			font-size: 13px; /* Pôvodná veľkosť písma */
 			margin: 0;
 			padding: 0;
 			width: 100%;
@@ -25,13 +24,13 @@
 		a { color: #3f79aa; text-decoration: none; }
 		a:hover { color: #ffffff; text-decoration: underline; }
 
-		/* Hlavný obal – zmenšený o cca 2 cm (z 820px na 740px) */
+		/* Zmenšená šírka na 620px, aby stránka nepretekala cez CS:GO okno Novinky */
 		#container {
 			width: 100%;
-			max-width: 740px;
+			max-width: 620px;
 			margin: 0 auto;
 			position: relative;
-			padding: 0 10px 5px 10px;
+			padding: 0 5px 5px 5px;
 		}
 
 		/* Wildfire hlavička */
@@ -40,7 +39,7 @@
 			background: #0c0f12;
 			line-height: 0;
 			overflow: hidden;
-			margin-top: 17px;
+			margin-top: 10px;
 			margin-bottom: 6px;
 			border-radius: 2px 2px 0 0;
 		}
@@ -62,12 +61,10 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding: 0 10px;
+			padding: 0 8px;
 			box-shadow: 0 4px 10px rgba(0,0,0,0.8);
 			position: relative;
 			z-index: 100;
-			flex-wrap: wrap;
-			gap: 8px;
 		}
 
 		#navigation {
@@ -76,7 +73,7 @@
 			padding: 0;
 			display: flex;
 			align-items: center;
-			gap: 12px;
+			gap: 10px;
 		}
 
 		#navigation li {
@@ -130,9 +127,9 @@
 			background: #090b0c;
 			border: 1px solid #282d33;
 			color: #ccc;
-			padding: 4px 8px;
-			font-size: 11px;
-			width: 100px;
+			padding: 4px 6px;
+			font-size: 10px;
+			width: 85px;
 		}
 
 		/* Obsahový panel */
@@ -141,8 +138,8 @@
 			border: 1px solid #1c2024;
 			border-top: none;
 			display: flex;
-			padding: 15px 12px;
-			gap: 15px;
+			padding: 12px 8px;
+			gap: 12px;
 			box-shadow: 0 10px 25px rgba(0,0,0,0.8);
 		}
 
@@ -159,7 +156,7 @@
 
 		.inner_post h2 {
 			margin: 0 0 6px 0;
-			font-size: 18px;
+			font-size: 17px;
 			font-weight: normal;
 		}
 
@@ -188,33 +185,33 @@
 
 		/* Pravý stĺpec (Sidebar) */
 		#sidebar {
-			width: 200px;
+			width: 175px; /* Zmenšená šírka pravého stĺpca, aby nevošiel za okraj */
 			flex-shrink: 0;
 		}
 
 		.sidebar_item {
 			background: #15181b;
 			border: 1px solid #212529;
-			padding: 10px;
-			margin-bottom: 15px;
+			padding: 8px;
+			margin-bottom: 12px;
 		}
 
 		.sidebar_item h5 {
-			margin: 0 0 8px 0;
+			margin: 0 0 6px 0;
 			color: #ffffff;
-			font-size: 11px;
+			font-size: 10px;
 			text-transform: uppercase;
 			border-bottom: 1px solid #212529;
-			padding-bottom: 5px;
+			padding-bottom: 4px;
 		}
 
 		.sidebar-links {
-			font-size: 10px;
+			font-size: 9px;
 			font-weight: bold;
-			margin-bottom: 12px;
+			margin-bottom: 10px;
 			display: flex;
 			justify-content: space-between;
-			gap: 5px;
+			gap: 4px;
 		}
 
 		.sidebar-links a {
@@ -227,7 +224,7 @@
 		}
 
 		.monthly-stat {
-			font-size: 28px;
+			font-size: 24px;
 			font-weight: bold;
 			color: #ffffff;
 			letter-spacing: 1px;
@@ -235,7 +232,7 @@
 		}
 
 		.monthly-stat-sub {
-			font-size: 10px;
+			font-size: 9px;
 			color: #616870;
 			text-transform: uppercase;
 			margin-top: 4px;
@@ -245,7 +242,7 @@
 			color: #79aa27;
 			font-family: monospace;
 			font-weight: bold;
-			font-size: 11px;
+			font-size: 10px;
 			word-break: break-all;
 		}
 
@@ -255,11 +252,11 @@
 			background: linear-gradient(to bottom, #1c2126 0%, #14171a 100%);
 			border: 1px solid #2c323b;
 			border-left: 3px solid #d1a840;
-			padding: 8px 10px;
-			margin-bottom: 6px;
+			padding: 6px 8px;
+			margin-bottom: 5px;
 			color: #ffffff !important;
 			font-weight: bold;
-			font-size: 11px;
+			font-size: 10px;
 			text-transform: uppercase;
 			letter-spacing: 0.5px;
 		}
@@ -273,33 +270,10 @@
 
 		#footer {
 			text-align: center;
-			padding: 20px 5px 50px 5px;
+			padding: 15px 5px 30px 5px;
 			color: #41464c;
-			font-size: 11px;
+			font-size: 10px;
 			line-height: 1.4;
-		}
-
-		/* Media query pre 4:3 a menšie obrazovky */
-		@media screen and (max-width: 780px) {
-			#container {
-				padding: 0 5px 5px 5px;
-			}
-
-			#content_container {
-				flex-direction: column;
-			}
-
-			#sidebar {
-				width: 100%;
-			}
-
-			#navigation {
-				gap: 8px;
-			}
-
-			#navigation li a {
-				font-size: 10px;
-			}
 		}
 	</style>
 </head>
