@@ -14,7 +14,7 @@
 			background-color: #0c0f12;
 			color: #8c8f94;
 			font-family: Arial, Helvetica, sans-serif;
-			font-size: 13px; /* Pôvodná veľkosť písma */
+			font-size: 13px;
 			margin: 0;
 			padding: 0;
 			width: 100%;
@@ -24,22 +24,22 @@
 		a { color: #3f79aa; text-decoration: none; }
 		a:hover { color: #ffffff; text-decoration: underline; }
 
-		/* Zmenšená šírka na 620px, aby stránka nepretekala cez CS:GO okno Novinky */
+		/* Optimalizovaná šírka na 710px pre vyplnenie Scaleform okna */
 		#container {
 			width: 100%;
-			max-width: 620px;
+			max-width: 710px;
 			margin: 0 auto;
 			position: relative;
-			padding: 0 5px 5px 5px;
+			padding: 0 6px 5px 6px;
 		}
 
-		/* Wildfire hlavička */
+		/* Wildfire hlavička - posunutá nižšie, aby bolo vidno celého panáčika */
 		.header-banner {
 			width: 100%;
 			background: #0c0f12;
 			line-height: 0;
 			overflow: hidden;
-			margin-top: 10px;
+			margin-top: 32px; /* Posunuté nižšie */
 			margin-bottom: 6px;
 			border-radius: 2px 2px 0 0;
 		}
@@ -61,7 +61,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding: 0 8px;
+			padding: 0 10px;
 			box-shadow: 0 4px 10px rgba(0,0,0,0.8);
 			position: relative;
 			z-index: 100;
@@ -73,7 +73,7 @@
 			padding: 0;
 			display: flex;
 			align-items: center;
-			gap: 10px;
+			gap: 12px;
 		}
 
 		#navigation li {
@@ -127,9 +127,9 @@
 			background: #090b0c;
 			border: 1px solid #282d33;
 			color: #ccc;
-			padding: 4px 6px;
-			font-size: 10px;
-			width: 85px;
+			padding: 4px 8px;
+			font-size: 11px;
+			width: 100px;
 		}
 
 		/* Obsahový panel */
@@ -138,8 +138,8 @@
 			border: 1px solid #1c2024;
 			border-top: none;
 			display: flex;
-			padding: 12px 8px;
-			gap: 12px;
+			padding: 14px 10px;
+			gap: 14px;
 			box-shadow: 0 10px 25px rgba(0,0,0,0.8);
 		}
 
@@ -156,7 +156,7 @@
 
 		.inner_post h2 {
 			margin: 0 0 6px 0;
-			font-size: 17px;
+			font-size: 18px;
 			font-weight: normal;
 		}
 
@@ -185,28 +185,28 @@
 
 		/* Pravý stĺpec (Sidebar) */
 		#sidebar {
-			width: 175px; /* Zmenšená šírka pravého stĺpca, aby nevošiel za okraj */
+			width: 190px;
 			flex-shrink: 0;
 		}
 
 		.sidebar_item {
 			background: #15181b;
 			border: 1px solid #212529;
-			padding: 8px;
-			margin-bottom: 12px;
+			padding: 10px;
+			margin-bottom: 14px;
 		}
 
 		.sidebar_item h5 {
-			margin: 0 0 6px 0;
+			margin: 0 0 7px 0;
 			color: #ffffff;
-			font-size: 10px;
+			font-size: 11px;
 			text-transform: uppercase;
 			border-bottom: 1px solid #212529;
 			padding-bottom: 4px;
 		}
 
 		.sidebar-links {
-			font-size: 9px;
+			font-size: 10px;
 			font-weight: bold;
 			margin-bottom: 10px;
 			display: flex;
@@ -224,7 +224,7 @@
 		}
 
 		.monthly-stat {
-			font-size: 24px;
+			font-size: 26px;
 			font-weight: bold;
 			color: #ffffff;
 			letter-spacing: 1px;
@@ -232,7 +232,7 @@
 		}
 
 		.monthly-stat-sub {
-			font-size: 9px;
+			font-size: 10px;
 			color: #616870;
 			text-transform: uppercase;
 			margin-top: 4px;
@@ -242,7 +242,7 @@
 			color: #79aa27;
 			font-family: monospace;
 			font-weight: bold;
-			font-size: 10px;
+			font-size: 11px;
 			word-break: break-all;
 		}
 
@@ -252,11 +252,11 @@
 			background: linear-gradient(to bottom, #1c2126 0%, #14171a 100%);
 			border: 1px solid #2c323b;
 			border-left: 3px solid #d1a840;
-			padding: 6px 8px;
+			padding: 7px 9px;
 			margin-bottom: 5px;
 			color: #ffffff !important;
 			font-weight: bold;
-			font-size: 10px;
+			font-size: 11px;
 			text-transform: uppercase;
 			letter-spacing: 0.5px;
 		}
@@ -270,9 +270,9 @@
 
 		#footer {
 			text-align: center;
-			padding: 15px 5px 30px 5px;
+			padding: 15px 5px 35px 5px;
 			color: #41464c;
-			font-size: 10px;
+			font-size: 11px;
 			line-height: 1.4;
 		}
 	</style>
@@ -281,7 +281,7 @@
 <body>
 	<div id="container">
 
-		<!-- Hlavička -->
+		<!-- Hlavička - posunutá nižšie pod lištu "Novinky" -->
 		<div class="header-banner"><img src="wildfire.png" alt=""></div>
 		
 		<!-- Navigačná lišta -->
@@ -502,7 +502,7 @@
 
 				<!-- Blok Servery -->
 				<div class="sidebar_item" id="servers">
-					<h5>SERVERS</h5>
+					##### SERVERS
 					<p style="margin: 5px 0;"><strong>[EU] Dust2 Only 128T</strong><br>
 					<span class="server-ip">connect 127.0.0.1:27015</span></p>
 					<hr style="border: 0; border-top: 1px solid #212529; margin: 8px 0;">
@@ -512,7 +512,7 @@
 
 				<!-- História Aktualizácií -->
 				<div class="sidebar_item">
-					<h5>UPDATE HISTORY</h5>
+					##### UPDATE HISTORY
 					
 					<a class="valve-update-card" href="https://www.counter-strike.net/operationwildfire" target="_blank">
 						Operation Wildfire
