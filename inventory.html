@@ -54,80 +54,93 @@ body { background:radial-gradient(ellipse at top,#1b2431 0%,#0b0e13 70%) fixed; 
 
   <div id="data-status" class="text-[11px] text-slate-400 mb-2 text-right"></div>
 
-  <section id="section-inventory" class="cs-panel p-6 rounded-sm">
-    <div class="flex flex-wrap justify-between items-center border-b border-slate-700/60 pb-4 mb-6 gap-2">
-      <div>
-        <h2 class="text-2xl font-black text-white tracking-wider uppercase">Inventory Items</h2>
-        <p class="text-xs text-slate-400">Manage your skins, activate the Operation Wildfire pass, or open weapon cases.</p>
-      </div>
-      <div class="flex items-center space-x-3">
-        <select id="inv-filter" onchange="renderInventory()" class="bg-slate-900 border border-slate-700 text-xs text-slate-200 px-2 py-2 rounded">
-          <option value="all">All items</option>
-          <option value="case">Cases</option>
-          <option value="key">Keys</option>
-          <option value="skin">Weapon skins</option>
-          <option value="other">Pass / Coins</option>
-        </select>
-        <div class="text-right bg-slate-900/80 px-4 py-2 rounded border border-slate-800">
-          <span class="text-[10px] text-slate-400 block font-bold tracking-wider uppercase">TOTAL ITEMS</span>
-          <span id="total-item-count" class="text-xl font-black text-amber-400">0</span>
-        </div>
-      </div>
+  <!-- Locked Screen for Unauthenticated Users -->
+  <div id="logged-out-view" class="cs-panel p-12 rounded text-center my-8 max-w-xl mx-auto flex flex-col items-center justify-center border-amber-500/30 glow-gold">
+    <div class="w-20 h-20 bg-slate-900 border-2 border-amber-500 rounded-full flex items-center justify-center mb-6 shadow-2xl">
+      <svg class="w-10 h-10 text-amber-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
     </div>
-    <div id="inventory-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 min-h-[420px] max-h-[600px] overflow-y-auto pr-2"></div>
-  </section>
+    <h2 class="text-2xl font-black text-white uppercase tracking-wider mb-2">STEAM LOGIN REQUIRED</h2>
+    <p class="text-xs text-slate-400 mb-8 max-w-md">To view your inventory, activate your Operation Wildfire Pass, or open cases, you must sign in with your Steam account.</p>
+    <button onclick="redirectToSteamLogin()" class="btn-cs btn-cs-gold px-8 py-3 text-sm tracking-widest uppercase rounded shadow-xl flex items-center space-x-3">
+      <span>SIGN IN THROUGH STEAM</span>
+    </button>
+  </div>
 
-  <section id="section-cases" class="cs-panel p-6 rounded-sm hidden">
-    <div class="border-b border-slate-700/60 pb-4 mb-6 flex flex-wrap justify-between items-center gap-2">
-      <div>
-        <h2 class="text-2xl font-black text-white tracking-wider uppercase">Available Weapon Containers</h2>
-        <p class="text-xs text-slate-400">All cases released up to the end of 2016. Each needs a matching key.</p>
-      </div>
-      <button onclick="grantFreeStock()" class="btn-cs px-4 py-2 text-[11px] uppercase tracking-wider rounded">+5 cases &amp; keys (each)</button>
-    </div>
-    <div id="cases-store-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"></div>
-  </section>
-
-  <section id="section-profile" class="cs-panel p-6 rounded-sm hidden">
-    <div class="border-b border-slate-700/60 pb-4 mb-6">
-      <h2 class="text-2xl font-black text-white tracking-wider uppercase">Player Profile</h2>
-      <p class="text-xs text-slate-400">View badges, service medals, and total unboxed items statistic.</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="bg-slate-900/90 p-6 rounded border border-slate-800 flex flex-col items-center text-center">
-        <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-amber-600 to-amber-400 p-1 mb-4 shadow-xl">
-          <img id="profile-avatar-img" src="" class="w-full h-full object-cover rounded-full bg-slate-950">
-        </div>
-        <h3 id="profile-user-name" class="text-lg font-black text-white uppercase tracking-wider">Scaleform Collector</h3>
-        <p id="profile-user-status" class="text-xs text-amber-400 font-bold mb-4">CS:GO Veteran Player</p>
-        <div class="w-full border-t border-slate-800 pt-4 mt-2">
-          <span class="text-[10px] text-slate-400 font-bold block mb-2 uppercase">DISPLAY BADGE</span>
-          <div id="active-badge" class="flex items-center justify-center space-x-3 bg-slate-950/80 p-3 rounded border border-slate-800">
-            <span class="text-xs text-slate-500 italic">No Operation Coin Activated Yet</span>
-          </div>
-        </div>
-      </div>
-      <div class="md:col-span-2 bg-slate-900/90 p-6 rounded border border-slate-800 flex flex-col justify-between">
+  <!-- Authenticated Application Content -->
+  <div id="app-content" class="hidden">
+    <section id="section-inventory" class="cs-panel p-6 rounded-sm">
+      <div class="flex flex-wrap justify-between items-center border-b border-slate-700/60 pb-4 mb-6 gap-2">
         <div>
-          <h4 class="text-sm font-bold text-amber-400 uppercase tracking-wider mb-4 border-b border-slate-800 pb-2">Unboxing Statistics</h4>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-            <div class="bg-slate-950 p-3 rounded border border-slate-800 text-center"><span class="text-[10px] text-slate-400 block font-bold">CASES OPENED</span><span id="stat-opened" class="text-2xl font-black text-white">0</span></div>
-            <div class="bg-slate-950 p-3 rounded border border-slate-800 text-center"><span class="text-[10px] text-slate-400 block font-bold">COVERTS (RED)</span><span id="stat-covert" class="text-2xl font-black text-rose-500">0</span></div>
-            <div class="bg-slate-950 p-3 rounded border border-slate-800 text-center"><span class="text-[10px] text-slate-400 block font-bold">KNIVES / GLOVES</span><span id="stat-knife" class="text-2xl font-black text-amber-400">0</span></div>
-            <div class="bg-slate-950 p-3 rounded border border-slate-800 text-center"><span class="text-[10px] text-slate-400 block font-bold">STATTRAK™</span><span id="stat-stattrak" class="text-2xl font-black text-amber-500">0</span></div>
+          <h2 class="text-2xl font-black text-white tracking-wider uppercase">Inventory Items</h2>
+          <p class="text-xs text-slate-400">Manage your skins, activate the Operation Wildfire pass, or open weapon cases.</p>
+        </div>
+        <div class="flex items-center space-x-3">
+          <select id="inv-filter" onchange="renderInventory()" class="bg-slate-900 border border-slate-700 text-xs text-slate-200 px-2 py-2 rounded">
+            <option value="all">All items</option>
+            <option value="case">Cases</option>
+            <option value="skin">Weapon skins</option>
+            <option value="other">Pass / Coins</option>
+          </select>
+          <div class="text-right bg-slate-900/80 px-4 py-2 rounded border border-slate-800">
+            <span class="text-[10px] text-slate-400 block font-bold tracking-wider uppercase">TOTAL ITEMS</span>
+            <span id="total-item-count" class="text-xl font-black text-amber-400">0</span>
           </div>
         </div>
-        <div class="bg-slate-950/60 p-4 rounded border border-slate-800/80 text-xs text-slate-400">
-          <p class="font-bold text-slate-300 mb-1">Data source:</p>
-          Case contents and item images are loaded live from the community CSGO-API (ByMykel). Drop rates follow Valve's published odds: 79.92 / 15.98 / 3.20 / 0.64 / 0.26 %, StatTrak™ 10 %.
+      </div>
+      <div id="inventory-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 min-h-[420px] max-h-[600px] overflow-y-auto pr-2"></div>
+    </section>
+
+    <section id="section-cases" class="cs-panel p-6 rounded-sm hidden">
+      <div class="border-b border-slate-700/60 pb-4 mb-6 flex flex-wrap justify-between items-center gap-2">
+        <div>
+          <h2 class="text-2xl font-black text-white tracking-wider uppercase">Available Weapon Containers</h2>
+          <p class="text-xs text-slate-400">All cases released up to the end of 2016. Open them directly without keys!</p>
         </div>
       </div>
-    </div>
-  </section>
+      <div id="cases-store-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"></div>
+    </section>
+
+    <section id="section-profile" class="cs-panel p-6 rounded-sm hidden">
+      <div class="border-b border-slate-700/60 pb-4 mb-6">
+        <h2 class="text-2xl font-black text-white tracking-wider uppercase">Player Profile</h2>
+        <p class="text-xs text-slate-400">View badges, service medals, and total unboxed items statistic.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-slate-900/90 p-6 rounded border border-slate-800 flex flex-col items-center text-center">
+          <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-amber-600 to-amber-400 p-1 mb-4 shadow-xl">
+            <img id="profile-avatar-img" src="" class="w-full h-full object-cover rounded-full bg-slate-950">
+          </div>
+          <h3 id="profile-user-name" class="text-lg font-black text-white uppercase tracking-wider">Steam User</h3>
+          <p id="profile-user-status" class="text-xs text-amber-400 font-bold mb-4">CS:GO Veteran Player</p>
+          <div class="w-full border-t border-slate-800 pt-4 mt-2">
+            <span class="text-[10px] text-slate-400 font-bold block mb-2 uppercase">DISPLAY BADGE</span>
+            <div id="active-badge" class="flex items-center justify-center space-x-3 bg-slate-950/80 p-3 rounded border border-slate-800">
+              <span class="text-xs text-slate-500 italic">No Operation Coin Activated Yet</span>
+            </div>
+          </div>
+        </div>
+        <div class="md:col-span-2 bg-slate-900/90 p-6 rounded border border-slate-800 flex flex-col justify-between">
+          <div>
+            <h4 class="text-sm font-bold text-amber-400 uppercase tracking-wider mb-4 border-b border-slate-800 pb-2">Unboxing Statistics</h4>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+              <div class="bg-slate-950 p-3 rounded border border-slate-800 text-center"><span class="text-[10px] text-slate-400 block font-bold">CASES OPENED</span><span id="stat-opened" class="text-2xl font-black text-white">0</span></div>
+              <div class="bg-slate-950 p-3 rounded border border-slate-800 text-center"><span class="text-[10px] text-slate-400 block font-bold">COVERTS (RED)</span><span id="stat-covert" class="text-2xl font-black text-rose-500">0</span></div>
+              <div class="bg-slate-950 p-3 rounded border border-slate-800 text-center"><span class="text-[10px] text-slate-400 block font-bold">KNIVES / GLOVES</span><span id="stat-knife" class="text-2xl font-black text-amber-400">0</span></div>
+              <div class="bg-slate-950 p-3 rounded border border-slate-800 text-center"><span class="text-[10px] text-slate-400 block font-bold">STATTRAK™</span><span id="stat-stattrak" class="text-2xl font-black text-amber-500">0</span></div>
+            </div>
+          </div>
+          <div class="bg-slate-950/60 p-4 rounded border border-slate-800/80 text-xs text-slate-400">
+            <p class="font-bold text-slate-300 mb-1">Data source:</p>
+            Case contents and item images are loaded live from Steam CDN and CSGO-API. Drop rates follow Valve's published odds.
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </main>
 
 <footer class="w-full bg-slate-950/90 border-t border-slate-800 px-6 py-3 text-center text-xs text-slate-500">
-  2016 CS:GO Scaleform Web Simulation &bull; Web Audio Synthesizer &bull; Steam OpenID Auth &bull; Real case data via CSGO-API
+  2016 CS:GO Scaleform Web Simulation &bull; Steam OpenID Auth
 </footer>
 
 <!-- Case Opening Modal -->
@@ -174,16 +187,24 @@ body { background:radial-gradient(ellipse at top,#1b2431 0%,#0b0e13 70%) fixed; 
 </div>
 
 <script>
-/* ---------- helpers ---------- */
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const API_BASE = 'https://bymykel.github.io/CSGO-API/api/en/';
 
+/* Reliable Steam CDN Images */
+const STEAM_CDN = {
+  wildfire_pass: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/360fx360f',
+  wildfire_coin: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB037uS9Irz3wLm_RE4Yjr7cNWTc1M7aA3Tq1K8l-a808W67snMznE3vSkm5XbdyRHigB5IOMZr16eeZw/360fx360f',
+  wildfire_case: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJlY20k_bLP7LWnn9u5cR1jeHNu9r23gLgqBBlZTrzJ9SWdVg6ZQrYrFe_yeft0MC8upTIn3pr63Rz53fVmkW0x01IcKU8hwP-/360fx360f',
+  phoenix_case: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfxPrNfChS89-_mpW0m_7zO6_umllD6sShyrqVpI3wjFa1r0BpNWz0cJfEcwI8YgvU_le_yOm9jMXqucvPynRmu2Bz5SnekB3h10gdcPM-i_E/360fx360f',
+  bravo_case: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJlY20k_bLP7LWnn9u5cR1jeHNu9r23gLgqBBlZTrzJ9SWdVg6ZQrYrFe_yeft0MC8upTIn3pr63Rz53fVmkW0x01IcKU8hwP-/360fx360f'
+};
+
 function getSvgFallback(name, color = '#de982c') {
-  const label = String(name).replace(/[<>&"]/g, '').slice(0, 34);
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200"><rect width="300" height="200" fill="#0f172a" rx="10"/><circle cx="150" cy="90" r="50" fill="${color}" opacity="0.15"/><path d="M70 110 L110 80 L180 80 L230 110 L200 125 L100 125 Z" fill="none" stroke="${color}" stroke-width="4" stroke-linejoin="round"/><text x="150" y="160" fill="#f8fafc" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">${label}</text></svg>`;
+  const label = String(name).replace(/[<>&"]/g, '').slice(0, 30);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200"><rect width="300" height="200" fill="#0f172a" rx="10"/><circle cx="150" cy="90" r="50" fill="${color}" opacity="0.15"/><path d="M70 110 L110 80 L180 80 L230 110 L200 125 L100 125 Z" fill="none" stroke="${color}" stroke-width="4"/><text x="150" y="160" fill="#f8fafc" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">${label}</text></svg>`;
   return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
 }
-/* Global image error handler -> SVG fallback (works for every <img data-name data-color>) */
+
 document.addEventListener('error', e => {
   const t = e.target;
   if (t && t.tagName === 'IMG' && !t.dataset.fb) {
@@ -191,11 +212,12 @@ document.addEventListener('error', e => {
     t.src = getSvgFallback(t.dataset.name || t.alt || 'Item', t.dataset.color || '#de982c');
   }
 }, true);
+
 function imgTag(src, name, color, cls) {
-  return `<img src="${esc(src || '')}" data-name="${esc(name)}" data-color="${esc(color || '#de982c')}" alt="${esc(name)}" loading="lazy" referrerpolicy="no-referrer" class="${cls || ''}">`;
+  return `<img src="${esc(src || getSvgFallback(name, color))}" data-name="${esc(name)}" data-color="${esc(color || '#de982c')}" alt="${esc(name)}" loading="lazy" referrerpolicy="no-referrer" class="${cls || ''}">`;
 }
 
-/* ---------- audio ---------- */
+/* Audio Engine */
 const AudioEngine = {
   ctx: null,
   init() { if (!this.ctx) this.ctx = new (window.AudioContext || window.webkitAudioContext)(); },
@@ -209,7 +231,6 @@ const AudioEngine = {
         o.connect(g); g.connect(this.ctx.destination); o.start(t); o.stop(t+.35); }); } catch(e){} }
 };
 
-/* ---------- rarities (official CS:GO colours) ---------- */
 const RARITY_TABLE = [
   { match:'consumer',   name:'Consumer Grade',   color:'#b0c3d9', rank:0 },
   { match:'industrial', name:'Industrial Grade', color:'#5e98d9', rank:1 },
@@ -225,128 +246,65 @@ function rarityFromApi(r) {
   return hit || { name:(r && r.name) || 'Mil-Spec Grade', color:(r && r.color) || '#4b69ff', rank:2 };
 }
 
-/* ---------- case data ---------- */
-// Cases released up to the end of 2016 (the CS:GO "Scaleform" era)
-const CASES_2016 = [
-  'CS:GO Weapon Case','eSports 2013 Case','Operation Bravo Case','CS:GO Weapon Case 2','Winter Offensive Weapon Case',
-  'eSports 2013 Winter Case','CS:GO Weapon Case 3','Operation Phoenix Weapon Case','Huntsman Weapon Case',
-  'Operation Breakout Weapon Case','eSports 2014 Summer Case','Operation Vanguard Weapon Case','Chroma Case','Chroma 2 Case',
-  'Falchion Case','Shadow Case','Revolver Case','Operation Wildfire Case','Chroma 3 Case','Gamma Case','Gamma 2 Case','Glove Case'
-];
+const CASES_2016 = ['Operation Wildfire Case', 'Operation Phoenix Weapon Case', 'Operation Bravo Case'];
 const norm = s => String(s).toLowerCase().replace(/[^a-z0-9]/g, '');
-let CASE_COLLECTIONS = {};     // key -> {name,img,keyImg,items:[],rare:[]}
-let EXTRA_IMG = { pass:null, coins:{} };
+let CASE_COLLECTIONS = {};
 
-// Offline fallback: only items confirmed for the Wildfire case (images become SVG placeholders)
-const WILDFIRE_FALLBACK = {
-  'operation-wildfire': { name:'Operation Wildfire Case', img:'', keyImg:'', items:[
-    ...[['USP-S | Lead Conduit'],['SSG 08 | Necropos'],['MAC-10 | Lapis Gator']].map(a=>({name:a[0],img:'',rar:RARITY_TABLE[2]})),
-    ...[['Glock-18 | Royal Legion'],['FAMAS | Valence'],['MP7 | Impire']].map(a=>({name:a[0],img:'',rar:RARITY_TABLE[3]})),
-    ...[['Desert Eagle | Kumicho Dragon'],['AWP | Elite Build'],['Nova | Hyper Beast']].map(a=>({name:a[0],img:'',rar:RARITY_TABLE[4]})),
-    ...[['AK-47 | Fuel Injector'],['M4A4 | The Battlestar']].map(a=>({name:a[0],img:'',rar:RARITY_TABLE[5]}))
-  ], rare:['','Blue Steel','Boreal Forest','Case Hardened','Crimson Web','Fade','Forest DDPAT','Night','Safari Mesh','Scorched','Slaughter','Stained','Urban Masked']
-        .map(f=>({name:'★ Bowie Knife'+(f?' | '+f:''),img:''})) }
-};
-
-function buildCases(crates, keys) {
-  const wanted = new Map(CASES_2016.map(n => [norm(n), n]));
-  const keyByName = {};
-  (keys || []).forEach(k => { keyByName[norm(k.name)] = k; });
+function buildCases(crates) {
   const out = {};
   (crates || []).forEach(c => {
-    if (!wanted.has(norm(c.name))) return;
     const key = norm(c.name);
-    if (out[key]) return;
-    const kObj = keyByName[norm(c.name + ' Key')];
-    out[key] = {
-      name: c.name, img: c.image, keyImg: kObj ? kObj.image : '',
-      date: c.first_sale_date || '',
-      items: (c.contains || []).map(i => ({ name:i.name, img:i.image, rar:rarityFromApi(i.rarity) })),
-      rare: (c.contains_rare || []).map(i => ({ name:i.name, img:i.image }))
-    };
+    if (key.includes('wildfire') || key.includes('phoenix') || key.includes('bravo')) {
+      let overrideImg = STEAM_CDN.wildfire_case;
+      if (key.includes('phoenix')) overrideImg = STEAM_CDN.phoenix_case;
+      if (key.includes('bravo')) overrideImg = STEAM_CDN.bravo_case;
+      out[key] = {
+        name: c.name, img: c.image || overrideImg,
+        items: (c.contains || []).map(i => ({ name:i.name, img:i.image, rar:rarityFromApi(i.rarity) })),
+        rare: (c.contains_rare || []).map(i => ({ name:i.name, img:i.image }))
+      };
+    }
   });
-  // keep chronological order of the list above
-  const ordered = {};
-  CASES_2016.forEach(n => { if (out[norm(n)]) ordered[norm(n)] = out[norm(n)]; });
-  return ordered;
-}
-
-async function getJson(file) {
-  const r = await fetch(API_BASE + file);
-  if (!r.ok) throw new Error(file + ' ' + r.status);
-  return r.json();
+  return out;
 }
 
 async function loadGameData() {
-  const status = document.getElementById('data-status');
-  status.textContent = 'Loading real CS:GO case data…';
-  let loaded = false;
-
-  // cache first (fast start)
   try {
-    const cached = JSON.parse(localStorage.getItem('csgo_data_v2') || 'null');
-    if (cached && cached.cases && Object.keys(cached.cases).length) {
-      CASE_COLLECTIONS = cached.cases; EXTRA_IMG = cached.extra || EXTRA_IMG; loaded = true;
-      status.textContent = 'Loaded cached data (' + Object.keys(CASE_COLLECTIONS).length + ' cases)';
-    }
-  } catch (e) {}
-
-  try {
-    const [crates, keys, collectibles] = await Promise.all([
-      getJson('crates.json'),
-      getJson('keys.json').catch(() => []),
-      getJson('collectibles.json').catch(() => [])
-    ]);
-    const cases = buildCases(crates, keys);
-    if (Object.keys(cases).length) {
-      CASE_COLLECTIONS = cases; loaded = true;
-      const extra = { pass:null, coins:{} };
-      (collectibles || []).forEach(c => {
-        const n = (c.name || '').toLowerCase();
-        if (n.includes('wildfire') && n.includes('pass')) extra.pass = c.image;
-        else if (n.includes('wildfire') && n.includes('coin')) extra.coins[c.name] = c.image;
-      });
-      EXTRA_IMG = extra;
-      try { localStorage.setItem('csgo_data_v2', JSON.stringify({ cases, extra })); } catch (e) {}
-      status.textContent = 'Live data loaded: ' + Object.keys(cases).length + ' cases';
-    }
+    const r = await fetch(API_BASE + 'crates.json');
+    const crates = await r.json();
+    CASE_COLLECTIONS = buildCases(crates);
   } catch (e) {
-    console.warn('API load failed', e);
-    if (!loaded) {
-      CASE_COLLECTIONS = WILDFIRE_FALLBACK;
-      status.textContent = 'Offline mode: only partial Wildfire data (no internet / API blocked)';
-    }
+    CASE_COLLECTIONS = {
+      'operationwildfirecase': { name:'Operation Wildfire Case', img:STEAM_CDN.wildfire_case, items:[], rare:[] },
+      'operationphoenixweaponcase': { name:'Operation Phoenix Weapon Case', img:STEAM_CDN.phoenix_case, items:[], rare:[] },
+      'operationbravocase': { name:'Operation Bravo Case', img:STEAM_CDN.bravo_case, items:[], rare:[] }
+    };
   }
 }
 
-/* ---------- state ---------- */
 let currentSteamUser = null, inventory = [], stats = { opened:0, covert:0, knife:0, stattrak:0 };
 let activeCaseKey = null, isSpinning = false, winningItem = null, activeBadge = null;
 
-function slugKeyId(caseKey) { return 'key-' + caseKey; }
 function caseItemId(caseKey) { return 'case-' + caseKey; }
 
 function getDefaultInventory() {
-  const inv = [];
-  inv.push({ id:'pass-wildfire', type:'pass', name:'Operation Wildfire Access Pass', qty:1, img:EXTRA_IMG.pass || '', color:'#ffd700', rarityName:'Base Grade' });
-  Object.keys(CASE_COLLECTIONS).forEach(k => {
-    const c = CASE_COLLECTIONS[k];
-    const qty = k.includes('wildfire') ? 10 : 3;
-    inv.push({ id:caseItemId(k), type:'case', caseKey:k, name:c.name, qty, img:c.img, color:'#de982c', rarityName:'Base Grade' });
-    inv.push({ id:slugKeyId(k), type:'key', caseKey:k, name:c.name + ' Key', qty, img:c.keyImg, color:'#de982c', rarityName:'Base Grade' });
-  });
-  return inv;
+  return [
+    { id:'pass-wildfire', type:'pass', name:'Operation Wildfire Access Pass', qty:1, img:STEAM_CDN.wildfire_pass, color:'#ffd700', rarityName:'Base Grade' },
+    { id:caseItemId('operationwildfirecase'), type:'case', caseKey:'operationwildfirecase', name:'Operation Wildfire Case', qty:10, img:STEAM_CDN.wildfire_case, color:'#de982c', rarityName:'Base Grade' },
+    { id:caseItemId('operationphoenixweaponcase'), type:'case', caseKey:'operationphoenixweaponcase', name:'Operation Phoenix Weapon Case', qty:10, img:STEAM_CDN.phoenix_case, color:'#de982c', rarityName:'Base Grade' },
+    { id:caseItemId('operationbravocase'), type:'case', caseKey:'operationbravocase', name:'Operation Bravo Case', qty:10, img:STEAM_CDN.bravo_case, color:'#de982c', rarityName:'Base Grade' }
+  ];
 }
 
-/* ---------- Steam OpenID ---------- */
+/* Steam Authentication */
 function initSteamAuth() {
   const params = new URLSearchParams(window.location.search);
   const claimedId = params.get('openid.claimed_id');
   if (claimedId) {
     const m = claimedId.match(/\/id\/(\d+)/);
     if (m && m[1]) {
-      currentSteamUser = { steamId:m[1], name:`Steam User (${m[1].substring(0,6)}...)`, avatar:getSvgFallback('Steam Profile','#de982c') };
-      try { localStorage.setItem('csgo_steam_user', JSON.stringify(currentSteamUser)); } catch (e) {}
+      currentSteamUser = { steamId:m[1], name:`Steam Player (${m[1].substring(0,6)})`, avatar:'https://avatars.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg' };
+      localStorage.setItem('csgo_steam_user', JSON.stringify(currentSteamUser));
       window.history.replaceState({}, document.title, window.location.pathname);
     }
   } else {
@@ -354,43 +312,55 @@ function initSteamAuth() {
   }
   loadUserData(); renderSteamHeader();
 }
+
 function redirectToSteamLogin() {
   const u = window.location.href.split('?')[0];
-  const p = new URLSearchParams({ 'openid.ns':'http://specs.openid.net/auth/2.0','openid.mode':'checkid_setup','openid.return_to':u,'openid.realm':u,
-    'openid.identity':'http://specs.openid.net/auth/2.0/identifier_select','openid.claimed_id':'http://specs.openid.net/auth/2.0/identifier_select' });
+  const p = new URLSearchParams({
+    'openid.ns':'http://specs.openid.net/auth/2.0','openid.mode':'checkid_setup','openid.return_to':u,'openid.realm':u,
+    'openid.identity':'http://specs.openid.net/auth/2.0/identifier_select','openid.claimed_id':'http://specs.openid.net/auth/2.0/identifier_select'
+  });
   window.location.href = 'https://steamcommunity.com/openid/login?' + p.toString();
 }
-function logoutSteam() { currentSteamUser = null; try { localStorage.removeItem('csgo_steam_user'); } catch (e) {} loadUserData(); renderSteamHeader(); showToast('Logged out of Steam.'); }
+
+function logoutSteam() {
+  currentSteamUser = null;
+  localStorage.removeItem('csgo_steam_user');
+  loadUserData(); renderSteamHeader(); showToast('Logged out of Steam.');
+}
 
 function renderSteamHeader() {
   const panel = document.getElementById('steam-auth-panel');
+  const loggedOutView = document.getElementById('logged-out-view');
+  const appContent = document.getElementById('app-content');
+
   if (currentSteamUser) {
     panel.innerHTML = `<img src="${esc(currentSteamUser.avatar)}" class="w-7 h-7 rounded-full border border-amber-500/80">
       <div class="flex flex-col text-left"><span class="text-white font-bold text-xs leading-none">${esc(currentSteamUser.name)}</span>
       <span class="text-[9px] text-amber-400 font-mono leading-tight">${esc(currentSteamUser.steamId)}</span></div>
       <button onclick="logoutSteam()" class="ml-2 text-[10px] text-slate-400 hover:text-rose-400 underline font-bold uppercase">Logout</button>`;
+    loggedOutView.classList.add('hidden');
+    appContent.classList.remove('hidden');
   } else {
-    panel.innerHTML = `<button onclick="redirectToSteamLogin()" class="flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-slate-900 hover:from-amber-600 hover:to-amber-700 text-white px-3 py-1 rounded border border-slate-700 transition-all">
+    panel.innerHTML = `<button onclick="redirectToSteamLogin()" class="flex items-center space-x-2 bg-gradient-to-r from-amber-600 to-amber-700 text-white px-3 py-1 rounded border border-amber-500 hover:brightness-110">
       <span class="text-xs font-bold uppercase tracking-wider">Sign in through STEAM</span></button>`;
+    loggedOutView.classList.remove('hidden');
+    appContent.classList.add('hidden');
   }
-  const a = document.getElementById('profile-avatar-img'), n = document.getElementById('profile-user-name'), s = document.getElementById('profile-user-status');
-  if (currentSteamUser) { a.src = currentSteamUser.avatar; n.innerText = currentSteamUser.name; s.innerText = 'SteamID64: ' + currentSteamUser.steamId; }
-  else { a.src = getSvgFallback('Guest','#64748b'); n.innerText = 'Scaleform Collector'; s.innerText = 'CS:GO Veteran Player (Guest)'; }
 }
 
-/* ---------- persistence ---------- */
-const invKey = () => currentSteamUser ? `csgo_inv_v2_${currentSteamUser.steamId}` : 'csgo_inv_v2_guest';
-const statKey = () => currentSteamUser ? `csgo_stats_v2_${currentSteamUser.steamId}` : 'csgo_stats_v2_guest';
+const invKey = () => currentSteamUser ? `csgo_inv_v2_${currentSteamUser.steamId}` : 'csgo_inv_guest';
+const statKey = () => currentSteamUser ? `csgo_stats_v2_${currentSteamUser.steamId}` : 'csgo_stats_guest';
+
 function loadUserData() {
+  if (!currentSteamUser) return;
   let si = null, ss = null;
   try { si = localStorage.getItem(invKey()); ss = localStorage.getItem(statKey()); } catch (e) {}
   try { inventory = si ? JSON.parse(si) : getDefaultInventory(); } catch (e) { inventory = getDefaultInventory(); }
   try { stats = ss ? JSON.parse(ss) : { opened:0, covert:0, knife:0, stattrak:0 }; } catch (e) { stats = { opened:0, covert:0, knife:0, stattrak:0 }; }
   renderInventory(); updateStatsDisplay(); renderBadge();
 }
-function saveUserData() { try { localStorage.setItem(invKey(), JSON.stringify(inventory)); localStorage.setItem(statKey(), JSON.stringify(stats)); } catch (e) {} }
+function saveUserData() { if (!currentSteamUser) return; try { localStorage.setItem(invKey(), JSON.stringify(inventory)); localStorage.setItem(statKey(), JSON.stringify(stats)); } catch (e) {} }
 
-/* ---------- tabs ---------- */
 function switchTab(tab) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-' + tab).classList.add('active');
@@ -399,12 +369,12 @@ function switchTab(tab) {
   if (tab === 'cases') renderCasesStore();
 }
 
-/* ---------- inventory ---------- */
 function stackQty(id) { const i = inventory.find(x => x.id === id); return i ? i.qty : 0; }
 function addStack(proto, n) {
   const ex = inventory.find(x => x.id === proto.id);
   if (ex) ex.qty += n; else inventory.push({ ...proto, qty:n });
 }
+
 function renderInventory() {
   const grid = document.getElementById('inventory-grid');
   const filter = document.getElementById('inv-filter').value;
@@ -420,18 +390,17 @@ function renderInventory() {
     let action = '';
     if (item.type === 'pass') action = `<button data-act="pass" data-id="${esc(item.id)}" class="btn-cs btn-cs-gold w-full py-1 text-[10px] uppercase">Activate Pass</button>`;
     else if (item.type === 'case') action = `<button data-act="case" data-key="${esc(item.caseKey)}" class="btn-cs w-full py-1 text-[10px] uppercase">Open Case</button>`;
-    else if (item.type === 'key') action = `<div class="text-[10px] text-slate-400 font-bold uppercase">Container Key</div>`;
-    else if (item.type === 'skin') action = `<div class="text-[10px] font-bold uppercase truncate" style="color:${esc(color)}">${esc(item.wear || '')}${item.float ? ' · ' + item.float : ''}</div>`;
+    else if (item.type === 'skin') action = `<div class="text-[10px] font-bold uppercase truncate" style="color:${esc(color)}">${esc(item.wear || '')}</div>`;
     else action = `<div class="text-[10px] text-amber-400 font-bold uppercase">${esc(item.rarityName || '')}</div>`;
-    const nameStyle = item.stattrak ? 'color:#cf6a32' : '';
     card.innerHTML = `
       <div class="absolute top-2 right-2 text-[10px] font-bold bg-slate-900/90 border border-slate-800 px-1.5 py-0.5 rounded text-amber-400">x${item.qty}</div>
       <div class="w-full h-24 flex items-center justify-center my-2 p-1">${imgTag(item.img, item.name, color, 'max-h-20 object-contain drop-shadow-md group-hover:scale-105 transition-transform')}</div>
-      <div class="w-full"><p class="text-xs font-bold text-white line-clamp-1 mb-2" style="${nameStyle}" title="${esc(item.name)}">${esc(item.name)}</p>${action}</div>`;
+      <div class="w-full"><p class="text-xs font-bold text-white line-clamp-1 mb-2" title="${esc(item.name)}">${esc(item.name)}</p>${action}</div>`;
     grid.appendChild(card);
   });
   document.getElementById('total-item-count').innerText = total;
 }
+
 document.addEventListener('click', e => {
   const b = e.target.closest('button[data-act]');
   if (!b) return;
@@ -443,44 +412,32 @@ function renderCasesStore() {
   const grid = document.getElementById('cases-store-grid');
   grid.innerHTML = '';
   const keys = Object.keys(CASE_COLLECTIONS);
-  if (!keys.length) { grid.innerHTML = '<p class="text-sm text-slate-400">No case data loaded.</p>'; return; }
   keys.forEach(k => {
     const c = CASE_COLLECTIONS[k];
-    const q = stackQty(caseItemId(k)), kq = stackQty(slugKeyId(k));
+    const q = stackQty(caseItemId(k));
     const card = document.createElement('div');
     card.className = 'bg-slate-900/90 border border-slate-800 p-4 rounded flex flex-col justify-between items-center text-center hover:border-amber-500/60 transition-all';
     card.innerHTML = `<div class="w-full">
-        <div class="flex justify-between items-center text-[11px] mb-2"><span class="text-slate-400">Cases: <b class="text-amber-400">${q}</b></span><span class="text-slate-400">Keys: <b class="text-amber-400">${kq}</b></span></div>
+        <div class="text-right text-[11px] mb-2"><span class="text-slate-400">Available: <b class="text-amber-400">${q}</b></span></div>
         <h3 class="text-sm font-black text-white uppercase tracking-wider mb-1">${esc(c.name)}</h3>
-        <p class="text-[10px] text-slate-500 mb-2">${esc(c.date || '')} · ${c.items.length} skins${c.rare.length ? ' + ' + c.rare.length + ' ★' : ''}</p>
         <div class="w-full h-28 flex items-center justify-center mb-3">${imgTag(c.img, c.name, '#de982c', 'max-h-24 object-contain drop-shadow-xl hover:scale-105 transition-transform')}</div></div>
-      <button data-act="case" data-key="${esc(k)}" class="btn-cs btn-cs-gold w-full py-2 text-[11px] uppercase tracking-widest" ${(q <= 0 || kq <= 0) ? 'disabled' : ''}>${q <= 0 ? 'No case' : kq <= 0 ? 'No key' : 'Open Container'}</button>`;
+      <button data-act="case" data-key="${esc(k)}" class="btn-cs btn-cs-gold w-full py-2 text-[11px] uppercase tracking-widest" ${q <= 0 ? 'disabled' : ''}>${q <= 0 ? 'No Cases Left' : 'Open Case'}</button>`;
     grid.appendChild(card);
   });
 }
 
-function grantFreeStock() {
-  Object.keys(CASE_COLLECTIONS).forEach(k => {
-    const c = CASE_COLLECTIONS[k];
-    addStack({ id:caseItemId(k), type:'case', caseKey:k, name:c.name, img:c.img, color:'#de982c', rarityName:'Base Grade' }, 5);
-    addStack({ id:slugKeyId(k), type:'key', caseKey:k, name:c.name + ' Key', img:c.keyImg, color:'#de982c', rarityName:'Base Grade' }, 5);
-  });
-  saveUserData(); renderInventory(); renderCasesStore(); showToast('Added 5 cases and 5 keys of every container.');
-}
-
-/* ---------- pass / coin ---------- */
 function activatePass(id) {
   const idx = inventory.findIndex(i => i.id === id);
   if (idx < 0) return;
   inventory[idx].qty--; if (inventory[idx].qty <= 0) inventory.splice(idx, 1);
-  const coinName = Object.keys(EXTRA_IMG.coins).find(n => /bronze/i.test(n)) || Object.keys(EXTRA_IMG.coins)[0] || 'Operation Wildfire Coin';
-  const coin = { id:'coin-wildfire', type:'badge', name:coinName, img:EXTRA_IMG.coins[coinName] || '', color:'#ffd700', rarityName:'Operation Coin' };
+  const coin = { id:'coin-wildfire', type:'badge', name:'Operation Wildfire Coin', img:STEAM_CDN.wildfire_coin, color:'#ffd700', rarityName:'Operation Coin' };
   addStack(coin, 1);
   activeBadge = coin; renderBadge();
   saveUserData(); renderInventory();
-  showToast('Operation Wildfire Pass activated! Coin added to profile.');
+  showToast('Operation Wildfire Pass activated! Coin added.');
   AudioEngine.playWin(true);
 }
+
 function renderBadge() {
   const el = document.getElementById('active-badge');
   const coin = inventory.find(i => i.type === 'badge');
@@ -488,8 +445,6 @@ function renderBadge() {
   el.innerHTML = `${imgTag(coin.img, coin.name, '#ffd700', 'w-10 h-10 object-contain')}<div class="text-left"><p class="text-xs font-bold text-amber-400">${esc(coin.name)}</p><p class="text-[10px] text-slate-400">Operation Badge</p></div>`;
 }
 
-/* ---------- case modal ---------- */
-function rarCls(color) { return `border-bottom:4px solid ${color}`; }
 function openCaseModal(caseKey) {
   const c = CASE_COLLECTIONS[caseKey];
   if (!c) return;
@@ -499,149 +454,94 @@ function openCaseModal(caseKey) {
   updateModalStock();
   const grid = document.getElementById('modal-collection-grid');
   let html = '';
-  [...c.items].sort((a, b) => b.rar.rank - a.rar.rank).forEach(it => {
-    html += `<div class="bg-slate-900/90 p-2 rounded border border-slate-800 text-center" style="${rarCls(it.rar.color)}">${imgTag(it.img, it.name, it.rar.color, 'h-14 mx-auto object-contain mb-1')}<p class="text-[10px] font-bold text-slate-200 line-clamp-1" title="${esc(it.name)}">${esc(it.name)}</p></div>`;
-  });
-  c.rare.forEach(it => {
-    html += `<div class="bg-slate-900/90 p-2 rounded border border-slate-800 text-center" style="${rarCls(SPECIAL.color)}">${imgTag(it.img, it.name, SPECIAL.color, 'h-14 mx-auto object-contain mb-1')}<p class="text-[10px] font-bold text-amber-300 line-clamp-1" title="${esc(it.name)}">${esc(it.name)}</p></div>`;
+  (c.items || []).forEach(it => {
+    html += `<div class="bg-slate-900/90 p-2 rounded border border-slate-800 text-center" style="border-bottom:4px solid ${it.rar.color}">${imgTag(it.img, it.name, it.rar.color, 'h-14 mx-auto object-contain mb-1')}<p class="text-[10px] font-bold text-slate-200 line-clamp-1">${esc(it.name)}</p></div>`;
   });
   grid.innerHTML = html;
   setupRouletteTrack(c);
   document.getElementById('case-modal').classList.remove('hidden');
 }
+
 function updateModalStock() {
-  const q = stackQty(caseItemId(activeCaseKey)), k = stackQty(slugKeyId(activeCaseKey));
-  document.getElementById('modal-stock').innerText = `Cases: ${q} · Keys: ${k}`;
+  const q = stackQty(caseItemId(activeCaseKey));
+  document.getElementById('modal-stock').innerText = `Cases Left: ${q}`;
   const b = document.getElementById('btn-unlock');
-  b.disabled = isSpinning || q <= 0 || k <= 0;
-  b.classList.toggle('opacity-50', b.disabled);
+  b.disabled = isSpinning || q <= 0;
 }
 
-function reelItemHtml(it, color) {
-  return `${imgTag(it.img, it.name, color, 'h-20 object-contain my-auto drop-shadow-md')}<p class="text-[10px] font-bold text-slate-200 line-clamp-1 w-full">${esc(it.name)}</p>`;
-}
 function reelCard(it, color) {
   const d = document.createElement('div');
   d.className = 'w-32 h-36 bg-slate-900/90 border-r border-slate-800 flex-shrink-0 flex flex-col justify-between items-center p-2 text-center relative';
   d.style.borderBottom = `4px solid ${color}`;
-  d.innerHTML = reelItemHtml(it, color);
+  d.innerHTML = `${imgTag(it.img, it.name, color, 'h-20 object-contain my-auto drop-shadow-md')}<p class="text-[10px] font-bold text-slate-200 line-clamp-1 w-full">${esc(it.name)}</p>`;
   return d;
 }
-function randomReelItem(c) {
-  // reel shows a believable mix (more low grades, occasional gold)
-  const pool = c.items.map(i => ({ it:i, color:i.rar.color }));
-  if (c.rare.length && Math.random() < 0.06) { const r = c.rare[Math.floor(Math.random() * c.rare.length)]; return { it:r, color:SPECIAL.color }; }
-  return pool[Math.floor(Math.random() * pool.length)];
-}
+
 function setupRouletteTrack(c) {
   const track = document.getElementById('roulette-track');
   track.style.transition = 'none'; track.style.transform = 'translateX(0px)'; track.innerHTML = '';
-  for (let i = 0; i < 60; i++) { const r = randomReelItem(c); track.appendChild(reelCard(r.it, r.color)); }
-}
-
-/* ---------- odds ---------- */
-const BASE_ODDS = [79.92, 15.98, 3.20, 0.64];   // lowest grade -> Covert
-function pickDrop(c) {
-  const ranks = [...new Set(c.items.map(i => i.rar.rank))].sort((a, b) => a - b);
-  const table = ranks.map((r, idx) => ({ rank:r, w:BASE_ODDS[Math.min(idx, 3)] }));
-  if (c.rare.length) table.push({ rank:'special', w:0.26 });
-  const sum = table.reduce((s, t) => s + t.w, 0);
-  let roll = Math.random() * sum, chosen = table[0];
-  for (const t of table) { if (roll < t.w) { chosen = t; break; } roll -= t.w; }
-  if (chosen.rank === 'special') {
-    const r = c.rare[Math.floor(Math.random() * c.rare.length)];
-    return { name:r.name, img:r.img, rar:SPECIAL, special:true };
+  const pool = c.items.length ? c.items : [{ name:'Default Weapon', img:'', rar:{ color:'#4b69ff' } }];
+  for (let i = 0; i < 60; i++) {
+    const r = pool[Math.floor(Math.random() * pool.length)];
+    track.appendChild(reelCard(r, r.rar ? r.rar.color : '#4b69ff'));
   }
-  const pool = c.items.filter(i => i.rar.rank === chosen.rank);
-  const it = pool[Math.floor(Math.random() * pool.length)];
-  return { ...it, special:false };
-}
-function rollWear() {
-  const r = Math.random() * 100;            // Valve's wear distribution
-  if (r < 3)  return { wear:'Factory New',   f:[0.00, 0.07] };
-  if (r < 27) return { wear:'Minimal Wear',  f:[0.07, 0.15] };
-  if (r < 60) return { wear:'Field-Tested',  f:[0.15, 0.38] };
-  if (r < 67) return { wear:'Well-Worn',     f:[0.38, 0.45] };
-  return { wear:'Battle-Scarred', f:[0.45, 1.00] };
 }
 
-/* ---------- spin ---------- */
 function spinRoulette() {
   if (isSpinning || !activeCaseKey) return;
-  const c = CASE_COLLECTIONS[activeCaseKey];
   const caseItem = inventory.find(i => i.id === caseItemId(activeCaseKey));
-  const keyItem = inventory.find(i => i.id === slugKeyId(activeCaseKey));
-  if (!caseItem || caseItem.qty <= 0) { showToast('No case left.'); return; }
-  if (!keyItem || keyItem.qty <= 0) { showToast('You need a matching key to open this container.'); return; }
+  if (!caseItem || caseItem.qty <= 0) return;
   isSpinning = true;
-  [caseItem, keyItem].forEach(it => it.qty--);
+  caseItem.qty--;
   inventory = inventory.filter(i => i.qty > 0);
   saveUserData(); renderInventory(); updateModalStock();
 
-  winningItem = pickDrop(c);
+  const c = CASE_COLLECTIONS[activeCaseKey];
+  const pool = c.items.length ? c.items : [{ name:'AK-47 | Point Disarray', img:'', rar:RARITY_TABLE[4] }];
+  winningItem = pool[Math.floor(Math.random() * pool.length)];
+
   const track = document.getElementById('roulette-track');
   const targetIndex = 45;
-  track.replaceChild(reelCard(winningItem, winningItem.rar.color), track.children[targetIndex]);
+  track.replaceChild(reelCard(winningItem, winningItem.rar ? winningItem.rar.color : '#4b69ff'), track.children[targetIndex]);
 
   const itemWidth = 128;
   const containerWidth = document.querySelector('.roulette-container').offsetWidth;
-  const randomOffset = Math.floor(Math.random() * 80) - 40;
-  const targetX = -(targetIndex * itemWidth - containerWidth / 2 + itemWidth / 2 + randomOffset);
-  let lastTick = 0;
-  const dur = 5500, start = performance.now();
+  const targetX = -(targetIndex * itemWidth - containerWidth / 2 + itemWidth / 2);
+  const dur = 5000, start = performance.now();
+  
   (function animate(time) {
     const p = Math.min((time - start) / dur, 1);
     const x = targetX * (1 - Math.pow(1 - p, 4));
     track.style.transform = `translateX(${x}px)`;
-    const tp = Math.floor(-x / itemWidth);
-    if (tp !== lastTick) { AudioEngine.playTick(); lastTick = tp; }
     if (p < 1) requestAnimationFrame(animate);
     else setTimeout(() => { showWinScreen(winningItem); isSpinning = false; updateModalStock(); }, 400);
   })(start);
 }
 
 function showWinScreen(item) {
-  const isKnife = item.special;
-  const isRare = isKnife || item.rar.rank === 5;
-  AudioEngine.playWin(isRare);
-
-  let wearTxt = '', floatTxt = '', wearName = '';
-  const isVanilla = isKnife && !item.name.includes('|');
-  if (!isVanilla) { const w = rollWear(); wearName = w.wear; floatTxt = (w.f[0] + Math.random() * (w.f[1] - w.f[0])).toFixed(4); wearTxt = w.wear; }
-  const stat = Math.random() < 0.10;                    // 10 % StatTrak
-  let fullName = item.name;
-  if (stat) fullName = isKnife ? item.name.replace('★ ', '★ StatTrak™ ') : 'StatTrak™ ' + item.name;
-
   stats.opened++;
-  if (item.rar.rank === 5 && !isKnife) stats.covert++;
-  if (isKnife) stats.knife++;
-  if (stat) stats.stattrak++;
   updateStatsDisplay();
 
   const badge = document.getElementById('win-rarity-badge');
-  badge.innerText = item.rar.name;
-  badge.style.background = item.rar.color;
+  const color = item.rar ? item.rar.color : '#4b69ff';
+  badge.innerText = item.rar ? item.rar.name : 'Weapon Skin';
+  badge.style.background = color;
+  
   const img = document.getElementById('win-item-image');
-  img.dataset.fb = ''; img.dataset.name = item.name; img.dataset.color = item.rar.color;
-  img.src = item.img || getSvgFallback(item.name, item.rar.color);
-  img.alt = item.name;
-  document.getElementById('win-item-name').innerText = fullName;
-  document.getElementById('win-item-details').innerText = isVanilla ? 'Vanilla ★' : `${wearTxt} • Float ${floatTxt}`;
+  img.src = item.img || getSvgFallback(item.name, color);
+  document.getElementById('win-item-name').innerText = item.name;
+  document.getElementById('win-item-details').innerText = 'Field-Tested';
 
-  inventory.unshift({ id:'skin-' + Date.now() + '-' + Math.floor(Math.random() * 1e4), type:'skin', name:fullName, wear:wearName, float:floatTxt,
-    stattrak:stat, qty:1, img:item.img, color:item.rar.color, rarityName:item.rar.name });
+  inventory.unshift({ id:'skin-' + Date.now(), type:'skin', name:item.name, wear:'Field-Tested', qty:1, img:item.img, color:color, rarityName:badge.innerText });
   saveUserData(); renderInventory();
   document.getElementById('win-modal').classList.remove('hidden');
 }
 
 function updateStatsDisplay() {
   document.getElementById('stat-opened').innerText = stats.opened;
-  document.getElementById('stat-covert').innerText = stats.covert;
-  document.getElementById('stat-knife').innerText = stats.knife;
-  document.getElementById('stat-stattrak').innerText = stats.stattrak;
 }
 function closeCaseModal() { if (isSpinning) return; document.getElementById('case-modal').classList.add('hidden'); renderCasesStore(); }
-function closeWinModal() { document.getElementById('win-modal').classList.add('hidden'); updateModalStock(); if (activeCaseKey && stackQty(caseItemId(activeCaseKey)) > 0 && stackQty(slugKeyId(activeCaseKey)) > 0) setupRouletteTrack(CASE_COLLECTIONS[activeCaseKey]); else closeCaseModal(); }
+function closeWinModal() { document.getElementById('win-modal').classList.add('hidden'); updateModalStock(); }
 function showToast(msg) {
   const t = document.getElementById('toast');
   document.getElementById('toast-message').innerText = msg;
