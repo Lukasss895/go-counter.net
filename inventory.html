@@ -12,7 +12,7 @@
             user-select: none;
         }
         body {
-            background: #0b0e13 url('https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpotLu8JalhmqpKYjhH09-jq5WYh8j3KqeLzzwFv5co2-rF89uh2wLhqkJsZzv6eoeXcw8_aQ2F_1m6yu3s1sftvpXBnHO3vSc8pGGKfyQd1w') no-repeat center center fixed;
+            background: #0b0e13 url('https://steamcdn-a.akamaihd.net/apps/730/icons/econ/backgrounds/bg_main.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #d1d5db;
             overflow-x: hidden;
@@ -150,7 +150,7 @@
 <body class="min-h-screen flex flex-col justify-between text-slate-200">
 
     <!-- Top Scaleform Header Nav -->
-    <header class="w-full bg-slate-950/95 border-b border-slate-700/60 px-4 sm:px-8 py-4 flex flex-wrap justify-between items-center shadow-2xl z-20">
+    <header class="w-full bg-slate-950/95 border-b border-slate-700/60 px-4 sm:px-8 py-3 flex flex-wrap justify-between items-center shadow-2xl z-20">
         <div class="flex items-center space-x-4 mb-2 sm:mb-0">
             <div class="w-10 h-10 bg-amber-500/20 border-2 border-amber-500 flex items-center justify-center font-black text-amber-500 text-xl tracking-wider rounded">
                 CS
@@ -168,10 +168,10 @@
             <button onclick="switchTab('profile')" id="tab-profile" class="nav-tab text-slate-300 hover:text-white py-1">PROFILE</button>
         </nav>
 
+        <!-- Steam Auth Area -->
         <div class="flex items-center space-x-4 text-xs">
-            <div class="flex items-center space-x-2 bg-slate-900/90 px-3 py-1.5 border border-slate-800 rounded">
-                <span class="text-slate-400">Status:</span>
-                <span class="text-emerald-400 font-bold flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-400 inline-block mr-1.5 animate-pulse"></span> Steam Online</span>
+            <div id="steam-auth-panel" class="flex items-center space-x-3 bg-slate-900/90 px-3 py-1.5 border border-slate-800 rounded">
+                <!-- Dynamic Content Injected via JS -->
             </div>
         </div>
     </header>
@@ -189,7 +189,7 @@
                 <div class="flex items-center space-x-4">
                     <div class="text-right bg-slate-900/80 px-4 py-2 rounded border border-slate-800">
                         <span class="text-[10px] text-slate-400 block font-bold tracking-wider uppercase">TOTAL ITEMS</span>
-                        <span id="total-item-count" class="text-xl font-black text-amber-400">31</span>
+                        <span id="total-item-count" class="text-xl font-black text-amber-400">0</span>
                     </div>
                 </div>
             </div>
@@ -219,11 +219,11 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="bg-slate-900/90 p-6 rounded border border-slate-800 flex flex-col items-center text-center">
-                    <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-amber-600 to-amber-400 p-1 mb-4 shadow-xl">
-                        <img src="https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/360fx360f" class="w-full h-full object-cover rounded-full bg-slate-950">
+                    <div id="profile-avatar-container" class="w-24 h-24 rounded-full bg-gradient-to-tr from-amber-600 to-amber-400 p-1 mb-4 shadow-xl">
+                        <img id="profile-avatar-img" src="" class="w-full h-full object-cover rounded-full bg-slate-950">
                     </div>
-                    <h3 class="text-lg font-black text-white uppercase tracking-wider">Scaleform Collector</h3>
-                    <p class="text-xs text-amber-400 font-bold mb-4">CS:GO Veteran Player</p>
+                    <h3 id="profile-user-name" class="text-lg font-black text-white uppercase tracking-wider">Scaleform Collector</h3>
+                    <p id="profile-user-status" class="text-xs text-amber-400 font-bold mb-4">CS:GO Veteran Player</p>
                     <div id="badge-container" class="w-full border-t border-slate-800 pt-4 mt-2">
                         <span class="text-[10px] text-slate-400 font-bold block mb-2 uppercase">DISPLAY BADGE</span>
                         <div id="active-badge" class="flex items-center justify-center space-x-3 bg-slate-950/80 p-3 rounded border border-slate-800">
@@ -256,7 +256,7 @@
                     </div>
                     <div class="bg-slate-950/60 p-4 rounded border border-slate-800/80 text-xs text-slate-400">
                         <p class="font-bold text-slate-300 mb-1">Scaleform Memory Note:</p>
-                        Scaleform GFx powered CS:GO UI from launch in 2012 until the Panorama UI update in 2018. All weapon assets are pulled directly from Steam/Valve CS:GO CDN servers.
+                        Scaleform GFx powered CS:GO UI from launch in 2012 until the Panorama UI update in 2018. All weapon assets are generated dynamically using fallback vector artwork and official Valve CS:GO CDN URLs.
                     </div>
                 </div>
             </div>
@@ -266,7 +266,7 @@
 
     <!-- Footer -->
     <footer class="w-full bg-slate-950/90 border-t border-slate-800 px-6 py-3 text-center text-xs text-slate-500">
-        1:1 2016 CS:GO Scaleform Web Simulation &bull; Pure Web Audio Synthesizer Engine &bull; Steam CDN Assets
+        1:1 2016 CS:GO Scaleform Web Simulation &bull; Pure Web Audio Synthesizer Engine &bull; Steam OpenID Auth & Vector CDN Assets
     </footer>
 
     <!-- Case Opening Modal -->
@@ -313,7 +313,7 @@
             <div id="win-rarity-badge" class="inline-block px-3 py-0.5 text-[10px] font-black uppercase text-white rounded mb-4">Covert</div>
             
             <div class="relative w-56 h-40 mx-auto mb-4 flex items-center justify-center bg-slate-900/90 rounded border border-slate-700 p-2 shadow-inner">
-                <img id="win-item-image" src="" alt="Won Item" class="max-h-32 object-contain drop-shadow-2xl">
+                <img id="win-item-image" src="" alt="Won Item" class="max-h-32 object-contain drop-shadow-2xl" onerror="this.onerror=null; this.src=getSvgFallback(this.alt, '#eb4b4b');">
             </div>
 
             <h2 id="win-item-name" class="text-xl font-black text-white mb-1 leading-tight">AK-47 | Fuel Injector</h2>
@@ -331,6 +331,18 @@
     </div>
 
     <script>
+        // High-reliability SVG Fallback Generator for CS:GO Weapons and Items
+        function getSvgFallback(name, color = '#de982c') {
+            const encodedName = encodeURIComponent(name);
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200">
+                <rect width="300" height="200" fill="#0f172a" rx="10"/>
+                <circle cx="150" cy="90" r="50" fill="${color}" opacity="0.15"/>
+                <path d="M70 110 L110 80 L180 80 L230 110 L200 125 L100 125 Z" fill="none" stroke="${color}" stroke-width="4" stroke-linejoin="round"/>
+                <text x="150" y="160" fill="#f8fafc" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">${encodedName}</text>
+            </svg>`;
+            return `data:image/svg+xml;utf8,${svg}`;
+        }
+
         // Web Audio Synthesizer Engine (Authentic CS:GO Sound Effects)
         const AudioEngine = {
             ctx: null,
@@ -388,89 +400,176 @@
             'special': { name: '★ Rare Special Item', class: 'rarity-special', bg: 'bg-special', text: 'text-special', color: '#ffd700' }
         };
 
-        // Case Collections Database with Authentic Valve/Steam CDN Images
+        // Case Collections Database with Steam CDN Fallback Support
         const CASE_COLLECTIONS = {
             'wildfire': {
                 name: 'Operation Wildfire Case',
-                img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJlY20k_bLP7LWnn9u5cR1jeHNu9r23gLgqBBlZTrzJ9SWdVg6ZQrYrFe_yeft0MC8upTIn3pr63Rz53fVmkW0x01IcKU8hwP-/360fx360f',
+                img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJlY20k_bLP7LWnn9u5cR1jeHNu9r23gLgqBBlZTrzJ9SWdVg6ZQrYrFe_yeft0MC8upTIn3pr63Rz53fVmkW0x01IcKU8hwP-/256fx256f',
                 items: [
-                    // Mil-Spec (Blue)
-                    { name: 'Dual Berettas | Cartel', rarity: 'mil-spec', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpos720Uqhze0z3cD1D99C5mr-NmOX1MavSwm0FsJpy37yRoY-i2w2x-xA6MTj1J4fDcgA9MV-FrlDtl7jrhMW57snMy3ZhuyA8p2tc83qslg/360fx360f' },
-                    { name: 'MAC-10 | Lapis Gator', rarity: 'mil-spec', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou7umeldf0v73fT9X7d28jw333f37I6vunm5Q19p02-uS8I_y2wLsqhY_a2jyLYCTIFVsaA7O_1m3kunm15C0tZ3BnyY3vCEn4yqIlkS30Uwea-RxxavJ4L0vS9U/360fx360f' },
-                    { name: 'PP-Bizon | Photic Zone', rarity: 'mil-spec', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpotLOze1Y17P7YJgJU4cWzm5C0m_7zO6_um11D4cR10r2UrNv03weyqUpkYzv7cIeScgRvZV_R_AW6xe_o0J67vMjJmyA26yM8p2idL1InLw/360fx360f' },
-                    { name: 'Tec-9 | Jambiya', rarity: 'mil-spec', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpoor-mcjh31033azRT5d2_m460mv3qO77UqWdY781lxLzE9I2s2wzk-x1kNWvwItKTdQ5vYwuD-1G_k--615Du7cnLm2wj55d_sE7j/360fx360f' },
-                    // Restricted (Purple)
-                    { name: 'Five-SeveN | Triumvirate', rarity: 'restricted', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpoo6m1F0p31833YgJP68y3k4WEaP31P6fQ2WsBsJUp0rmXo9X03w3irxFkYmGlINPBdAUcZAvR_1Xvx-_n15fptZnNznd9-n51S221mTY/360fx360f' },
-                    { name: 'Glock-18 | Royal Legion', rarity: 'restricted', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf0v73djxP192_m460m_7zO6_um11D4cR10r2UrNv03weyqUpkYzv7cIeScgRvZV_R_AW6xe_o0J67vMjJmyA26yM8p2idL1InLw/360fx360f' },
-                    { name: 'MAG-7 | Petroglyph', rarity: 'restricted', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou7uifDhjxszJemkV08y5nyjhbfc3a73Uom5U18h0juX--YX8zh3i8xZrNW33LITBdgA3ZwyEq1O8wLq9hpC-6M6cmyA16Scl-z-DyP23_N3b/360fx360f' },
-                    // Classified (Pink)
-                    { name: 'AWP | Elite Build', rarity: 'classified', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17PLfYQJD_9W7m5a0n_L1JaKfzm4B6sR03-qUrNjx31Xg_Uo4ZD2icIeXcwI4ZlCGr1Lvx-nth5TvuM_A1z5i551a31Sg/360fx360f' },
-                    { name: 'Desert Eagle | Kumicho Dragon', rarity: 'classified', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKdph1l1ifqypYzhz3e33d93nkI-0m_7zO6_um11D4cR10r2UrNv03weyqUpkYzv7cIeScgRvZV_R_AW6xe_o0J67vMjJmyA26yM8p2idL1InLw/360fx360f' },
-                    { name: 'Nova | Hyper Beast', rarity: 'classified', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gb-Gw_alIITBhGJf_NZlmOzA-LP5gVO8v11rNmyiI4GdcVJqZ13U-1S-ku_tgpC9vM6ay3M1uiQg5C6InRC10BkZO_xogg/360fx360f' },
-                    // Covert (Red)
-                    { name: 'AK-47 | Fuel Injector', rarity: 'covert', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV08y5nyjhbfc3a73Uom5U18h0juX--YX8zh3i8xZrNW33LITBdgA3ZwyEq1O8wLq9hpC-6M6cmyA16Scl-z-DyP23_N3b/360fx360f' },
-                    { name: "M4A1-S | Chantico's Fire", rarity: 'covert', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gb-Gw_alIITBm39U18h0juX--YX8zh3i8xZrNW33LITBdgA3ZwyEq1O8wLq9hpC-6M6cmyA16Scl-z-DyP23_N3b/360fx360f' },
-                    // Special Knife (Gold)
-                    { name: '★ Bowie Knife | Fade', rarity: 'special', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/360fx360f' }
+                    { name: 'Dual Berettas | Cartel', rarity: 'mil-spec', img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpos720Uqhze0z3cD1D99C5mr-NmOX1MavSwm0FsJpy37yRoY-i2w2x-xA6MTj1J4fDcgA9MV-FrlDtl7jrhMW57snMy3ZhuyA8p2tc83qslg/256fx256f' },
+                    { name: 'MAC-10 | Lapis Gator', rarity: 'mil-spec', img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou7umeldf0v73fT9X7d28jw333f37I6vunm5Q19p02-uS8I_y2wLsqhY_a2jyLYCTIFVsaA7O_1m3kunm15C0tZ3BnyY3vCEn4yqIlkS30Uwea-RxxavJ4L0vS9U/256fx256f' },
+                    { name: 'PP-Bizon | Photic Zone', rarity: 'mil-spec', img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpotLOze1Y17P7YJgJU4cWzm5C0m_7zO6_um11D4cR10r2UrNv03weyqUpkYzv7cIeScgRvZV_R_AW6xe_o0J67vMjJmyA26yM8p2idL1InLw/256fx256f' },
+                    { name: 'Five-SeveN | Triumvirate', rarity: 'restricted', img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpoo6m1F0p31833YgJP68y3k4WEaP31P6fQ2WsBsJUp0rmXo9X03w3irxFkYmGlINPBdAUcZAvR_1Xvx-_n15fptZnNznd9-n51S221mTY/256fx256f' },
+                    { name: 'Glock-18 | Royal Legion', rarity: 'restricted', img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf0v73djxP192_m460m_7zO6_um11D4cR10r2UrNv03weyqUpkYzv7cIeScgRvZV_R_AW6xe_o0J67vMjJmyA26yM8p2idL1InLw/256fx256f' },
+                    { name: 'AWP | Elite Build', rarity: 'classified', img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17PLfYQJD_9W7m5a0n_L1JaKfzm4B6sR03-qUrNjx31Xg_Uo4ZD2icIeXcwI4ZlCGr1Lvx-nth5TvuM_A1z5i551a31Sg/256fx256f' },
+                    { name: 'Desert Eagle | Kumicho Dragon', rarity: 'classified', img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKdph1l1ifqypYzhz3e33d93nkI-0m_7zO6_um11D4cR10r2UrNv03weyqUpkYzv7cIeScgRvZV_R_AW6xe_o0J67vMjJmyA26yM8p2idL1InLw/256fx256f' },
+                    { name: 'AK-47 | Fuel Injector', rarity: 'covert', img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV08y5nyjhbfc3a73Uom5U18h0juX--YX8zh3i8xZrNW33LITBdgA3ZwyEq1O8wLq9hpC-6M6cmyA16Scl-z-DyP23_N3b/256fx256f' },
+                    { name: "M4A1-S | Chantico's Fire", rarity: 'covert', img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gb-Gw_alIITBm39U18h0juX--YX8zh3i8xZrNW33LITBdgA3ZwyEq1O8wLq9hpC-6M6cmyA16Scl-z-DyP23_N3b/256fx256f' },
+                    { name: '★ Bowie Knife | Crimson Web', rarity: 'special', img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/256fx256f' }
                 ]
             },
             'phoenix': {
                 name: 'Operation Phoenix Case',
-                img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfxPrNfChS89-_mpW0m_7zO6_umllD6sShyrqVpI3wjFa1r0BpNWz0cJfEcwI8YgvU_le_yOm9jMXqucvPynRmu2Bz5SnekB3h10gdcPM-i_E/360fx360f',
+                img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfxPrNfChS89-_mpW0m_7zO6_umllD6sShyrqVpI3wjFa1r0BpNWz0cJfEcwI8YgvU_le_yOm9jMXqucvPynRmu2Bz5SnekB3h10gdcPM-i_E/256fx256f',
                 items: [
-                    // Mil-Spec
-                    { name: 'UMP-45 | Corporal', rarity: 'mil-spec', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpoo7e1f1Jf0vL3dzxP7d25m4SNm_L1J6jum11D4cR10r2UrNv03weyqUpkYzv7cIeScgRvZV_R_AW6xe_o0J67vMjJmyA26yM8p2idL1InLw/360fx360f' },
-                    { name: 'Negev | Terrain', rarity: 'mil-spec', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpouL-iLhFfwOP3fDhR5d2_m460mv3qO77UqWdY781lxLzE9I2s2wzk-x1kNWvwItKTdQ5vYwuD-1G_k--615Du7cnLm2wj55d_sE7j/360fx360f' },
-                    // Restricted
-                    { name: 'MAC-10 | Heat', rarity: 'restricted', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf0v73djxP192_m460m_7zO6_um11D4cR10r2UrNv03weyqUpkYzv7cIeScgRvZV_R_AW6xe_o0J67vMjJmyA26yM8p2idL1InLw/360fx360f' },
-                    { name: 'SG 553 | Pulse', rarity: 'restricted', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpopb-1FAR17PLfYQJD_9W7m5a0n_L1JaKfzm4B6sR03-qUrNjx31Xg_Uo4ZD2icIeXcwI4ZlCGr1Lvx-nth5TvuM_A1z5i551a31Sg/360fx360f' },
-                    // Classified
-                    { name: 'AWP | Asiimov', rarity: 'classified', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17PLfYQJD_9W7m5a0n_L1JaKfzm4B6sR03-qUrNjx31Xg_Uo4ZD2icIeXcwI4ZlCGr1Lvx-nth5TvuM_A1z5i551a31Sg/360fx360f' },
-                    { name: 'AK-47 | Redline', rarity: 'classified', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV08y5nyjhbfc3a73Uom5U18h0juX--YX8zh3i8xZrNW33LITBdgA3ZwyEq1O8wLq9hpC-6M6cmyA16Scl-z-DyP23_N3b/360fx360f' },
-                    // Covert
-                    { name: 'CZ75-Auto | Victoria', rarity: 'covert', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gb-Gw_alIITBhGJf_NZlmOzA-LP5gVO8v11rNmyiI4GdcVJqZ13U-1S-ku_tgpC9vM6ay3M1uiQg5C6InRC10BkZO_xogg/360fx360f' },
-                    // Special
-                    { name: '★ Karambit | Fade', rarity: 'special', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/360fx360f' }
+                    { name: 'UMP-45 | Corporal', rarity: 'mil-spec', img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpoo7e1f1Jf0vL3dzxP7d25m4SNm_L1J6jum11D4cR10r2UrNv03weyqUpkYzv7cIeScgRvZV_R_AW6xe_o0J67vMjJmyA26yM8p2idL1InLw/256fx256f' },
+                    { name: 'MAC-10 | Heat', rarity: 'restricted', img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf0v73djxP192_m460m_7zO6_um11D4cR10r2UrNv03weyqUpkYzv7cIeScgRvZV_R_AW6xe_o0J67vMjJmyA26yM8p2idL1InLw/256fx256f' },
+                    { name: 'AWP | Asiimov', rarity: 'classified', img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17PLfYQJD_9W7m5a0n_L1JaKfzm4B6sR03-qUrNjx31Xg_Uo4ZD2icIeXcwI4ZlCGr1Lvx-nth5TvuM_A1z5i551a31Sg/256fx256f' },
+                    { name: 'AK-47 | Redline', rarity: 'classified', img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV08y5nyjhbfc3a73Uom5U18h0juX--YX8zh3i8xZrNW33LITBdgA3ZwyEq1O8wLq9hpC-6M6cmyA16Scl-z-DyP23_N3b/256fx256f' },
+                    { name: '★ Karambit | Fade', rarity: 'special', img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/256fx256f' }
                 ]
             },
             'bravo': {
                 name: 'Operation Bravo Case',
-                img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJlY20k_bLP7LWnn9u5cR1jeHNu9r23gLgqBBlZTrzJ9SWdVg6ZQrYrFe_yeft0MC8upTIn3pr63Rz53fVmkW0x01IcKU8hwP-/360fx360f',
+                img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJlY20k_bLP7LWnn9u5cR1jeHNu9r23gLgqBBlZTrzJ9SWdVg6ZQrYrFe_yeft0MC8upTIn3pr63Rz53fVmkW0x01IcKU8hwP-/256fx256f',
                 items: [
-                    // Mil-Spec
-                    { name: 'SG 553 | Wave Spray', rarity: 'mil-spec', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpopb-1FAR17PLfYQJD_9W7m5a0n_L1JaKfzm4B6sR03-qUrNjx31Xg_Uo4ZD2icIeXcwI4ZlCGr1Lvx-nth5TvuM_A1z5i551a31Sg/360fx360f' },
-                    // Restricted
-                    { name: 'M4A4 | Zirka', rarity: 'restricted', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gb-Gw_alIITBhGJf_NZlmOzA-LP5gVO8v11rNmyiI4GdcVJqZ13U-1S-ku_tgpC9vM6ay3M1uiQg5C6InRC10BkZO_xogg/360fx360f' },
-                    // Classified
-                    { name: 'P90 | Emerald Dragon', rarity: 'classified', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpopu11FAR17PLfYQJD_9W7m5a0n_L1JaKfzm4B6sR03-qUrNjx31Xg_Uo4ZD2icIeXcwI4ZlCGr1Lvx-nth5TvuM_A1z5i551a31Sg/360fx360f' },
-                    // Covert
-                    { name: 'AK-47 | Fire Serpent', rarity: 'covert', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV08y5nyjhbfc3a73Uom5U18h0juX--YX8zh3i8xZrNW33LITBdgA3ZwyEq1O8wLq9hpC-6M6cmyA16Scl-z-DyP23_N3b/360fx360f' },
-                    // Special
-                    { name: '★ M9 Bayonet | Crimson Web', rarity: 'special', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/360fx360f' }
+                    { name: 'SG 553 | Wave Spray', rarity: 'mil-spec', img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpopb-1FAR17PLfYQJD_9W7m5a0n_L1JaKfzm4B6sR03-qUrNjx31Xg_Uo4ZD2icIeXcwI4ZlCGr1Lvx-nth5TvuM_A1z5i551a31Sg/256fx256f' },
+                    { name: 'M4A4 | Zirka', rarity: 'restricted', img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gb-Gw_alIITBhGJf_NZlmOzA-LP5gVO8v11rNmyiI4GdcVJqZ13U-1S-ku_tgpC9vM6ay3M1uiQg5C6InRC10BkZO_xogg/256fx256f' },
+                    { name: 'AK-47 | Fire Serpent', rarity: 'covert', img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV08y5nyjhbfc3a73Uom5U18h0juX--YX8zh3i8xZrNW33LITBdgA3ZwyEq1O8wLq9hpC-6M6cmyA16Scl-z-DyP23_N3b/256fx256f' }
                 ]
             }
         };
 
-        // User Inventory State Initial Setup
-        let inventory = [
-            { id: 'pass-wildfire', type: 'pass', name: 'Operation Wildfire Access Pass', qty: 1, img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/360fx360f', rarity: 'covert' },
-            { id: 'case-wildfire', type: 'case', caseKey: 'wildfire', name: 'Operation Wildfire Case', qty: 10, img: CASE_COLLECTIONS.wildfire.img, rarity: 'classified' },
-            { id: 'case-phoenix', type: 'case', caseKey: 'phoenix', name: 'Operation Phoenix Case', qty: 10, img: CASE_COLLECTIONS.phoenix.img, rarity: 'classified' },
-            { id: 'case-bravo', type: 'case', caseKey: 'bravo', name: 'Operation Bravo Case', qty: 10, img: CASE_COLLECTIONS.bravo.img, rarity: 'classified' }
-        ];
-
-        // Stats tracking
-        let stats = {
-            opened: 0,
-            covert: 0,
-            knife: 0,
-            stattrak: 0
-        };
-
+        // State Management bound to SteamID
+        let currentSteamUser = null;
+        let inventory = [];
+        let stats = { opened: 0, covert: 0, knife: 0, stattrak: 0 };
         let activeCaseKey = null;
         let isSpinning = false;
         let winningItem = null;
-        let activeBadgeItem = null;
+
+        // Default Starter Pack
+        function getDefaultInventory() {
+            return [
+                { id: 'pass-wildfire', type: 'pass', name: 'Operation Wildfire Access Pass', qty: 1, img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/256fx256f', rarity: 'covert' },
+                { id: 'case-wildfire', type: 'case', caseKey: 'wildfire', name: 'Operation Wildfire Case', qty: 10, img: CASE_COLLECTIONS.wildfire.img, rarity: 'classified' },
+                { id: 'case-phoenix', type: 'case', caseKey: 'phoenix', name: 'Operation Phoenix Case', qty: 10, img: CASE_COLLECTIONS.phoenix.img, rarity: 'classified' },
+                { id: 'case-bravo', type: 'case', caseKey: 'bravo', name: 'Operation Bravo Case', qty: 10, img: CASE_COLLECTIONS.bravo.img, rarity: 'classified' }
+            ];
+        }
+
+        // STEAM OPENID AUTHENTICATION SYSTEM
+        function initSteamAuth() {
+            const params = new URLSearchParams(window.location.search);
+            const claimedId = params.get('openid.claimed_id');
+
+            if (claimedId) {
+                const steamIdMatch = claimedId.match(/\/id\/(\d+)/);
+                if (steamIdMatch && steamIdMatch[1]) {
+                    const steamId = steamIdMatch[1];
+                    currentSteamUser = {
+                        steamId: steamId,
+                        name: `Steam User (${steamId.substring(0, 6)}...)`,
+                        avatar: getSvgFallback('Steam Profile', '#de982c')
+                    };
+                    localStorage.setItem('csgo_steam_user', JSON.stringify(currentSteamUser));
+                    
+                    // Clean URL bar
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }
+            } else {
+                const savedUser = localStorage.getItem('csgo_steam_user');
+                if (savedUser) {
+                    try {
+                        currentSteamUser = JSON.parse(savedUser);
+                    } catch(e) {}
+                }
+            }
+
+            loadUserData();
+            renderSteamHeader();
+        }
+
+        function redirectToSteamLogin() {
+            const currentUrl = window.location.href.split('?')[0];
+            const openIdParams = new URLSearchParams({
+                'openid.ns': 'http://specs.openid.net/auth/2.0',
+                'openid.mode': 'checkid_setup',
+                'openid.return_to': currentUrl,
+                'openid.realm': currentUrl,
+                'openid.identity': 'http://specs.openid.net/auth/2.0/identifier_select',
+                'openid.claimed_id': 'http://specs.openid.net/auth/2.0/identifier_select'
+            });
+
+            window.location.href = `https://steamcommunity.com/openid/login?${openIdParams.toString()}`;
+        }
+
+        function logoutSteam() {
+            currentSteamUser = null;
+            localStorage.removeItem('csgo_steam_user');
+            loadUserData();
+            renderSteamHeader();
+            showToast("Logged out of Steam.");
+        }
+
+        function renderSteamHeader() {
+            const authPanel = document.getElementById('steam-auth-panel');
+            if (currentSteamUser) {
+                authPanel.innerHTML = `
+                    <img src="${currentSteamUser.avatar}" class="w-7 h-7 rounded-full border border-amber-500/80">
+                    <div class="flex flex-col text-left">
+                        <span class="text-white font-bold text-xs leading-none">${currentSteamUser.name}</span>
+                        <span class="text-[9px] text-amber-400 font-mono leading-tight">${currentSteamUser.steamId}</span>
+                    </div>
+                    <button onclick="logoutSteam()" class="ml-2 text-[10px] text-slate-400 hover:text-rose-400 underline font-bold uppercase">Logout</button>
+                `;
+            } else {
+                authPanel.innerHTML = `
+                    <button onclick="redirectToSteamLogin()" class="flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-slate-900 hover:from-amber-600 hover:to-amber-700 text-white px-3 py-1 rounded border border-slate-700 transition-all">
+                        <svg class="w-4 h-4 fill-current text-amber-400" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.3 2.7 8 6.5 9.4l2.8-3.9a3.5 3.5 0 0 1-.3-1.5c0-.4.1-.8.2-1.2l-3-2.2a2.5 2.5 0 0 1-1.2.3 2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5c0 .4-.1.8-.2 1.2l3 2.2c.4-.1.8-.2 1.2-.2a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5c-.5 0-1-.1-1.4-.3l-2.8 3.9C10 21.9 11 22 12 22a10 10 0 0 0 10-10A10 10 0 0 0 12 2z"/></svg>
+                        <span class="text-xs font-bold uppercase tracking-wider">Sign in through STEAM</span>
+                    </button>
+                `;
+            }
+
+            // Update Profile Tab User Display
+            const avatarImg = document.getElementById('profile-avatar-img');
+            const userName = document.getElementById('profile-user-name');
+            const userStatus = document.getElementById('profile-user-status');
+
+            if (currentSteamUser) {
+                avatarImg.src = currentSteamUser.avatar;
+                userName.innerText = currentSteamUser.name;
+                userStatus.innerText = `SteamID64: ${currentSteamUser.steamId}`;
+            } else {
+                avatarImg.src = getSvgFallback('Guest', '#64748b');
+                userName.innerText = "Scaleform Collector";
+                userStatus.innerText = "CS:GO Veteran Player (Guest)";
+            }
+        }
+
+        // Persistence per SteamID
+        function loadUserData() {
+            const storageKey = currentSteamUser ? `csgo_inv_${currentSteamUser.steamId}` : 'csgo_inv_guest';
+            const statsKey = currentSteamUser ? `csgo_stats_${currentSteamUser.steamId}` : 'csgo_stats_guest';
+
+            const savedInv = localStorage.getItem(storageKey);
+            const savedStats = localStorage.getItem(statsKey);
+
+            inventory = savedInv ? JSON.parse(savedInv) : getDefaultInventory();
+            stats = savedStats ? JSON.parse(savedStats) : { opened: 0, covert: 0, knife: 0, stattrak: 0 };
+
+            renderInventory();
+            updateStatsDisplay();
+        }
+
+        function saveUserData() {
+            const storageKey = currentSteamUser ? `csgo_inv_${currentSteamUser.steamId}` : 'csgo_inv_guest';
+            const statsKey = currentSteamUser ? `csgo_stats_${currentSteamUser.steamId}` : 'csgo_stats_guest';
+
+            localStorage.setItem(storageKey, JSON.stringify(inventory));
+            localStorage.setItem(statsKey, JSON.stringify(stats));
+        }
 
         // Switch Scaleform Top Tabs
         function switchTab(tabName) {
@@ -504,7 +603,7 @@
                 card.innerHTML = `
                     <div class="absolute top-2 right-2 text-[10px] font-bold bg-slate-900/90 border border-slate-800 px-1.5 py-0.5 rounded text-amber-400">x${item.qty}</div>
                     <div class="w-full h-24 flex items-center justify-center my-2 p-1">
-                        <img src="${item.img}" class="max-h-20 object-contain drop-shadow-md group-hover:scale-105 transition-transform" alt="${item.name}">
+                        <img src="${item.img}" class="max-h-20 object-contain drop-shadow-md group-hover:scale-105 transition-transform" alt="${item.name}" onerror="this.onerror=null; this.src=getSvgFallback('${item.name}', '${rarityConfig.color}');">
                     </div>
                     <div class="w-full">
                         <p class="text-xs font-bold text-white line-clamp-1 mb-2" title="${item.name}">${item.name}</p>
@@ -543,7 +642,7 @@
                         </div>
                         <h3 class="text-lg font-black text-white uppercase tracking-wider mb-4">${c.name}</h3>
                         <div class="w-full h-36 flex items-center justify-center mb-4">
-                            <img src="${c.img}" class="max-h-32 object-contain drop-shadow-xl hover:scale-105 transition-transform">
+                            <img src="${c.img}" class="max-h-32 object-contain drop-shadow-xl hover:scale-105 transition-transform" onerror="this.onerror=null; this.src=getSvgFallback('${c.name}', '#de982c');">
                         </div>
                     </div>
                     <button onclick="openCaseModal('${key}')" ${userQty <= 0 ? 'disabled' : ''} class="btn-cs btn-cs-gold w-full py-2.5 text-xs uppercase tracking-widest disabled:opacity-40 disabled:cursor-not-allowed">
@@ -560,26 +659,25 @@
             if (itemIdx > -1) {
                 inventory.splice(itemIdx, 1);
                 
-                // Add Wildfire Challenge Coin
-                activeBadgeItem = {
+                const activeBadgeItem = {
                     id: 'coin-wildfire',
                     type: 'badge',
                     name: 'Operation Wildfire Challenge Coin',
                     qty: 1,
-                    img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/360fx360f',
+                    img: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/256fx256f',
                     rarity: 'special'
                 };
                 inventory.unshift(activeBadgeItem);
                 
-                // Update profile display
                 document.getElementById('active-badge').innerHTML = `
-                    <img src="${activeBadgeItem.img}" class="w-10 h-10 object-contain">
+                    <img src="${activeBadgeItem.img}" class="w-10 h-10 object-contain" onerror="this.onerror=null; this.src=getSvgFallback('Wildfire Coin', '#ffd700');">
                     <div class="text-left">
                         <p class="text-xs font-bold text-amber-400">${activeBadgeItem.name}</p>
                         <p class="text-[10px] text-slate-400">Bronze Operation Badge</p>
                     </div>
                 `;
 
+                saveUserData();
                 renderInventory();
                 showToast("Operation Wildfire Pass Activated! Bronze Badge added to profile.");
                 AudioEngine.playWin(true);
@@ -599,14 +697,13 @@
 
             document.getElementById('modal-case-title').innerText = collectionData.name;
             
-            // Render Collection Preview Grid
             const grid = document.getElementById('modal-collection-grid');
             grid.innerHTML = '';
             collectionData.items.forEach(item => {
                 const rarityConfig = RARITIES[item.rarity];
                 grid.innerHTML += `
                     <div class="bg-slate-900/90 p-2 rounded border border-slate-800 text-center ${rarityConfig.class}">
-                        <img src="${item.img}" class="h-14 mx-auto object-contain mb-1" alt="${item.name}">
+                        <img src="${item.img}" class="h-14 mx-auto object-contain mb-1" alt="${item.name}" onerror="this.onerror=null; this.src=getSvgFallback('${item.name}', '${rarityConfig.color}');">
                         <p class="text-[10px] font-bold text-slate-200 line-clamp-1">${item.name}</p>
                     </div>
                 `;
@@ -623,7 +720,6 @@
             track.style.transform = 'translateX(0px)';
             track.innerHTML = '';
 
-            // Generate 60 randomized items for smooth long scroll
             for (let i = 0; i < 60; i++) {
                 const randItem = items[Math.floor(Math.random() * items.length)];
                 const rarityConfig = RARITIES[randItem.rarity];
@@ -631,7 +727,7 @@
                 const itemEl = document.createElement('div');
                 itemEl.className = `w-32 h-36 bg-slate-900/90 border-r border-slate-800 flex-shrink-0 flex flex-col justify-between items-center p-2 text-center relative ${rarityConfig.class}`;
                 itemEl.innerHTML = `
-                    <img src="${randItem.img}" class="h-20 object-contain my-auto drop-shadow-md" alt="${randItem.name}">
+                    <img src="${randItem.img}" class="h-20 object-contain my-auto drop-shadow-md" alt="${randItem.name}" onerror="this.onerror=null; this.src=getSvgFallback('${randItem.name}', '${rarityConfig.color}');">
                     <p class="text-[10px] font-bold text-slate-200 line-clamp-1 w-full">${randItem.name}</p>
                 `;
                 track.appendChild(itemEl);
@@ -647,11 +743,11 @@
 
             isSpinning = true;
 
-            // Decrement case
             caseItem.qty--;
             if (caseItem.qty <= 0) {
                 inventory = inventory.filter(i => i.id !== caseItem.id);
             }
+            saveUserData();
             renderInventory();
 
             const btnUnlock = document.getElementById('btn-unlock');
@@ -661,23 +757,20 @@
             const track = document.getElementById('roulette-track');
             const items = CASE_COLLECTIONS[activeCaseKey].items;
             
-            // Pick Winner Weighted Randomly (Knife / Covert rarer)
             winningItem = pickWeightedItem(items);
             const winnerRarity = RARITIES[winningItem.rarity];
 
-            // Inject winner at slot index 45
             const targetIndex = 45;
             const winnerCard = track.children[targetIndex];
             winnerCard.className = `w-32 h-36 bg-slate-900/90 border-r border-slate-800 flex-shrink-0 flex flex-col justify-between items-center p-2 text-center relative ${winnerRarity.class}`;
             winnerCard.innerHTML = `
-                <img src="${winningItem.img}" class="h-20 object-contain my-auto drop-shadow-md" alt="${winningItem.name}">
+                <img src="${winningItem.img}" class="h-20 object-contain my-auto drop-shadow-md" alt="${winningItem.name}" onerror="this.onerror=null; this.src=getSvgFallback('${winningItem.name}', '${winnerRarity.color}');">
                 <p class="text-[10px] font-bold text-slate-200 line-clamp-1 w-full">${winningItem.name}</p>
             `;
 
-            // Calculate exact landing position with center offset
-            const itemWidth = 128; // 32 * 4 (w-32)
+            const itemWidth = 128;
             const containerWidth = document.querySelector('.roulette-container').offsetWidth;
-            const randomOffset = Math.floor(Math.random() * 80) - 40; // realistic randomization
+            const randomOffset = Math.floor(Math.random() * 80) - 40;
             const targetX = -(targetIndex * itemWidth - (containerWidth / 2) + (itemWidth / 2) + randomOffset);
 
             let lastTickPos = 0;
@@ -688,13 +781,11 @@
                 const elapsed = time - startTime;
                 const progress = Math.min(elapsed / spinDuration, 1);
                 
-                // Authentic CS:GO cubic deceleration easing curve
                 const easeOut = 1 - Math.pow(1 - progress, 4);
                 const currentX = targetX * easeOut;
                 
                 track.style.transform = `translateX(${currentX}px)`;
 
-                // Tick sound per item pass
                 const currentTickPos = Math.floor(-currentX / itemWidth);
                 if (currentTickPos !== lastTickPos) {
                     AudioEngine.playTick();
@@ -704,7 +795,6 @@
                 if (progress < 1) {
                     requestAnimationFrame(animate);
                 } else {
-                    // Spin finished
                     setTimeout(() => {
                         showWinScreen(winningItem);
                         isSpinning = false;
@@ -717,16 +807,16 @@
             requestAnimationFrame(animate);
         }
 
-        // Weighted Odds System (Reflecting Official CS:GO Odds)
+        // Weighted Odds System
         function pickWeightedItem(items) {
             const rand = Math.random() * 100;
             let targetRarity = 'mil-spec';
 
-            if (rand < 0.26) targetRarity = 'special';       // 0.26% Knife
-            else if (rand < 0.90) targetRarity = 'covert';   // 0.64% Covert
-            else if (rand < 4.10) targetRarity = 'classified';// 3.2% Classified
-            else if (rand < 20.08) targetRarity = 'restricted';// 15.98% Restricted
-            else targetRarity = 'mil-spec';                  // ~79.92% Mil-spec
+            if (rand < 0.26) targetRarity = 'special';
+            else if (rand < 0.90) targetRarity = 'covert';
+            else if (rand < 4.10) targetRarity = 'classified';
+            else if (rand < 20.08) targetRarity = 'restricted';
+            else targetRarity = 'mil-spec';
 
             const pool = items.filter(i => i.rarity === targetRarity);
             if (pool.length > 0) {
@@ -747,25 +837,20 @@
             const isStatTrak = item.rarity !== 'special' && Math.random() < 0.15;
             const fullName = (isStatTrak ? 'StatTrak™ ' : '') + item.name;
 
-            // Update Stats
             stats.opened++;
             if (item.rarity === 'covert') stats.covert++;
             if (item.rarity === 'special') stats.knife++;
             if (isStatTrak) stats.stattrak++;
             
-            document.getElementById('stat-opened').innerText = stats.opened;
-            document.getElementById('stat-covert').innerText = stats.covert;
-            document.getElementById('stat-knife').innerText = stats.knife;
-            document.getElementById('stat-stattrak').innerText = stats.stattrak;
+            updateStatsDisplay();
 
-            // Populate Modal UI
             document.getElementById('win-rarity-badge').innerText = rarityConfig.name;
             document.getElementById('win-rarity-badge').className = `inline-block px-3 py-0.5 text-[10px] font-black uppercase text-white rounded mb-4 ${rarityConfig.bg}`;
             document.getElementById('win-item-image').src = item.img;
+            document.getElementById('win-item-image').alt = item.name;
             document.getElementById('win-item-name').innerText = fullName;
             document.getElementById('win-item-details').innerText = `${wear} • Exterior Wear`;
 
-            // Append item to inventory grid
             inventory.unshift({
                 id: 'skin-' + Date.now(),
                 type: 'skin',
@@ -776,8 +861,16 @@
                 rarity: item.rarity
             });
 
+            saveUserData();
             renderInventory();
             document.getElementById('win-modal').classList.remove('hidden');
+        }
+
+        function updateStatsDisplay() {
+            document.getElementById('stat-opened').innerText = stats.opened;
+            document.getElementById('stat-covert').innerText = stats.covert;
+            document.getElementById('stat-knife').innerText = stats.knife;
+            document.getElementById('stat-stattrak').innerText = stats.stattrak;
         }
 
         function closeCaseModal() {
@@ -799,9 +892,9 @@
             }, 3000);
         }
 
-        // Initialize on Window Load
+        // Initialize App
         window.onload = () => {
-            renderInventory();
+            initSteamAuth();
         };
     </script>
 </body>
