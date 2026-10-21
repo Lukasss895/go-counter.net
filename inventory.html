@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GO:COUNTER - Inventár</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #1b1b1b;
+            color: #c0c0c0;
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpotLu8JalhmqpKYjhH09-jq5WYh8j3KqeLzzwFv5co2-rF89uh2wLhqkJsZzv6eoeXcw8_aQ2F_1m6yu3s1sftvpXBnHO3vSc8pGGKfyQd1w');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            width: 100%;
+            background: rgba(20, 20, 20, 0.9);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #ff7700;
+        }
+        header h1 {
+            color: #ffffff;
+            font-size: 28px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        header p {
+            color: #ff7700;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .container {
+            max-width: 1000px;
+            width: 90%;
+            margin: 40px auto;
+            background: rgba(27, 27, 27, 0.85);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+        }
+        .section-title {
+            font-size: 18px;
+            color: #ffffff;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+        .item-card {
+            background: #252525;
+            border: 1px solid #3a3a3a;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.2s, border-color 0.2s;
+            position: relative;
+        }
+        .item-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff7700;
+        }
+        .item-card img {
+            width: 100px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        .item-name {
+            font-size: 14px;
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .item-count {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 12px;
+        }
+        .btn-action {
+            background-color: #ff7700;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.2s;
+            width: 100%;
+        }
+        .btn-action:hover {
+            background-color: #e06800;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>GO:COUNTER</h1>
+        <p>Operation Wildfire Starter Edition</p>
+    </header>
+
+    <div class="container">
+        <div class="section-title">Štartovací balíček inventára</div>
+        
+        <div class="inventory-grid">
+            <!-- Wildfire Pass -->
+            <div class="item-card">
+                <img src="https://community.cloudflare.steamstatic.com/economy/image/W_YPnZdixufPjQ7qHzmX7WjV97tF8w5lQ43sQpA13bC439_36m2_i4iLhH3qX_B5_j3a7b45/100fx100f" alt="Wildfire Pass">
+                <div class="item-name">Operation Wildfire Pass</div>
+                <div class="item-count">Počet: 1</div>
+                <button class="btn-action" onclick="activatePass()">Aktivovať Pass</button>
+            </div>
+
+            <!-- Wildfire Cases -->
+            <div class="item-card">
+                <img src="https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJlY20k_bLP7LWnn9u5cR1jeHNu9r23gLgqBBlZTrzJ9SWdVg6ZQrYrFe_yeft0MC8upTIn3pr63Rz53fVmkW0x01IcKU8hwP-/100fx100f" alt="Wildfire Case">
+                <div class="item-name">Wildfire Case</div>
+                <div class="item-count">Počet: 10</div>
+                <button class="btn-action" onclick="openCase('Wildfire')">Otvoriť</button>
+            </div>
+
+            <!-- Phoenix Cases -->
+            <div class="item-card">
+                <img src="https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJlY20k_bLP7LWnn9u5cR1jeHNu9r23gLgqBBlZTrzJ9SWdVg6ZQrYrFe_yeft0MC8upTIn3pr63Rz53fVmkW0x01IcKU8hwP-/100fx100f" alt="Phoenix Case">
+                <div class="item-name">Phoenix Case</div>
+                <div class="item-count">Počet: 10</div>
+                <button class="btn-action" onclick="openCase('Phoenix')">Otvoriť</button>
+            </div>
+
+            <!-- Bravo Cases -->
+            <div class="item-card">
+                <img src="https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJlY20k_bLP7LWnn9u5cR1jeHNu9r23gLgqBBlZTrzJ9SWdVg6ZQrYrFe_yeft0MC8upTIn3pr63Rz53fVmkW0x01IcKU8hwP-/100fx100f" alt="Bravo Case">
+                <div class="item-name">Operation Bravo Case</div>
+                <div class="item-count">Počet: 10</div>
+                <button class="btn-action" onclick="openCase('Bravo')">Otvoriť</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function activatePass() {
+            alert('Operation Wildfire Pass bol úspešne aktivovaný! Získal si Wildfire Coin.');
+            // Sem neskôr doplníme prepojenie na ukladanie do databázy
+        }
+
+        function openCase(caseName) {
+            alert('Otváraš debničku: ' + caseName + ' Case!');
+            // Sem neskôr doplníme logiku pre roll skinu
+        }
+    </script>
+
+</body>
+</html>
