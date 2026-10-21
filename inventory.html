@@ -12,42 +12,53 @@
             user-select: none;
         }
         body {
-            background: #0e1215 url('https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpotLu8JalhmqpKYjhH09-jq5WYh8j3KqeLzzwFv5co2-rF89uh2wLhqkJsZzv6eoeXcw8_aQ2F_1m6yu3s1sftvpXBnHO3vSc8pGGKfyQd1w') no-repeat center center fixed;
+            background: #0b0e13 url('https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpotLu8JalhmqpKYjhH09-jq5WYh8j3KqeLzzwFv5co2-rF89uh2wLhqkJsZzv6eoeXcw8_aQ2F_1m6yu3s1sftvpXBnHO3vSc8pGGKfyQd1w') no-repeat center center fixed;
             background-size: cover;
             color: #d1d5db;
             overflow-x: hidden;
         }
         .cs-panel {
-            background: linear-gradient(180deg, rgba(20, 26, 33, 0.94) 0%, rgba(10, 14, 18, 0.96) 100%);
+            background: linear-gradient(180deg, rgba(20, 26, 35, 0.95) 0%, rgba(10, 14, 20, 0.97) 100%);
             border: 1px solid rgba(80, 95, 115, 0.4);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
+        
+        /* CS:GO Official Rarity Colors */
         .rarity-mil-spec { border-bottom: 4px solid #4b69ff; }
         .rarity-restricted { border-bottom: 4px solid #8847ff; }
         .rarity-classified { border-bottom: 4px solid #d32ce6; }
         .rarity-covert { border-bottom: 4px solid #eb4b4b; }
         .rarity-special { border-bottom: 4px solid #ffd700; }
+        
         .bg-mil-spec { background-color: #4b69ff; }
         .bg-restricted { background-color: #8847ff; }
         .bg-classified { background-color: #d32ce6; }
         .bg-covert { background-color: #eb4b4b; }
         .bg-special { background-color: #ffd700; }
 
+        .text-mil-spec { color: #4b69ff; }
+        .text-restricted { color: #8847ff; }
+        .text-classified { color: #d32ce6; }
+        .text-covert { color: #eb4b4b; }
+        .text-special { color: #ffd700; }
+
+        /* Roulette Spinner */
         .roulette-container {
             position: relative;
             overflow: hidden;
             width: 100%;
-            height: 170px;
-            background: rgba(8, 11, 14, 0.95);
+            height: 175px;
+            background: rgba(6, 9, 12, 0.96);
             border-top: 2px solid #2a333d;
             border-bottom: 2px solid #2a333d;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
         }
         .roulette-track {
             display: flex;
             position: absolute;
             left: 0;
             top: 10px;
-            height: 150px;
+            height: 155px;
             will-change: transform;
         }
         .ticker {
@@ -57,7 +68,7 @@
             bottom: 0;
             width: 4px;
             background: #ff3b3b;
-            box-shadow: 0 0 10px #ff3b3b, 0 0 20px #ff3b3b;
+            box-shadow: 0 0 12px #ff3b3b, 0 0 22px #ff3b3b;
             z-index: 30;
             transform: translateX(-50%);
         }
@@ -68,12 +79,13 @@
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
+            border-left: 9px solid transparent;
+            border-right: 9px solid transparent;
         }
-        .ticker::before { top: 0; border-top: 10px solid #ff3b3b; }
-        .ticker::after { bottom: 0; border-bottom: 10px solid #ff3b3b; }
+        .ticker::before { top: 0; border-top: 12px solid #ff3b3b; }
+        .ticker::after { bottom: 0; border-bottom: 12px solid #ff3b3b; }
 
+        /* Scaleform Button Styling */
         .btn-cs {
             background: linear-gradient(180deg, #445163 0%, #222b37 100%);
             border: 1px solid #63768d;
@@ -81,7 +93,7 @@
             text-shadow: 0 1px 2px rgba(0,0,0,0.8);
             transition: all 0.15s ease;
         }
-        .btn-cs:hover {
+        .btn-cs:hover:not(:disabled) {
             background: linear-gradient(180deg, #57677d 0%, #2f3b4c 100%);
             border-color: #de982c;
             color: #ffffff;
@@ -92,60 +104,169 @@
             color: #ffffff;
             font-weight: 700;
         }
-        .btn-cs-gold:hover {
+        .btn-cs-gold:hover:not(:disabled) {
             background: linear-gradient(180deg, #f0a73a 0%, #b37318 100%);
-            box-shadow: 0 0 15px rgba(222, 152, 44, 0.5);
+            box-shadow: 0 0 15px rgba(222, 152, 44, 0.6);
+        }
+        .nav-tab {
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .nav-tab.active {
+            color: #de982c;
+            font-weight: 800;
+        }
+        .nav-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -17px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #de982c;
+            box-shadow: 0 0 10px #de982c;
         }
         .glow-gold {
-            box-shadow: 0 0 20px rgba(222, 152, 44, 0.3);
+            box-shadow: 0 0 25px rgba(222, 152, 44, 0.35);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(10, 14, 20, 0.8);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #de982c;
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between text-slate-200">
 
     <!-- Top Scaleform Header Nav -->
-    <header class="w-full bg-slate-950/90 border-b border-slate-700/60 px-6 py-4 flex flex-wrap justify-between items-center shadow-2xl">
-        <div class="flex items-center space-x-4">
-            <div class="w-10 h-10 bg-amber-500/20 border border-amber-500 flex items-center justify-center font-black text-amber-500 text-xl tracking-wider">
+    <header class="w-full bg-slate-950/95 border-b border-slate-700/60 px-4 sm:px-8 py-4 flex flex-wrap justify-between items-center shadow-2xl z-20">
+        <div class="flex items-center space-x-4 mb-2 sm:mb-0">
+            <div class="w-10 h-10 bg-amber-500/20 border-2 border-amber-500 flex items-center justify-center font-black text-amber-500 text-xl tracking-wider rounded">
                 CS
             </div>
             <div>
-                <h1 class="text-xl font-black tracking-widest text-white uppercase italic">Counter-Strike: Global Offensive</h1>
-                <p class="text-xs text-amber-500 font-bold tracking-wider uppercase">Scaleform UI (2016 Edition)</p>
+                <h1 class="text-xl font-black tracking-widest text-white uppercase italic leading-none">Counter-Strike: Global Offensive</h1>
+                <p class="text-xs text-amber-500 font-bold tracking-wider uppercase mt-1">Scaleform UI &bull; 2016 Edition</p>
             </div>
         </div>
-        <div class="flex items-center space-x-6 text-sm">
-            <div class="flex items-center space-x-2 bg-slate-900/80 px-3 py-1.5 border border-slate-800 rounded">
+
+        <!-- Scaleform Navigation Tabs -->
+        <nav class="flex items-center space-x-8 text-sm font-bold tracking-wider uppercase my-2 sm:my-0">
+            <button onclick="switchTab('inventory')" id="tab-inventory" class="nav-tab active text-slate-300 hover:text-white py-1">INVENTORY</button>
+            <button onclick="switchTab('cases')" id="tab-cases" class="nav-tab text-slate-300 hover:text-white py-1">CASE OPENING</button>
+            <button onclick="switchTab('profile')" id="tab-profile" class="nav-tab text-slate-300 hover:text-white py-1">PROFILE</button>
+        </nav>
+
+        <div class="flex items-center space-x-4 text-xs">
+            <div class="flex items-center space-x-2 bg-slate-900/90 px-3 py-1.5 border border-slate-800 rounded">
                 <span class="text-slate-400">Status:</span>
-                <span class="text-emerald-400 font-bold flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-400 inline-block mr-1.5 animate-pulse"></span> Connected</span>
+                <span class="text-emerald-400 font-bold flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-400 inline-block mr-1.5 animate-pulse"></span> Steam Online</span>
             </div>
         </div>
     </header>
 
     <!-- Main Content Container -->
     <main class="max-w-7xl w-full mx-auto p-4 sm:p-6 my-auto">
-        <div class="cs-panel p-6 rounded-sm">
-            <div class="flex flex-wrap justify-between items-center border-b border-slate-700/60 pb-4 mb-6">
+        
+        <!-- SECTION 1: INVENTORY GRID -->
+        <section id="section-inventory" class="cs-panel p-6 rounded-sm">
+            <div class="flex flex-wrap justify-between items-center border-b border-slate-700/60 pb-4 mb-6 gap-2">
                 <div>
-                    <h2 class="text-2xl font-extrabold text-white tracking-wider uppercase">Inventory</h2>
-                    <p class="text-xs text-slate-400">Manage your items, activate passes, or open weapon cases.</p>
+                    <h2 class="text-2xl font-black text-white tracking-wider uppercase">Inventory Items</h2>
+                    <p class="text-xs text-slate-400">Manage your skins, activate operation passes, or open weapon cases.</p>
                 </div>
-                <div class="text-right">
-                    <span class="text-xs text-slate-400 block">TOTAL ITEMS</span>
-                    <span id="total-item-count" class="text-lg font-bold text-amber-400">41</span>
+                <div class="flex items-center space-x-4">
+                    <div class="text-right bg-slate-900/80 px-4 py-2 rounded border border-slate-800">
+                        <span class="text-[10px] text-slate-400 block font-bold tracking-wider uppercase">TOTAL ITEMS</span>
+                        <span id="total-item-count" class="text-xl font-black text-amber-400">31</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Inventory Grid -->
-            <div id="inventory-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 min-h-[380px] max-h-[560px] overflow-y-auto pr-2">
-                <!-- Items injected via JS -->
+            <div id="inventory-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 min-h-[420px] max-h-[600px] overflow-y-auto pr-2">
+                <!-- Injected via JS -->
             </div>
-        </div>
+        </section>
+
+        <!-- SECTION 2: CASE OPENING STORE / QUICK SELECTION -->
+        <section id="section-cases" class="cs-panel p-6 rounded-sm hidden">
+            <div class="border-b border-slate-700/60 pb-4 mb-6">
+                <h2 class="text-2xl font-black text-white tracking-wider uppercase">Available Weapon Containers</h2>
+                <p class="text-xs text-slate-400">Select a case from your inventory to inspect items and spin for rare weapon skins.</p>
+            </div>
+            <div id="cases-store-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- SECTION 3: USER PROFILE -->
+        <section id="section-profile" class="cs-panel p-6 rounded-sm hidden">
+            <div class="border-b border-slate-700/60 pb-4 mb-6">
+                <h2 class="text-2xl font-black text-white tracking-wider uppercase">Player Profile</h2>
+                <p class="text-xs text-slate-400">View badges, service medals, and total unboxed items statistic.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-900/90 p-6 rounded border border-slate-800 flex flex-col items-center text-center">
+                    <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-amber-600 to-amber-400 p-1 mb-4 shadow-xl">
+                        <img src="https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/360fx360f" class="w-full h-full object-cover rounded-full bg-slate-950">
+                    </div>
+                    <h3 class="text-lg font-black text-white uppercase tracking-wider">Scaleform Collector</h3>
+                    <p class="text-xs text-amber-400 font-bold mb-4">CS:GO Veteran Player</p>
+                    <div id="badge-container" class="w-full border-t border-slate-800 pt-4 mt-2">
+                        <span class="text-[10px] text-slate-400 font-bold block mb-2 uppercase">DISPLAY BADGE</span>
+                        <div id="active-badge" class="flex items-center justify-center space-x-3 bg-slate-950/80 p-3 rounded border border-slate-800">
+                            <span class="text-xs text-slate-500 italic">No Operation Coin Activated Yet</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 bg-slate-900/90 p-6 rounded border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-sm font-bold text-amber-400 uppercase tracking-wider mb-4 border-b border-slate-800 pb-2">Unboxing Statistics</h4>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+                            <div class="bg-slate-950 p-3 rounded border border-slate-800 text-center">
+                                <span class="text-[10px] text-slate-400 block font-bold">CASES OPENED</span>
+                                <span id="stat-opened" class="text-2xl font-black text-white">0</span>
+                            </div>
+                            <div class="bg-slate-950 p-3 rounded border border-slate-800 text-center">
+                                <span class="text-[10px] text-slate-400 block font-bold">COVERTS (RED)</span>
+                                <span id="stat-covert" class="text-2xl font-black text-rose-500">0</span>
+                            </div>
+                            <div class="bg-slate-950 p-3 rounded border border-slate-800 text-center">
+                                <span class="text-[10px] text-slate-400 block font-bold">KNIVES (GOLD)</span>
+                                <span id="stat-knife" class="text-2xl font-black text-amber-400">0</span>
+                            </div>
+                            <div class="bg-slate-950 p-3 rounded border border-slate-800 text-center">
+                                <span class="text-[10px] text-slate-400 block font-bold">STATTRAK™</span>
+                                <span id="stat-stattrak" class="text-2xl font-black text-amber-500">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-950/60 p-4 rounded border border-slate-800/80 text-xs text-slate-400">
+                        <p class="font-bold text-slate-300 mb-1">Scaleform Memory Note:</p>
+                        Scaleform GFx powered CS:GO UI from launch in 2012 until the Panorama UI update in 2018. All weapon assets are pulled directly from Steam/Valve CS:GO CDN servers.
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
     <footer class="w-full bg-slate-950/90 border-t border-slate-800 px-6 py-3 text-center text-xs text-slate-500">
-        Authentic 2016 CS:GO Scaleform Web Replica &bull; Pure JS Audio Synthesizer Engine
+        1:1 2016 CS:GO Scaleform Web Simulation &bull; Pure Web Audio Synthesizer Engine &bull; Steam CDN Assets
     </footer>
 
     <!-- Case Opening Modal -->
@@ -157,7 +278,7 @@
                     <h3 id="modal-case-title" class="text-xl font-black text-amber-400 uppercase tracking-wider">Operation Wildfire Case</h3>
                     <p class="text-xs text-slate-400">Unlock container to acquire one of the collection items below.</p>
                 </div>
-                <button onclick="closeCaseModal()" class="text-slate-400 hover:text-white text-xl font-bold px-2">&times;</button>
+                <button onclick="closeCaseModal()" class="text-slate-400 hover:text-white text-2xl font-bold px-2 line-none">&times;</button>
             </div>
 
             <!-- Roulette Reel Container -->
@@ -170,15 +291,15 @@
 
             <!-- Action Buttons -->
             <div class="flex justify-center mb-6">
-                <button id="btn-unlock" onclick="spinRoulette()" class="btn-cs btn-cs-gold px-8 py-3 text-sm tracking-widest uppercase rounded shadow-lg transform active:scale-95 transition-transform">
-                    Unlock Container
+                <button id="btn-unlock" onclick="spinRoulette()" class="btn-cs btn-cs-gold px-10 py-3 text-sm tracking-widest uppercase rounded shadow-lg transform active:scale-95 transition-transform flex items-center space-x-2">
+                    <span>Unlock Container</span>
                 </button>
             </div>
 
             <!-- Collection Contains Preview -->
             <div>
                 <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Contains one of the following items:</h4>
-                <div id="modal-collection-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 max-h-48 overflow-y-auto pr-1">
+                <div id="modal-collection-grid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2 max-h-48 overflow-y-auto pr-1">
                     <!-- Collection items injected via JS -->
                 </div>
             </div>
@@ -187,16 +308,16 @@
 
     <!-- Win Screen Overlay -->
     <div id="win-modal" class="fixed inset-0 bg-black/95 z-60 hidden flex items-center justify-center p-4">
-        <div class="cs-panel max-w-md w-full p-6 text-center rounded border-2 border-amber-400 glow-gold animate-fade-in relative">
+        <div class="cs-panel max-w-md w-full p-6 text-center rounded border-2 border-amber-400 glow-gold relative">
             <h3 class="text-sm font-bold text-amber-400 uppercase tracking-widest mb-1">You Unlocked!</h3>
             <div id="win-rarity-badge" class="inline-block px-3 py-0.5 text-[10px] font-black uppercase text-white rounded mb-4">Covert</div>
             
-            <div class="relative w-48 h-36 mx-auto mb-4 flex items-center justify-center bg-slate-900/80 rounded border border-slate-700">
-                <img id="win-item-image" src="" alt="Won Item" class="max-h-28 object-contain drop-shadow-2xl">
+            <div class="relative w-56 h-40 mx-auto mb-4 flex items-center justify-center bg-slate-900/90 rounded border border-slate-700 p-2 shadow-inner">
+                <img id="win-item-image" src="" alt="Won Item" class="max-h-32 object-contain drop-shadow-2xl">
             </div>
 
-            <h2 id="win-item-name" class="text-lg font-black text-white mb-1">AK-47 | Fuel Injector</h2>
-            <p id="win-item-details" class="text-xs text-slate-400 mb-6">Field-Tested &bull; StatTrak™</p>
+            <h2 id="win-item-name" class="text-xl font-black text-white mb-1 leading-tight">AK-47 | Fuel Injector</h2>
+            <p id="win-item-details" class="text-xs text-amber-400 font-bold mb-6">Field-Tested &bull; StatTrak™</p>
 
             <button onclick="closeWinModal()" class="btn-cs btn-cs-gold w-full py-2.5 text-xs uppercase tracking-widest">
                 Add To Inventory
@@ -205,12 +326,12 @@
     </div>
 
     <!-- Notification Toast -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 border-l-4 border-amber-500 text-white px-4 py-3 rounded shadow-2xl transition-all duration-300 opacity-0 translate-y-4 pointer-events-none">
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 border-l-4 border-amber-500 text-white px-5 py-3 rounded shadow-2xl transition-all duration-300 opacity-0 translate-y-4 pointer-events-none">
         <p id="toast-message" class="text-xs font-bold tracking-wider"></p>
     </div>
 
     <script>
-        // 1:1 Scaleform Web Audio API Synthesizer Sound Engine (No External Assets Required)
+        // Web Audio Synthesizer Engine (Authentic CS:GO Sound Effects)
         const AudioEngine = {
             ctx: null,
             init() {
@@ -219,84 +340,153 @@
                 }
             },
             playTick() {
-                this.init();
-                const osc = this.ctx.createOscillator();
-                const gain = this.ctx.createGain();
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(1200, this.ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(300, this.ctx.currentTime + 0.03);
-                
-                gain.gain.setValueAtTime(0.15, this.ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.03);
-                
-                osc.connect(gain);
-                gain.connect(this.ctx.destination);
-                osc.start();
-                osc.stop(this.ctx.currentTime + 0.03);
-            },
-            playWin() {
-                this.init();
-                const notes = [261.63, 329.63, 392.00, 523.25];
-                notes.forEach((freq, idx) => {
+                try {
+                    this.init();
                     const osc = this.ctx.createOscillator();
                     const gain = this.ctx.createGain();
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(freq, this.ctx.currentTime + idx * 0.08);
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(1400, this.ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(250, this.ctx.currentTime + 0.025);
                     
-                    gain.gain.setValueAtTime(0.2, this.ctx.currentTime + idx * 0.08);
-                    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + idx * 0.08 + 0.3);
+                    gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.025);
                     
                     osc.connect(gain);
                     gain.connect(this.ctx.destination);
-                    osc.start(this.ctx.currentTime + idx * 0.08);
-                    osc.stop(this.ctx.currentTime + idx * 0.08 + 0.3);
-                });
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + 0.025);
+                } catch(e) {}
+            },
+            playWin(isRare) {
+                try {
+                    this.init();
+                    const notes = isRare ? [261.63, 329.63, 392.00, 523.25, 659.25, 783.99] : [261.63, 329.63, 392.00, 523.25];
+                    notes.forEach((freq, idx) => {
+                        const osc = this.ctx.createOscillator();
+                        const gain = this.ctx.createGain();
+                        osc.type = isRare ? 'sawtooth' : 'sine';
+                        osc.frequency.setValueAtTime(freq, this.ctx.currentTime + idx * 0.08);
+                        
+                        gain.gain.setValueAtTime(0.18, this.ctx.currentTime + idx * 0.08);
+                        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + idx * 0.08 + 0.35);
+                        
+                        osc.connect(gain);
+                        gain.connect(this.ctx.destination);
+                        osc.start(this.ctx.currentTime + idx * 0.08);
+                        osc.stop(this.ctx.currentTime + idx * 0.08 + 0.35);
+                    });
+                } catch(e) {}
             }
         };
 
         // Item Rarity Definitions
         const RARITIES = {
-            'mil-spec': { name: 'Mil-Spec Grade', class: 'rarity-mil-spec', bg: 'bg-mil-spec', color: '#4b69ff' },
-            'restricted': { name: 'Restricted', class: 'rarity-restricted', bg: 'bg-restricted', color: '#8847ff' },
-            'classified': { name: 'Classified', class: 'rarity-classified', bg: 'bg-classified', color: '#d32ce6' },
-            'covert': { name: 'Covert', class: 'rarity-covert', bg: 'bg-covert', color: '#eb4b4b' },
-            'special': { name: '★ Rare Special Item', class: 'rarity-special', bg: 'bg-special', color: '#ffd700' }
+            'mil-spec': { name: 'Mil-Spec Grade', class: 'rarity-mil-spec', bg: 'bg-mil-spec', text: 'text-mil-spec', color: '#4b69ff' },
+            'restricted': { name: 'Restricted', class: 'rarity-restricted', bg: 'bg-restricted', text: 'text-restricted', color: '#8847ff' },
+            'classified': { name: 'Classified', class: 'rarity-classified', bg: 'bg-classified', text: 'text-classified', color: '#d32ce6' },
+            'covert': { name: 'Covert', class: 'rarity-covert', bg: 'bg-covert', text: 'text-covert', color: '#eb4b4b' },
+            'special': { name: '★ Rare Special Item', class: 'rarity-special', bg: 'bg-special', text: 'text-special', color: '#ffd700' }
         };
 
-        // Case Collections DB
+        // Case Collections Database with Authentic Valve/Steam CDN Images
         const CASE_COLLECTIONS = {
-            'wildfire': [
-                { name: 'AK-47 | Fuel Injector', rarity: 'covert', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV08y5nyjhbfc3a73Uom5U18h0juX--YX8zh3i8xZrNW33LITBdgA3ZwyEq1O8wLq9hpC-6M6cmyA16Scl-z-DyP23_N3b/360fx360f' },
-                { name: 'AWP | Elite Build', rarity: 'classified', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17PLfYQJD_9W7m5a0n_L1JaKfzm4B6sR03-qUrNjx31Xg_Uo4ZD2icIeXcwI4ZlCGr1Lvx-nth5TvuM_A1z5i551a31Sg/360fx360f' },
-                { name: 'M4A1-S | Hyper Beast', rarity: 'classified', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gb-Gw_alIITBhGJf_NZlmOzA-LP5gVO8v11rNmyiI4GdcVJqZ13U-1S-ku_tgpC9vM6ay3M1uiQg5C6InRC10BkZO_xogg/360fx360f' },
-                { name: 'Glock-18 | Royal Legion', rarity: 'restricted', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf0v73djxP192_m460m_7zO6_um11D4cR10r2UrNv03weyqUpkYzv7cIeScgRvZV_R_AW6xe_o0J67vMjJmyA26yM8p2idL1InLw/360fx360f' },
-                { name: 'USP-S | Lead Conduit', rarity: 'mil-spec', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf0v73djxP192_m460m_7zO6_um11D4cR10r2UrNv03weyqUpkYzv7cIeScgRvZV_R_AW6xe_o0J67vMjJmyA26yM8p2idL1InLw/360fx360f' },
-                { name: '★ Bowie Knife | Fade', rarity: 'special', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/360fx360f' }
-            ],
-            'phoenix': [
-                { name: 'AWP | Asiimov', rarity: 'covert', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17PLfYQJD_9W7m5a0n_L1JaKfzm4B6sR03-qUrNjx31Xg_Uo4ZD2icIeXcwI4ZlCGr1Lvx-nth5TvuM_A1z5i551a31Sg/360fx360f' },
-                { name: 'AK-47 | Redline', rarity: 'classified', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV08y5nyjhbfc3a73Uom5U18h0juX--YX8zh3i8xZrNW33LITBdgA3ZwyEq1O8wLq9hpC-6M6cmyA16Scl-z-DyP23_N3b/360fx360f' },
-                { name: 'MAC-10 | Heat', rarity: 'restricted', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf0v73djxP192_m460m_7zO6_um11D4cR10r2UrNv03weyqUpkYzv7cIeScgRvZV_R_AW6xe_o0J67vMjJmyA26yM8p2idL1InLw/360fx360f' },
-                { name: '★ Karambit | Case Hardened', rarity: 'special', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/360fx360f' }
-            ],
-            'bravo': [
-                { name: 'AK-47 | Fire Serpent', rarity: 'covert', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV08y5nyjhbfc3a73Uom5U18h0juX--YX8zh3i8xZrNW33LITBdgA3ZwyEq1O8wLq9hpC-6M6cmyA16Scl-z-DyP23_N3b/360fx360f' },
-                { name: 'AWP | Graphite', rarity: 'classified', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17PLfYQJD_9W7m5a0n_L1JaKfzm4B6sR03-qUrNjx31Xg_Uo4ZD2icIeXcwI4ZlCGr1Lvx-nth5TvuM_A1z5i551a31Sg/360fx360f' },
-                { name: '★ M9 Bayonet | Crimson Web', rarity: 'special', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/360fx360f' }
-            ]
+            'wildfire': {
+                name: 'Operation Wildfire Case',
+                img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJlY20k_bLP7LWnn9u5cR1jeHNu9r23gLgqBBlZTrzJ9SWdVg6ZQrYrFe_yeft0MC8upTIn3pr63Rz53fVmkW0x01IcKU8hwP-/360fx360f',
+                items: [
+                    // Mil-Spec (Blue)
+                    { name: 'Dual Berettas | Cartel', rarity: 'mil-spec', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpos720Uqhze0z3cD1D99C5mr-NmOX1MavSwm0FsJpy37yRoY-i2w2x-xA6MTj1J4fDcgA9MV-FrlDtl7jrhMW57snMy3ZhuyA8p2tc83qslg/360fx360f' },
+                    { name: 'MAC-10 | Lapis Gator', rarity: 'mil-spec', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou7umeldf0v73fT9X7d28jw333f37I6vunm5Q19p02-uS8I_y2wLsqhY_a2jyLYCTIFVsaA7O_1m3kunm15C0tZ3BnyY3vCEn4yqIlkS30Uwea-RxxavJ4L0vS9U/360fx360f' },
+                    { name: 'PP-Bizon | Photic Zone', rarity: 'mil-spec', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpotLOze1Y17P7YJgJU4cWzm5C0m_7zO6_um11D4cR10r2UrNv03weyqUpkYzv7cIeScgRvZV_R_AW6xe_o0J67vMjJmyA26yM8p2idL1InLw/360fx360f' },
+                    { name: 'Tec-9 | Jambiya', rarity: 'mil-spec', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpoor-mcjh31033azRT5d2_m460mv3qO77UqWdY781lxLzE9I2s2wzk-x1kNWvwItKTdQ5vYwuD-1G_k--615Du7cnLm2wj55d_sE7j/360fx360f' },
+                    // Restricted (Purple)
+                    { name: 'Five-SeveN | Triumvirate', rarity: 'restricted', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpoo6m1F0p31833YgJP68y3k4WEaP31P6fQ2WsBsJUp0rmXo9X03w3irxFkYmGlINPBdAUcZAvR_1Xvx-_n15fptZnNznd9-n51S221mTY/360fx360f' },
+                    { name: 'Glock-18 | Royal Legion', rarity: 'restricted', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf0v73djxP192_m460m_7zO6_um11D4cR10r2UrNv03weyqUpkYzv7cIeScgRvZV_R_AW6xe_o0J67vMjJmyA26yM8p2idL1InLw/360fx360f' },
+                    { name: 'MAG-7 | Petroglyph', rarity: 'restricted', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou7uifDhjxszJemkV08y5nyjhbfc3a73Uom5U18h0juX--YX8zh3i8xZrNW33LITBdgA3ZwyEq1O8wLq9hpC-6M6cmyA16Scl-z-DyP23_N3b/360fx360f' },
+                    // Classified (Pink)
+                    { name: 'AWP | Elite Build', rarity: 'classified', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17PLfYQJD_9W7m5a0n_L1JaKfzm4B6sR03-qUrNjx31Xg_Uo4ZD2icIeXcwI4ZlCGr1Lvx-nth5TvuM_A1z5i551a31Sg/360fx360f' },
+                    { name: 'Desert Eagle | Kumicho Dragon', rarity: 'classified', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKdph1l1ifqypYzhz3e33d93nkI-0m_7zO6_um11D4cR10r2UrNv03weyqUpkYzv7cIeScgRvZV_R_AW6xe_o0J67vMjJmyA26yM8p2idL1InLw/360fx360f' },
+                    { name: 'Nova | Hyper Beast', rarity: 'classified', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gb-Gw_alIITBhGJf_NZlmOzA-LP5gVO8v11rNmyiI4GdcVJqZ13U-1S-ku_tgpC9vM6ay3M1uiQg5C6InRC10BkZO_xogg/360fx360f' },
+                    // Covert (Red)
+                    { name: 'AK-47 | Fuel Injector', rarity: 'covert', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV08y5nyjhbfc3a73Uom5U18h0juX--YX8zh3i8xZrNW33LITBdgA3ZwyEq1O8wLq9hpC-6M6cmyA16Scl-z-DyP23_N3b/360fx360f' },
+                    { name: "M4A1-S | Chantico's Fire", rarity: 'covert', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gb-Gw_alIITBm39U18h0juX--YX8zh3i8xZrNW33LITBdgA3ZwyEq1O8wLq9hpC-6M6cmyA16Scl-z-DyP23_N3b/360fx360f' },
+                    // Special Knife (Gold)
+                    { name: '★ Bowie Knife | Fade', rarity: 'special', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/360fx360f' }
+                ]
+            },
+            'phoenix': {
+                name: 'Operation Phoenix Case',
+                img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfxPrNfChS89-_mpW0m_7zO6_umllD6sShyrqVpI3wjFa1r0BpNWz0cJfEcwI8YgvU_le_yOm9jMXqucvPynRmu2Bz5SnekB3h10gdcPM-i_E/360fx360f',
+                items: [
+                    // Mil-Spec
+                    { name: 'UMP-45 | Corporal', rarity: 'mil-spec', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpoo7e1f1Jf0vL3dzxP7d25m4SNm_L1J6jum11D4cR10r2UrNv03weyqUpkYzv7cIeScgRvZV_R_AW6xe_o0J67vMjJmyA26yM8p2idL1InLw/360fx360f' },
+                    { name: 'Negev | Terrain', rarity: 'mil-spec', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpouL-iLhFfwOP3fDhR5d2_m460mv3qO77UqWdY781lxLzE9I2s2wzk-x1kNWvwItKTdQ5vYwuD-1G_k--615Du7cnLm2wj55d_sE7j/360fx360f' },
+                    // Restricted
+                    { name: 'MAC-10 | Heat', rarity: 'restricted', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf0v73djxP192_m460m_7zO6_um11D4cR10r2UrNv03weyqUpkYzv7cIeScgRvZV_R_AW6xe_o0J67vMjJmyA26yM8p2idL1InLw/360fx360f' },
+                    { name: 'SG 553 | Pulse', rarity: 'restricted', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpopb-1FAR17PLfYQJD_9W7m5a0n_L1JaKfzm4B6sR03-qUrNjx31Xg_Uo4ZD2icIeXcwI4ZlCGr1Lvx-nth5TvuM_A1z5i551a31Sg/360fx360f' },
+                    // Classified
+                    { name: 'AWP | Asiimov', rarity: 'classified', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17PLfYQJD_9W7m5a0n_L1JaKfzm4B6sR03-qUrNjx31Xg_Uo4ZD2icIeXcwI4ZlCGr1Lvx-nth5TvuM_A1z5i551a31Sg/360fx360f' },
+                    { name: 'AK-47 | Redline', rarity: 'classified', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV08y5nyjhbfc3a73Uom5U18h0juX--YX8zh3i8xZrNW33LITBdgA3ZwyEq1O8wLq9hpC-6M6cmyA16Scl-z-DyP23_N3b/360fx360f' },
+                    // Covert
+                    { name: 'CZ75-Auto | Victoria', rarity: 'covert', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gb-Gw_alIITBhGJf_NZlmOzA-LP5gVO8v11rNmyiI4GdcVJqZ13U-1S-ku_tgpC9vM6ay3M1uiQg5C6InRC10BkZO_xogg/360fx360f' },
+                    // Special
+                    { name: '★ Karambit | Fade', rarity: 'special', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/360fx360f' }
+                ]
+            },
+            'bravo': {
+                name: 'Operation Bravo Case',
+                img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJlY20k_bLP7LWnn9u5cR1jeHNu9r23gLgqBBlZTrzJ9SWdVg6ZQrYrFe_yeft0MC8upTIn3pr63Rz53fVmkW0x01IcKU8hwP-/360fx360f',
+                items: [
+                    // Mil-Spec
+                    { name: 'SG 553 | Wave Spray', rarity: 'mil-spec', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpopb-1FAR17PLfYQJD_9W7m5a0n_L1JaKfzm4B6sR03-qUrNjx31Xg_Uo4ZD2icIeXcwI4ZlCGr1Lvx-nth5TvuM_A1z5i551a31Sg/360fx360f' },
+                    // Restricted
+                    { name: 'M4A4 | Zirka', rarity: 'restricted', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gb-Gw_alIITBhGJf_NZlmOzA-LP5gVO8v11rNmyiI4GdcVJqZ13U-1S-ku_tgpC9vM6ay3M1uiQg5C6InRC10BkZO_xogg/360fx360f' },
+                    // Classified
+                    { name: 'P90 | Emerald Dragon', rarity: 'classified', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpopu11FAR17PLfYQJD_9W7m5a0n_L1JaKfzm4B6sR03-qUrNjx31Xg_Uo4ZD2icIeXcwI4ZlCGr1Lvx-nth5TvuM_A1z5i551a31Sg/360fx360f' },
+                    // Covert
+                    { name: 'AK-47 | Fire Serpent', rarity: 'covert', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV08y5nyjhbfc3a73Uom5U18h0juX--YX8zh3i8xZrNW33LITBdgA3ZwyEq1O8wLq9hpC-6M6cmyA16Scl-z-DyP23_N3b/360fx360f' },
+                    // Special
+                    { name: '★ M9 Bayonet | Crimson Web', rarity: 'special', img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/360fx360f' }
+                ]
+            }
         };
 
-        // User Inventory State
+        // User Inventory State Initial Setup
         let inventory = [
             { id: 'pass-wildfire', type: 'pass', name: 'Operation Wildfire Access Pass', qty: 1, img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/360fx360f', rarity: 'covert' },
-            { id: 'case-wildfire', type: 'case', caseKey: 'wildfire', name: 'Operation Wildfire Case', qty: 10, img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJlY20k_bLP7LWnn9u5cR1jeHNu9r23gLgqBBlZTrzJ9SWdVg6ZQrYrFe_yeft0MC8upTIn3pr63Rz53fVmkW0x01IcKU8hwP-/360fx360f', rarity: 'classified' },
-            { id: 'case-phoenix', type: 'case', caseKey: 'phoenix', name: 'Operation Phoenix Case', qty: 10, img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfxPrNfChS89-_mpW0m_7zO6_umllD6sShyrqVpI3wjFa1r0BpNWz0cJfEcwI8YgvU_le_yOm9jMXqucvPynRmu2Bz5SnekB3h10gdcPM-i_E/360fx360f', rarity: 'classified' },
-            { id: 'case-bravo', type: 'case', caseKey: 'bravo', name: 'Operation Bravo Case', qty: 10, img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJlY20k_bLP7LWnn9u5cR1jeHNu9r23gLgqBBlZTrzJ9SWdVg6ZQrYrFe_yeft0MC8upTIn3pr63Rz53fVmkW0x01IcKU8hwP-/360fx360f', rarity: 'classified' }
+            { id: 'case-wildfire', type: 'case', caseKey: 'wildfire', name: 'Operation Wildfire Case', qty: 10, img: CASE_COLLECTIONS.wildfire.img, rarity: 'classified' },
+            { id: 'case-phoenix', type: 'case', caseKey: 'phoenix', name: 'Operation Phoenix Case', qty: 10, img: CASE_COLLECTIONS.phoenix.img, rarity: 'classified' },
+            { id: 'case-bravo', type: 'case', caseKey: 'bravo', name: 'Operation Bravo Case', qty: 10, img: CASE_COLLECTIONS.bravo.img, rarity: 'classified' }
         ];
 
-        let activeCase = null;
+        // Stats tracking
+        let stats = {
+            opened: 0,
+            covert: 0,
+            knife: 0,
+            stattrak: 0
+        };
+
+        let activeCaseKey = null;
         let isSpinning = false;
         let winningItem = null;
+        let activeBadgeItem = null;
+
+        // Switch Scaleform Top Tabs
+        function switchTab(tabName) {
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+
+            document.getElementById('section-inventory').classList.add('hidden');
+            document.getElementById('section-cases').classList.add('hidden');
+            document.getElementById('section-profile').classList.add('hidden');
+
+            document.getElementById(`section-${tabName}`).classList.remove('hidden');
+
+            if (tabName === 'cases') {
+                renderCasesStore();
+            }
+        }
 
         // Render Inventory Grid
         function renderInventory() {
@@ -312,18 +502,18 @@
                 card.className = `cs-panel p-3 rounded flex flex-col justify-between items-center text-center relative group hover:border-amber-500/80 transition-all ${rarityConfig.class}`;
                 
                 card.innerHTML = `
-                    <div class="absolute top-2 right-2 text-[10px] font-bold bg-slate-900/80 px-1.5 py-0.5 rounded text-amber-400">x${item.qty}</div>
-                    <div class="w-full h-24 flex items-center justify-center my-2">
-                        <img src="${item.img}" class="max-h-20 object-contain drop-shadow-md group-hover:scale-105 transition-transform">
+                    <div class="absolute top-2 right-2 text-[10px] font-bold bg-slate-900/90 border border-slate-800 px-1.5 py-0.5 rounded text-amber-400">x${item.qty}</div>
+                    <div class="w-full h-24 flex items-center justify-center my-2 p-1">
+                        <img src="${item.img}" class="max-h-20 object-contain drop-shadow-md group-hover:scale-105 transition-transform" alt="${item.name}">
                     </div>
                     <div class="w-full">
-                        <p class="text-xs font-bold text-white line-clamp-1 mb-2">${item.name}</p>
+                        <p class="text-xs font-bold text-white line-clamp-1 mb-2" title="${item.name}">${item.name}</p>
                         ${item.type === 'pass' ? `
                             <button onclick="activatePass('${item.id}')" class="btn-cs btn-cs-gold w-full py-1 text-[10px] uppercase">Activate Pass</button>
                         ` : item.type === 'case' ? `
                             <button onclick="openCaseModal('${item.caseKey}')" class="btn-cs w-full py-1 text-[10px] uppercase">Open Case</button>
                         ` : `
-                            <span class="text-[10px] text-slate-400 uppercase font-bold">${item.wear || 'Skin'}</span>
+                            <div class="text-[10px] text-amber-400 font-bold uppercase truncate">${item.wear || 'Factory New'}</div>
                         `}
                     </div>
                 `;
@@ -333,69 +523,115 @@
             document.getElementById('total-item-count').innerText = totalQty;
         }
 
-        // Activate Wildfire Pass
+        // Render Cases Store Grid
+        function renderCasesStore() {
+            const grid = document.getElementById('cases-store-grid');
+            grid.innerHTML = '';
+
+            Object.keys(CASE_COLLECTIONS).forEach(key => {
+                const c = CASE_COLLECTIONS[key];
+                const userCaseItem = inventory.find(i => i.caseKey === key);
+                const userQty = userCaseItem ? userCaseItem.qty : 0;
+
+                const card = document.createElement('div');
+                card.className = 'bg-slate-900/90 border border-slate-800 p-5 rounded flex flex-col justify-between items-center text-center hover:border-amber-500/60 transition-all';
+                card.innerHTML = `
+                    <div class="w-full">
+                        <div class="flex justify-between items-center text-xs mb-2">
+                            <span class="text-slate-400">Container</span>
+                            <span class="text-amber-400 font-bold">Qty: ${userQty}</span>
+                        </div>
+                        <h3 class="text-lg font-black text-white uppercase tracking-wider mb-4">${c.name}</h3>
+                        <div class="w-full h-36 flex items-center justify-center mb-4">
+                            <img src="${c.img}" class="max-h-32 object-contain drop-shadow-xl hover:scale-105 transition-transform">
+                        </div>
+                    </div>
+                    <button onclick="openCaseModal('${key}')" ${userQty <= 0 ? 'disabled' : ''} class="btn-cs btn-cs-gold w-full py-2.5 text-xs uppercase tracking-widest disabled:opacity-40 disabled:cursor-not-allowed">
+                        ${userQty > 0 ? 'Open Container' : 'Out of Stock'}
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Activate Operation Wildfire Pass
         function activatePass(itemId) {
             const itemIdx = inventory.findIndex(i => i.id === itemId);
             if (itemIdx > -1) {
                 inventory.splice(itemIdx, 1);
-                inventory.unshift({
+                
+                // Add Wildfire Challenge Coin
+                activeBadgeItem = {
                     id: 'coin-wildfire',
-                    type: 'coin',
-                    name: 'Operation Wildfire Coin (Bronze)',
+                    type: 'badge',
+                    name: 'Operation Wildfire Challenge Coin',
                     qty: 1,
                     img: 'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLELzR96t26q4WYh8j3KqjfjmhF6cB0iLiV99ym3wHkqhVvMW2hJteWegE8Zg2E-le8lOu61sS6u8nAzXRm7HRw6yremxG0gE1IOMRv26eTcw/360fx360f',
                     rarity: 'special'
-                });
+                };
+                inventory.unshift(activeBadgeItem);
+                
+                // Update profile display
+                document.getElementById('active-badge').innerHTML = `
+                    <img src="${activeBadgeItem.img}" class="w-10 h-10 object-contain">
+                    <div class="text-left">
+                        <p class="text-xs font-bold text-amber-400">${activeBadgeItem.name}</p>
+                        <p class="text-[10px] text-slate-400">Bronze Operation Badge</p>
+                    </div>
+                `;
+
                 renderInventory();
-                showToast("Operation Wildfire Pass Activated! Bronze Coin added to profile.");
-                AudioEngine.playWin();
+                showToast("Operation Wildfire Pass Activated! Bronze Badge added to profile.");
+                AudioEngine.playWin(true);
             }
         }
 
-        // Open Case Modal
+        // Open Case Modal Setup
         function openCaseModal(caseKey) {
-            activeCase = inventory.find(i => i.caseKey === caseKey);
-            if (!activeCase || activeCase.qty <= 0) {
-                showToast("No cases remaining!");
+            const caseItem = inventory.find(i => i.caseKey === caseKey);
+            if (!caseItem || caseItem.qty <= 0) {
+                showToast("You don't have any of this case remaining in your inventory!");
                 return;
             }
 
-            document.getElementById('modal-case-title').innerText = activeCase.name;
-            const collection = CASE_COLLECTIONS[caseKey] || [];
+            activeCaseKey = caseKey;
+            const collectionData = CASE_COLLECTIONS[caseKey];
+
+            document.getElementById('modal-case-title').innerText = collectionData.name;
             
-            // Render Collection Grid
+            // Render Collection Preview Grid
             const grid = document.getElementById('modal-collection-grid');
             grid.innerHTML = '';
-            collection.forEach(item => {
+            collectionData.items.forEach(item => {
                 const rarityConfig = RARITIES[item.rarity];
                 grid.innerHTML += `
-                    <div class="bg-slate-900/80 p-2 rounded border border-slate-800 text-center ${rarityConfig.class}">
-                        <img src="${item.img}" class="h-12 mx-auto object-contain mb-1">
-                        <p class="text-[10px] font-bold text-slate-300 line-clamp-1">${item.name}</p>
+                    <div class="bg-slate-900/90 p-2 rounded border border-slate-800 text-center ${rarityConfig.class}">
+                        <img src="${item.img}" class="h-14 mx-auto object-contain mb-1" alt="${item.name}">
+                        <p class="text-[10px] font-bold text-slate-200 line-clamp-1">${item.name}</p>
                     </div>
                 `;
             });
 
-            setupRouletteTrack(collection);
+            setupRouletteTrack(collectionData.items);
             document.getElementById('case-modal').classList.remove('hidden');
         }
 
         // Setup Carousel Reel
-        function setupRouletteTrack(collection) {
+        function setupRouletteTrack(items) {
             const track = document.getElementById('roulette-track');
             track.style.transition = 'none';
             track.style.transform = 'translateX(0px)';
             track.innerHTML = '';
 
-            // Generate 60 randomized items
+            // Generate 60 randomized items for smooth long scroll
             for (let i = 0; i < 60; i++) {
-                const randItem = collection[Math.floor(Math.random() * collection.length)];
+                const randItem = items[Math.floor(Math.random() * items.length)];
                 const rarityConfig = RARITIES[randItem.rarity];
                 
                 const itemEl = document.createElement('div');
-                itemEl.className = `w-32 h-36 bg-slate-900 border-r border-slate-800 flex-shrink-0 flex flex-col justify-between items-center p-2 text-center relative ${rarityConfig.class}`;
+                itemEl.className = `w-32 h-36 bg-slate-900/90 border-r border-slate-800 flex-shrink-0 flex flex-col justify-between items-center p-2 text-center relative ${rarityConfig.class}`;
                 itemEl.innerHTML = `
-                    <img src="${randItem.img}" class="h-20 object-contain my-auto">
+                    <img src="${randItem.img}" class="h-20 object-contain my-auto drop-shadow-md" alt="${randItem.name}">
                     <p class="text-[10px] font-bold text-slate-200 line-clamp-1 w-full">${randItem.name}</p>
                 `;
                 track.appendChild(itemEl);
@@ -404,42 +640,46 @@
 
         // Spin Roulette
         function spinRoulette() {
-            if (isSpinning || !activeCase || activeCase.qty <= 0) return;
+            if (isSpinning || !activeCaseKey) return;
+
+            const caseItem = inventory.find(i => i.caseKey === activeCaseKey);
+            if (!caseItem || caseItem.qty <= 0) return;
+
             isSpinning = true;
 
-            // Decrement case quantity
-            activeCase.qty--;
-            if (activeCase.qty <= 0) {
-                inventory = inventory.filter(i => i.id !== activeCase.id);
+            // Decrement case
+            caseItem.qty--;
+            if (caseItem.qty <= 0) {
+                inventory = inventory.filter(i => i.id !== caseItem.id);
             }
             renderInventory();
 
-            document.getElementById('btn-unlock').disabled = true;
-            document.getElementById('btn-unlock').classList.add('opacity-50');
+            const btnUnlock = document.getElementById('btn-unlock');
+            btnUnlock.disabled = true;
+            btnUnlock.classList.add('opacity-50');
 
             const track = document.getElementById('roulette-track');
-            const collection = CASE_COLLECTIONS[activeCase.caseKey];
+            const items = CASE_COLLECTIONS[activeCaseKey].items;
             
-            // Pick Winner (Index 45)
-            winningItem = collection[Math.floor(Math.random() * collection.length)];
+            // Pick Winner Weighted Randomly (Knife / Covert rarer)
+            winningItem = pickWeightedItem(items);
             const winnerRarity = RARITIES[winningItem.rarity];
 
             // Inject winner at slot index 45
-            const winnerCard = track.children[45];
-            winnerCard.className = `w-32 h-36 bg-slate-900 border-r border-slate-800 flex-shrink-0 flex flex-col justify-between items-center p-2 text-center relative ${winnerRarity.class}`;
+            const targetIndex = 45;
+            const winnerCard = track.children[targetIndex];
+            winnerCard.className = `w-32 h-36 bg-slate-900/90 border-r border-slate-800 flex-shrink-0 flex flex-col justify-between items-center p-2 text-center relative ${winnerRarity.class}`;
             winnerCard.innerHTML = `
-                <img src="${winningItem.img}" class="h-20 object-contain my-auto">
+                <img src="${winningItem.img}" class="h-20 object-contain my-auto drop-shadow-md" alt="${winningItem.name}">
                 <p class="text-[10px] font-bold text-slate-200 line-clamp-1 w-full">${winningItem.name}</p>
             `;
 
-            // Calculate exact landing position
+            // Calculate exact landing position with center offset
             const itemWidth = 128; // 32 * 4 (w-32)
-            const targetIndex = 45;
             const containerWidth = document.querySelector('.roulette-container').offsetWidth;
-            const randomOffset = Math.floor(Math.random() * 80) - 40; // slight random offset for realism
+            const randomOffset = Math.floor(Math.random() * 80) - 40; // realistic randomization
             const targetX = -(targetIndex * itemWidth - (containerWidth / 2) + (itemWidth / 2) + randomOffset);
 
-            // Ticking sound interval tracking
             let lastTickPos = 0;
             const spinDuration = 5500;
             const startTime = performance.now();
@@ -448,13 +688,13 @@
                 const elapsed = time - startTime;
                 const progress = Math.min(elapsed / spinDuration, 1);
                 
-                // Cubic-bezier deceleration ease-out curve
+                // Authentic CS:GO cubic deceleration easing curve
                 const easeOut = 1 - Math.pow(1 - progress, 4);
                 const currentX = targetX * easeOut;
                 
                 track.style.transform = `translateX(${currentX}px)`;
 
-                // Play ticks as items pass line
+                // Tick sound per item pass
                 const currentTickPos = Math.floor(-currentX / itemWidth);
                 if (currentTickPos !== lastTickPos) {
                     AudioEngine.playTick();
@@ -464,39 +704,72 @@
                 if (progress < 1) {
                     requestAnimationFrame(animate);
                 } else {
-                    // Finished Spin
+                    // Spin finished
                     setTimeout(() => {
                         showWinScreen(winningItem);
                         isSpinning = false;
-                        document.getElementById('btn-unlock').disabled = false;
-                        document.getElementById('btn-unlock').classList.remove('opacity-50');
-                    }, 500);
+                        btnUnlock.disabled = false;
+                        btnUnlock.classList.remove('opacity-50');
+                    }, 400);
                 }
             }
 
             requestAnimationFrame(animate);
         }
 
-        // Show Win Modal
-        function showWinScreen(item) {
-            AudioEngine.playWin();
-            const rarityConfig = RARITIES[item.rarity];
-            
-            const wears = ['Factory New', 'Minimal Wear', 'Field-Tested', 'Well-Worn', 'Battle-Scarred'];
-            const isStatTrak = Math.random() < 0.2;
-            const wear = wears[Math.floor(Math.random() * wears.length)];
+        // Weighted Odds System (Reflecting Official CS:GO Odds)
+        function pickWeightedItem(items) {
+            const rand = Math.random() * 100;
+            let targetRarity = 'mil-spec';
 
+            if (rand < 0.26) targetRarity = 'special';       // 0.26% Knife
+            else if (rand < 0.90) targetRarity = 'covert';   // 0.64% Covert
+            else if (rand < 4.10) targetRarity = 'classified';// 3.2% Classified
+            else if (rand < 20.08) targetRarity = 'restricted';// 15.98% Restricted
+            else targetRarity = 'mil-spec';                  // ~79.92% Mil-spec
+
+            const pool = items.filter(i => i.rarity === targetRarity);
+            if (pool.length > 0) {
+                return pool[Math.floor(Math.random() * pool.length)];
+            }
+            return items[Math.floor(Math.random() * items.length)];
+        }
+
+        // Show Win Modal Overlay
+        function showWinScreen(item) {
+            const rarityConfig = RARITIES[item.rarity];
+            const isRare = item.rarity === 'covert' || item.rarity === 'special';
+            
+            AudioEngine.playWin(isRare);
+
+            const wears = ['Factory New', 'Minimal Wear', 'Field-Tested', 'Well-Worn', 'Battle-Scarred'];
+            const wear = wears[Math.floor(Math.random() * wears.length)];
+            const isStatTrak = item.rarity !== 'special' && Math.random() < 0.15;
+            const fullName = (isStatTrak ? 'StatTrak™ ' : '') + item.name;
+
+            // Update Stats
+            stats.opened++;
+            if (item.rarity === 'covert') stats.covert++;
+            if (item.rarity === 'special') stats.knife++;
+            if (isStatTrak) stats.stattrak++;
+            
+            document.getElementById('stat-opened').innerText = stats.opened;
+            document.getElementById('stat-covert').innerText = stats.covert;
+            document.getElementById('stat-knife').innerText = stats.knife;
+            document.getElementById('stat-stattrak').innerText = stats.stattrak;
+
+            // Populate Modal UI
             document.getElementById('win-rarity-badge').innerText = rarityConfig.name;
             document.getElementById('win-rarity-badge').className = `inline-block px-3 py-0.5 text-[10px] font-black uppercase text-white rounded mb-4 ${rarityConfig.bg}`;
             document.getElementById('win-item-image').src = item.img;
-            document.getElementById('win-item-name').innerText = (isStatTrak ? 'StatTrak™ ' : '') + item.name;
+            document.getElementById('win-item-name').innerText = fullName;
             document.getElementById('win-item-details').innerText = `${wear} • Exterior Wear`;
 
-            // Add won item into inventory
+            // Append item to inventory grid
             inventory.unshift({
                 id: 'skin-' + Date.now(),
                 type: 'skin',
-                name: (isStatTrak ? 'StatTrak™ ' : '') + item.name,
+                name: fullName,
                 wear: wear,
                 qty: 1,
                 img: item.img,
@@ -526,7 +799,7 @@
             }, 3000);
         }
 
-        // Initial Load
+        // Initialize on Window Load
         window.onload = () => {
             renderInventory();
         };
